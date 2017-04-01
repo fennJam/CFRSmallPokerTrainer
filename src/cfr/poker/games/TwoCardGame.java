@@ -1,4 +1,4 @@
-package cfr.games;
+package cfr.poker.games;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import cfr.trainer.PayOffCalculator;
+import poker.BettingLimit;
 import poker.Board;
 import poker.Card;
 import poker.Deck;
@@ -15,33 +16,38 @@ import poker.Hand;
 import poker.HandSingleCard;
 import poker.Pot;
 
-public class SingleCardGame implements PokerGame {
+public class TwoCardGame implements PokerGame {
 
+	static int bettingRounds = 2;
+	static GameType gameType = GameType.TWO_CARD;
+	
 	Collection<Integer> players;
 	Map<Integer, Hand> hands;
+	BettingLimit bettingLimit;
 	int raisesPerBettingRound;
-	static int bettingRounds =1;
-	static GameType gameType = GameType.SINGLE_CARD;
 	Board board;
 	Pot pot;
 
-	SingleCardGame(Collection<Integer> players, int raisesPerBettingRound) {
+	TwoCardGame(Collection<Integer> players,BettingLimit bettingLimit,int raisesPerBettingRound) {
 		this.players = players;
 		board = null;
 		hands = null;
 		pot = new Pot(players);
+		this.bettingLimit = bettingLimit;
 		this.raisesPerBettingRound = raisesPerBettingRound;
 	}
 
-	SingleCardGame(Integer players, int raisesPerBettingRound) {
+	TwoCardGame(Integer players,BettingLimit bettingLimit,int raisesPerBettingRound) {
 		List<Integer> playerList = new ArrayList<Integer>();
 		for (int player = 0; player < players; player++) {
 			playerList.add(player);
 		}
+		
 		this.players = playerList;
 		board = null;
 		hands = null;
 		pot = new Pot(playerList);
+		this.bettingLimit = bettingLimit;
 		this.raisesPerBettingRound = raisesPerBettingRound;
 	}
 
@@ -75,7 +81,7 @@ public class SingleCardGame implements PokerGame {
 
 	@Override
 	public GameType getGameType() {
-		return SingleCardGame.gameType;
+		return TwoCardGame.gameType;
 	}
 
 	@Override
@@ -128,7 +134,12 @@ public class SingleCardGame implements PokerGame {
 
 	@Override
 	public int getBettingRounds() {
-		return SingleCardGame.bettingRounds;
+		return TwoCardGame.bettingRounds;
+	}
+	
+	@Override
+	public BettingLimit getBettingLimit() {
+		return this.bettingLimit;
 	}
 
 	@Override
@@ -138,6 +149,7 @@ public class SingleCardGame implements PokerGame {
 			throw new Error("Different game type or number of betting rounds in game you are trying to copy!!");
 		}
 		
+		this.bettingLimit = game.getBettingLimit();
 		this.players = game.getPlayers();
 		this.hands = game.getHands();
 		this.raisesPerBettingRound = game.getRaisesPerBettingRound();

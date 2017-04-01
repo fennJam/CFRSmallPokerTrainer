@@ -8,8 +8,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
 
-import cfr.games.PokerGame;
-import cfr.games.PokerGameFactory;
+import cfr.poker.games.PokerGame;
+import cfr.poker.games.PokerGameFactory;
+import poker.BettingLimit;
 import poker.Deck;
 import poker.GameType;
 import poker.HandSingleCard;
@@ -42,7 +43,7 @@ public class SingleCardNLPokerTrainer {
 	public void train(GameType gameType, int iterations) {
 		double util = 0;
 		for (int i = 0; i < iterations; i++) {
-			PokerGame game = PokerGameFactory.setUpGame(gameType, 2,1);
+			PokerGame game = PokerGameFactory.setUpGame(gameType,BettingLimit.LIMIT,2,1);
 			game.dealCards(new Deck());
 			util += cfr(game, "D", 1, 1);
 			if(i%10000==0){

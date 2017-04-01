@@ -1,9 +1,10 @@
-package cfr.games;
+package cfr.poker.games;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import poker.BettingLimit;
 import poker.Board;
 import poker.Card;
 import poker.Deck;
@@ -25,7 +26,7 @@ public interface PokerGame {
 	Pot getPot();
 
 	GameType getGameType();
-
+	
 	Hand getHand(int player);
 	
 	int getRaisesPerBettingRound();
@@ -45,5 +46,7 @@ public interface PokerGame {
 	Map<Integer, Integer> getPayOffs();
 
 	PokerGame importGameProperties(PokerGame game);
+
+	BettingLimit getBettingLimit();
 
 }
