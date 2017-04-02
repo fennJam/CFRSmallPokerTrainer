@@ -6,14 +6,14 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import cfr.trainer.SingleCardNLPokerTrainer;
+import cfr.trainer.VanillaCFRTrainer;
 
 public class PokerTrainerTest {
-	SingleCardNLPokerTrainer singleCardNLPokerTrainer;
+	VanillaCFRTrainer singleCardNLPokerTrainer;
 
 	@Before
 	public void init() {
-		singleCardNLPokerTrainer = new SingleCardNLPokerTrainer();
+		singleCardNLPokerTrainer = new VanillaCFRTrainer();
 	}
 	
 	@Test

@@ -1,4 +1,3 @@
-package poker;
 // Copyright 2014 theaigames.com (developers@theaigames.com)
 
 //    Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,7 +15,9 @@ package poker;
 //    For the full copyright and license information, please view the LICENSE
 //    file that was distributed with this source code.
 
+package cfr.poker;
 
-public enum CardSuit {
-	SPADES, HEARTS, CLUBS, DIAMONDS
+public enum HandInfoType
+{
+	HAND_START, HAND_CARDS, NEW_BETROUND;
 }

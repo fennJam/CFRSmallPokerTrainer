@@ -1,7 +1,7 @@
 // Written by James Fennell
 // 26/1/2017
 
-package poker;
+package cfr.poker;
 public class HandSingleCard extends Hand
 {	
 	Card card;
@@ -14,6 +14,7 @@ public class HandSingleCard extends Hand
 	 */
 	public HandSingleCard(Card card)
 	{
+		this.handType = HandType.SINGLECARD; 
 		this.cards = new Card[1];
 		this.cards[0] = card;
 		this.card = card;
@@ -32,5 +33,10 @@ public class HandSingleCard extends Hand
 	public CardHeight getRank() {
 		return rank;
 	}
+	
+	public HandType getHandType() {
+		return handType;
+	}
+
 	
 }

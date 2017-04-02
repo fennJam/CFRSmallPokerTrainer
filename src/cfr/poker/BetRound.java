@@ -1,7 +1,7 @@
 // Written by James Fennell
 // 26/1/2017
 
-package poker;
+package cfr.poker;
 
 public enum BetRound {
 	PRETURN, TURN, RIVER;

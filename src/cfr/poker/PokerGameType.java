@@ -1,8 +1,8 @@
-package poker;
+package cfr.poker;
 // James Fennell 2017
 
 
 
-public enum GameType {
+public enum PokerGameType {
 	SINGLE_CARD,TWO_CARD,RHODE_ISLAND,TEXAS,OMAHA
 }

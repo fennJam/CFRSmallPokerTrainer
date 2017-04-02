@@ -1,30 +1,32 @@
-package poker;
+package cfr.poker;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cfr.poker.PokerGameType;
 
 public class Board {
 
 	private Card[] cards;
 	private Boolean[] isVisible;
-	private GameType gameType;
+	private PokerGameType pokerGameType;
 
 	public Board() {
 	}
 
-	public Board(GameType gameType, Deck deck) {
-		if (gameType == GameType.SINGLE_CARD) {
-			this.gameType = GameType.SINGLE_CARD;
+	public Board(PokerGameType pokerGameType, Deck deck) {
+		if (pokerGameType == PokerGameType.SINGLE_CARD) {
+			this.pokerGameType = PokerGameType.SINGLE_CARD;
 			cards = new Card[0];
 			isVisible = new Boolean[0];
-		} else if (gameType == GameType.TWO_CARD) {
-			this.gameType = GameType.TWO_CARD;
+		} else if (pokerGameType == PokerGameType.TWO_CARD) {
+			this.pokerGameType = PokerGameType.TWO_CARD;
 			cards = new Card[1];
 			isVisible = new Boolean[1];
 			cards[0] = deck.nextCard();
 			isVisible[0] = false;
-		} else if (gameType == GameType.RHODE_ISLAND) {
-			this.gameType = GameType.RHODE_ISLAND;
+		} else if (pokerGameType == PokerGameType.RHODE_ISLAND) {
+			this.pokerGameType = PokerGameType.RHODE_ISLAND;
 			cards = new Card[2];
 			isVisible = new Boolean[2];
 			cards[0] = deck.nextCard();
@@ -35,19 +37,19 @@ public class Board {
 		}
 	}
 
-	public Board(GameType gameType) {
-		setGameType(gameType);
+	public Board(PokerGameType PokerGameType) {
+		setPokerGameType(PokerGameType);
 	}
 
-	public Board setGameType(GameType gameType) {
-		if (gameType == GameType.SINGLE_CARD) {
+	public Board setPokerGameType(PokerGameType pokerGameType) {
+		if (pokerGameType == PokerGameType.SINGLE_CARD) {
 			cards = new Card[0];
 			isVisible = new Boolean[0];
-		} else if (gameType == GameType.TWO_CARD) {
+		} else if (pokerGameType == PokerGameType.TWO_CARD) {
 			cards = new Card[1];
 			isVisible = new Boolean[1];
 			isVisible[0] = false;
-		} else if (gameType == GameType.RHODE_ISLAND) {
+		} else if (pokerGameType == PokerGameType.RHODE_ISLAND) {
 			cards = new Card[2];
 			isVisible = new Boolean[2];
 			isVisible[0] = false;
@@ -195,8 +197,8 @@ public class Board {
 		return isVisible;
 	}
 
-	public GameType getGameType() {
-		return gameType;
+	public PokerGameType getPokerGameType() {
+		return pokerGameType;
 	}
 
 	public Board importBoardProperties(Board board) {
@@ -207,7 +209,7 @@ public class Board {
 			this.cards = board.getCards();
 			this.isVisible = board.getIsVisible();
 		}
-		this.gameType = board.gameType;
+		this.pokerGameType = board.pokerGameType;
 		return this;
 	}
 }

@@ -15,9 +15,20 @@
 //    For the full copyright and license information, please view the LICENSE
 //    file that was distributed with this source code.
 
-package poker;
-
-public enum HandInfoType
-{
-	HAND_START, HAND_CARDS, NEW_BETROUND;
+package cfr.poker;
+public class HandHoldem extends Hand
+{		
+	/**
+	 * A hand containing two cards
+	 * @param firstCard : the first card
+	 * @param secondCard : the second card
+	 */
+	public HandHoldem(Card firstCard, Card secondCard)
+	{
+		this.handType = HandType.HOLDEM;
+		cards = new Card[2];
+		cards[0] = firstCard;
+		cards[1] = secondCard;
+	}
 }
+

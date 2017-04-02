@@ -9,12 +9,8 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import cfr.poker.*;
 import cfr.trainer.PayOffCalculator;
-import poker.Board;
-import poker.Card;
-import poker.GameType;
-import poker.Hand;
-import poker.HandSingleCard;
 
 public class PayOffCalculatorTest {
 
@@ -61,7 +57,7 @@ public class PayOffCalculatorTest {
 
 	@Before
 	public void init() {
-		board = new Board().setGameType(GameType.RHODE_ISLAND);
+		board = new Board().setPokerGameType(PokerGameType.RHODE_ISLAND);
 		hands = new HashMap<Integer,Hand>();
 	}
 
@@ -99,7 +95,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpades2);
 		hands.put(1, hSpades3);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)<strengths.get(1));
 		
 		hands.clear();
@@ -107,7 +103,7 @@ public class PayOffCalculatorTest {
 		hands.put(1, hSpades2);
 		hands.put(0, hSpades3);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)>strengths.get(1));
 	}
@@ -120,7 +116,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpades2);
 		hands.put(1, hHearts2);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertEquals(strengths.get(0),strengths.get(1));
 		
 		hands.clear();
@@ -128,7 +124,7 @@ public class PayOffCalculatorTest {
 		hands.put(1, hSpades2);
 		hands.put(0, hHearts2);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertEquals(strengths.get(0),strengths.get(1));
 	}
@@ -142,7 +138,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHearts5);
 		hands.put(1, hSpades2);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)>strengths.get(1));
 		
 		hands.clear();
@@ -150,7 +146,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpades2);
 		hands.put(1, hHearts5);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)<strengths.get(1));
 	}
@@ -163,7 +159,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHearts2);
 		hands.put(1, hSpadesA);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)>strengths.get(1));
 		
 		hands.clear();
@@ -171,7 +167,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHeartsA);
 		hands.put(1, hHearts2);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)<strengths.get(1));
 	}
@@ -185,7 +181,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHearts2);
 		hands.put(1, hSpades3);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)<strengths.get(1));
 		
 		hands.clear();
@@ -193,7 +189,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpades3);
 		hands.put(1, hHearts2);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)>strengths.get(1));
 	}
@@ -206,7 +202,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHeartsJ);
 		hands.put(1, hSpadesA);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)<strengths.get(1));
 		
 		hands.clear();
@@ -214,7 +210,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpadesA);
 		hands.put(1, hHeartsJ);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)>strengths.get(1));
 	}
@@ -227,7 +223,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHearts2);
 		hands.put(1, hSpades3);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)>strengths.get(1));
 		
 		hands.clear();
@@ -235,7 +231,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpades3);
 		hands.put(1, hHearts2);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)<strengths.get(1));
 	}
@@ -248,7 +244,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHearts2);
 		hands.put(1, hSpades3);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)<strengths.get(1));
 		
 		hands.clear();
@@ -256,7 +252,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpades3);
 		hands.put(1, hHearts2);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)>strengths.get(1));
 	}
@@ -269,7 +265,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHeartsK);
 		hands.put(1, hSpades3);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)>strengths.get(1));
 		
 		hands.clear();
@@ -277,7 +273,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpades3);
 		hands.put(1, hHeartsK);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)<strengths.get(1));
 	}
@@ -290,7 +286,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHearts3);
 		hands.put(1, hSpades4);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)<strengths.get(1));
 		
 		hands.clear();
@@ -298,7 +294,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpades4);
 		hands.put(1, hHearts3);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)>strengths.get(1));
 	}
@@ -311,7 +307,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHeartsK);
 		hands.put(1, hSpadesQ);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)>strengths.get(1));
 		
 		hands.clear();
@@ -319,7 +315,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpadesQ);
 		hands.put(1, hHeartsK);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)<strengths.get(1));
 	}
@@ -332,7 +328,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHeartsK);
 		hands.put(1, hSpadesK);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertEquals(strengths.get(0),strengths.get(1));
 		
 		hands.clear();
@@ -340,7 +336,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpadesK);
 		hands.put(1, hHeartsK);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertEquals(strengths.get(0),strengths.get(1));
 	}
@@ -354,7 +350,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHearts5);
 		hands.put(1, hSpades4);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)>strengths.get(1));
 		
 		hands.clear();
@@ -362,7 +358,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpades4);
 		hands.put(1, hHearts5);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)<strengths.get(1));
 	}
@@ -375,7 +371,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHearts3);
 		hands.put(1, hSpades2);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)<strengths.get(1));
 		
 		hands.clear();
@@ -383,7 +379,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpades2);
 		hands.put(1, hHearts3);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)>strengths.get(1));
 	}
@@ -396,7 +392,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHeartsA);
 		hands.put(1, hSpades2);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)<strengths.get(1));
 		
 		hands.clear();
@@ -404,7 +400,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpades2);
 		hands.put(1, hHearts3);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)>strengths.get(1));
 	}
@@ -417,7 +413,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHearts3);
 		hands.put(1, hSpades2);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)>strengths.get(1));
 		
 		hands.clear();
@@ -425,7 +421,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpades2);
 		hands.put(1, hHearts3);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)<strengths.get(1));
 	}
@@ -438,7 +434,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHeartsQ);
 		hands.put(1, hSpadesJ);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)<strengths.get(1));
 		
 		hands.clear();
@@ -446,7 +442,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpadesA);
 		hands.put(1, hHeartsQ);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)>strengths.get(1));
 	}
@@ -459,7 +455,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpadesA);
 		hands.put(1, hSpades2);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)>strengths.get(1));
 		
 		hands.clear();
@@ -467,7 +463,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpades2);
 		hands.put(1, hSpadesA);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)<strengths.get(1));
 	}
@@ -480,7 +476,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpadesA);
 		hands.put(1, hHeartsK);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)<strengths.get(1));
 		
 		hands.clear();
@@ -488,7 +484,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHeartsK);
 		hands.put(1, hSpadesA);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)>strengths.get(1));
 	}
@@ -501,7 +497,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpadesK);
 		hands.put(1, hHeartsA);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)<strengths.get(1));
 		
 		hands.clear();
@@ -509,7 +505,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHeartsA);
 		hands.put(1, hSpadesK);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)>strengths.get(1));
 	}
@@ -522,7 +518,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpadesA);
 		hands.put(1, hHearts2);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)<strengths.get(1));
 		
 		hands.clear();
@@ -530,7 +526,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHearts5);
 		hands.put(1, hSpadesA);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)>strengths.get(1));
 	}
@@ -543,7 +539,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpades2);
 		hands.put(1, hSpades5);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)<strengths.get(1));
 		
 		hands.clear();
@@ -551,7 +547,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpades5);
 		hands.put(1, hSpades2);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)>strengths.get(1));
 	}
@@ -564,7 +560,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHearts5);
 		hands.put(1, hSpades5);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertEquals(strengths.get(0),strengths.get(1));
 		
 		hands.clear();
@@ -572,7 +568,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpades5);
 		hands.put(1, hHearts5);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertEquals(strengths.get(0),strengths.get(1));
 	}
@@ -585,7 +581,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHearts2);
 		hands.put(1, hSpades5);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)>strengths.get(1));
 		
 		hands.clear();
@@ -593,7 +589,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpades5);
 		hands.put(1, hHearts2);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)<strengths.get(1));
 	}
@@ -606,7 +602,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hSpades3);
 		hands.put(1, hHearts3);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertEquals(strengths.get(0),strengths.get(1));
 		
 		hands.clear();
@@ -614,7 +610,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHearts3);
 		hands.put(1, hSpades3);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertEquals(strengths.get(0),strengths.get(1));
 	}
@@ -627,7 +623,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHeartsA);
 		hands.put(1, hHeartsJ);
 		
-		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		assertTrue(strengths.get(0)>strengths.get(1));
 		
 		hands.clear();
@@ -635,7 +631,7 @@ public class PayOffCalculatorTest {
 		hands.put(0, hHeartsJ);
 		hands.put(1, hHeartsA);
 
-		strengths = PayOffCalculator.getHandStrengths(hands, board, GameType.RHODE_ISLAND);
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
 		
 		assertTrue(strengths.get(0)<strengths.get(1));
 	}

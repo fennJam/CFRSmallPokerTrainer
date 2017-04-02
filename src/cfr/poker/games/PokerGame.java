@@ -1,21 +1,17 @@
 package cfr.poker.games;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import poker.BettingLimit;
-import poker.Board;
-import poker.Card;
-import poker.Deck;
-import poker.GameType;
-import poker.Hand;
-import poker.Pot;
+import cfr.poker.*;
+import cfr.poker.actions.PokerAction;
+import cfr.trainer.Action;
+import cfr.trainer.Game;
 
-public interface PokerGame {
+public interface PokerGame extends Game {
 
 
-	Collection<Integer> getPlayers();
+	int[] getPlayers();
 	
 	Map<Integer, Hand> dealCards(Deck deck);
 
@@ -25,15 +21,15 @@ public interface PokerGame {
 
 	Pot getPot();
 
-	GameType getGameType();
+	PokerGameType getGameType();
 	
 	Hand getHand(int player);
 	
-	int getRaisesPerBettingRound();
+	int getRaisesAllowedPerBettingRound();
+	
+	boolean raisesAllowed();
 
-	int getBettingRounds();
-
-	boolean isAtTerminalBettingRound();
+	BetRound getBettingRound();
 	
 	Board turnNextCard();
 	
@@ -43,10 +39,11 @@ public interface PokerGame {
 
 	Map<Integer, Hand> getHands();
 
-	Map<Integer, Integer> getPayOffs();
-
 	PokerGame importGameProperties(PokerGame game);
 
 	BettingLimit getBettingLimit();
+
+	List<PokerAction> getActions();
+
 
 }

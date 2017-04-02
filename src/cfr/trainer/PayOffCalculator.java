@@ -4,29 +4,24 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import cfr.poker.*;
 import hand.evaluators.SmallHandEvaluator;
-import poker.Board;
-import poker.Card;
-import poker.GameType;
-import poker.Hand;
-import poker.HandSingleCard;
-import poker.Pot;
 
 public class PayOffCalculator {
 
 	// return hand strengths for all hands passed in through the constructor
-	public static Map<Integer, Integer> getHandStrengths(Map<Integer, Hand> hands, Board board, GameType gameType) {
+	public static Map<Integer, Integer> getHandStrengths(Map<Integer, Hand> hands, Board board, PokerGameType PokerGameType) {
 		Map<Integer, Integer> handStrengths = new HashMap<Integer, Integer>();
 		// store the hand and table cards together
 		for (Entry<Integer, Hand> playerHand : hands.entrySet()) {
-			handStrengths.put(playerHand.getKey(), getHandStrength(playerHand.getValue(), board, gameType));
+			handStrengths.put(playerHand.getKey(), getHandStrength(playerHand.getValue(), board, PokerGameType));
 		}
 		return handStrengths;
 
 	}
 
-	public static Integer getHandStrength(Hand playerHand, Board board, GameType gameType) {
-		if (gameType == GameType.RHODE_ISLAND) {
+	public static Integer getHandStrength(Hand playerHand, Board board, PokerGameType PokerGameType) {
+		if (PokerGameType == PokerGameType.RHODE_ISLAND) {
 			// store the hand and table cards together
 			HandSingleCard playerSingleCardHand = (HandSingleCard) playerHand;
 			long combinationCode = 0l;
@@ -36,7 +31,7 @@ public class PayOffCalculator {
 
 			return SmallHandEvaluator.evaluateRhodeIslandHand(combinationCode);
 
-		} else if (gameType == GameType.SINGLE_CARD) {
+		} else if (PokerGameType == PokerGameType.SINGLE_CARD) {
 			// store the hand and table cards together
 			HandSingleCard playerSingleCardHand = (HandSingleCard) playerHand;
 			long combinationCode = 0l;
@@ -44,7 +39,7 @@ public class PayOffCalculator {
 
 			return SmallHandEvaluator.evaluateSingleCardPokerHand(combinationCode);
 
-		}else if (gameType == GameType.TWO_CARD) {
+		}else if (PokerGameType == PokerGameType.TWO_CARD) {
 
 			// store the hand and table cards together
 			HandSingleCard playerSingleCardHand = (HandSingleCard) playerHand;
@@ -62,9 +57,9 @@ public class PayOffCalculator {
 	}
 
 	public static Map<Integer, Integer> getPayOffsForTwoPlayerGame(Map<Integer, Hand> hands, Board board, Pot pot,
-			GameType gameType) {
+			PokerGameType PokerGameType) {
 		Map<Integer, Integer> payoffs = new HashMap<Integer, Integer>();
-		Map<Integer, Integer> handStrengths = getHandStrengths(hands, board, gameType);
+		Map<Integer, Integer> handStrengths = getHandStrengths(hands, board, PokerGameType);
 		Integer player0Strength = handStrengths.get(0);
 		Integer player1Strength = handStrengths.get(1);
 		if (player0Strength > player1Strength) {

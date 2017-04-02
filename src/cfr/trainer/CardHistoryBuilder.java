@@ -3,12 +3,13 @@ package cfr.trainer;
 import java.util.ArrayList;
 import java.util.List;
 
-import poker.Board;
-import poker.Card;
-import poker.CardHeight;
-import poker.CardSuit;
-import poker.Hand;
-import poker.HandSingleCard;
+import cfr.poker.Board;
+import cfr.poker.Card;
+import cfr.poker.CardHeight;
+import cfr.poker.CardSuit;
+import cfr.poker.Hand;
+import cfr.poker.HandSingleCard;
+import cfr.poker.HandType;
 
 public class CardHistoryBuilder {
 	boolean playerSuitedWithTurn = true;
@@ -19,17 +20,22 @@ public class CardHistoryBuilder {
 		cardRanks.add(hand.getRank());
 	}
 
-	public CardHistoryBuilder(HandSingleCard hand, Board board) {
-		// Add the players hand to the history
-		CardSuit playerSuit = hand.getSuit();
-		cardRanks.add(hand.getRank());
-		// Add the board to the history
+	public CardHistoryBuilder(Hand hand, Board board) {
+		if (hand.getHandType().equals(HandType.SINGLECARD)) {
+			HandSingleCard handSingleCard = (HandSingleCard) hand;
+			// Add the players hand to the history
+			CardSuit playerSuit = handSingleCard.getSuit();
+			cardRanks.add(handSingleCard.getRank());
+			// Add the board to the history
 
-		if (board.getNumberOfTurnedCards() != 0 && playerSuit != board.getCard(0).getSuit()) {
-			playerSuitedWithTurn = false;
+			if (board.getNumberOfTurnedCards() != 0 && playerSuit != board.getCard(0).getSuit()) {
+				playerSuitedWithTurn = false;
+			}
+			riverSuitedWithTurn = board.isSuited();
+			cardRanks.addAll(board.getTurnedCardsRanks());
+		}else{
+			throw new Error("Card History Builder not implemented for handType: "+hand.getHandType());
 		}
-		riverSuitedWithTurn = board.isSuited();
-		cardRanks.addAll(board.getTurnedCardsRanks());
 	}
 
 	public boolean isPlayerSuitedWithTurn() {

@@ -1,4 +1,4 @@
-package poker;
+package cfr.poker;
 // Copyright 2014 theaigames.com (developers@theaigames.com)
 
 //    Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,6 +17,6 @@ package poker;
 //    file that was distributed with this source code.
 
 
-public enum CardHeight {
-	DEUCE, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE
+public enum CardSuit {
+	SPADES, HEARTS, CLUBS, DIAMONDS
 }

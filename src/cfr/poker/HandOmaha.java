@@ -15,7 +15,7 @@
 //    For the full copyright and license information, please view the LICENSE
 //    file that was distributed with this source code.
 
-package poker;
+package cfr.poker;
 public class HandOmaha extends Hand
 {	
 	/**
@@ -27,6 +27,7 @@ public class HandOmaha extends Hand
 	 */
 	public HandOmaha(Card firstCard, Card secondCard, Card thirdCard, Card fourthCard)
 	{
+		this.handType = HandType.OMAHA; 
 		cards = new Card[4];
 		cards[0] = firstCard;
 		cards[1] = secondCard;

@@ -15,7 +15,7 @@
 //    For the full copyright and license information, please view the LICENSE
 //    file that was distributed with this source code.
 
-package poker;
+package cfr.poker;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,12 +43,11 @@ public class Pot
 	 * Creates a Pot object, used for keeping track of the pot for a specific hand.
 	 * @param players : integer array of player IDs that play in the current hand
 	 */
-	public Pot(Collection<Integer> players)
+	public Pot(int[] players)
 	{
 		playerBetSizes = new HashMap<Integer, Integer>();
-		Iterator<Integer> playerIterator = players.iterator();
-		while(playerIterator.hasNext())
-			playerBetSizes.put(playerIterator.next(), 0);
+		for(int player=0; player<players.length;player++)
+			playerBetSizes.put(players[player], 0);
 		
 		totalPot = 0;
 	}
@@ -63,14 +62,16 @@ public class Pot
 	
 	/**
 	 * Stores the bet of a player.
+	 * @return 
 	 */
-	public void addBet(Integer player, int size)
+	public Pot addBet(Integer player, int size)
 	{
 
 		playerBetSizes.put(player, playerBetSizes.get(player) + size);
 		totalPot = totalPot+size;
 		lastBet = new AbstractMap.SimpleEntry<Integer, Integer>(player,size);
 
+		return this;
 	}
 	
 	/**

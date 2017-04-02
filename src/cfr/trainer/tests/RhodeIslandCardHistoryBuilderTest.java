@@ -8,17 +8,13 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import cfr.poker.*;
 import cfr.trainer.CardHistoryBuilder;
-import poker.Board;
-import poker.Card;
-import poker.CardHeight;
-import poker.GameType;
-import poker.HandSingleCard;
 
 public class RhodeIslandCardHistoryBuilderTest {
 
 	CardHistoryBuilder rhodeIslandCardHistoryBuilder = null;
-	GameType gameType = GameType.RHODE_ISLAND;
+	PokerGameType PokerGameType = PokerGameType.RHODE_ISLAND;
 
 	final Card twoOfSpades = new Card(0);
 	final Card threeOfSpades = new Card(1);
@@ -28,12 +24,12 @@ public class RhodeIslandCardHistoryBuilderTest {
 	final Card fourOfHearts = new Card(15);
 
 	HandSingleCard hand2OfSpades;
-	Board board3OfSpades = new Board(GameType.RHODE_ISLAND);
-	Board board3OfHearts = new Board(GameType.RHODE_ISLAND);
-	Board board3and4OfSpades = new Board(GameType.RHODE_ISLAND);
-	Board board3and4OfHearts = new Board(GameType.RHODE_ISLAND);
-	Board board3OfSpadesAnd4OfHearts = new Board(GameType.RHODE_ISLAND);
-	Board board4OfHeartsAnd3OfSpades = new Board(GameType.RHODE_ISLAND);
+	Board board3OfSpades = new Board(PokerGameType.RHODE_ISLAND);
+	Board board3OfHearts = new Board(PokerGameType.RHODE_ISLAND);
+	Board board3and4OfSpades = new Board(PokerGameType.RHODE_ISLAND);
+	Board board3and4OfHearts = new Board(PokerGameType.RHODE_ISLAND);
+	Board board3OfSpadesAnd4OfHearts = new Board(PokerGameType.RHODE_ISLAND);
+	Board board4OfHeartsAnd3OfSpades = new Board(PokerGameType.RHODE_ISLAND);
 
 	@Before
 	public void prepare() {
