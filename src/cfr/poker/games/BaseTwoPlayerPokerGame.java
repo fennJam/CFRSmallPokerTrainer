@@ -40,6 +40,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 		dealCards(new Deck());
 		actions.add(DealAction.getInstance());
 		postBlinds();
+		betRound = BetRound.RIVER;
 		return this;
 	}
 
@@ -56,20 +57,8 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	}
 
 	@Override
-	public List<Card> getVisibleCards() {
-		return board.getTurnedCards();
-	}
-
-	@Override
 	public PokerGameType getGameType() {
 		return pokerGameType;
-	}
-
-	@Override
-	public Hand getHand(int player) {
-		if (hands == null)
-			return null;
-		return hands.get(player);
 	}
 
 	@Override
@@ -86,7 +75,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	public boolean isAtTerminalNode() {
 		if (actions.contains(FoldAction.getInstance())) {
 			return true;
-		} else if (this.betRound.equals(BetRound.RIVER) && lastActionIsTerminalCallForTheBettingRound()) {
+		}else if (this.betRound != null && this.betRound.equals(BetRound.RIVER) && lastActionIsTerminalCallForTheBettingRound()) {
 			return true;
 		}
 		return false;
@@ -216,7 +205,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 
 	@Override
 	public String getNodeId() {
-		String cardHistory = new CardHistoryBuilder(getHand(actingPlayer), board).toString();
+		String cardHistory = new CardHistoryBuilder(hands.get(actingPlayer), board).toString();
 		return cardHistory + actions.toString();
 	}
 

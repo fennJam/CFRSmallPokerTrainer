@@ -23,8 +23,6 @@ public interface PokerGame extends Game {
 
 	PokerGameType getGameType();
 	
-	Hand getHand(int player);
-	
 	int getRaisesAllowedPerBettingRound();
 	
 	boolean raisesAllowed();
@@ -34,8 +32,6 @@ public interface PokerGame extends Game {
 	Board turnNextCard();
 	
 	Board getBoard();
-	
-	List<Card> getVisibleCards();
 
 	Map<Integer, Hand> getHands();
 

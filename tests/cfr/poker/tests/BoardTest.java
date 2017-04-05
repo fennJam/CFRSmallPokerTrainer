@@ -49,11 +49,11 @@ public class BoardTest {
 		
 		assertEquals(1,board.getCards().length);
 		
-		assertArrayEquals(new Card[]{expectedCard},board.getCards());
+		assertEquals(expectedCard.toString(),board.getCards()[0].toString());
 		
 		assertEquals(1,board.getIsVisible().length);
 		
-		assertArrayEquals(new Boolean[]{},board.getIsVisible());
+		assertArrayEquals(new Boolean[]{false},board.getIsVisible());
 		
 		assertEquals(PokerGameType.TWO_CARD,board.getPokerGameType());
 		
