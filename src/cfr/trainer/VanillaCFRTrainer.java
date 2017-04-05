@@ -1,5 +1,6 @@
 package cfr.trainer;
 
+import java.util.Map.Entry;
 import java.util.Random;
 import java.util.TreeMap;
 
@@ -26,7 +27,7 @@ public class VanillaCFRTrainer {
 			util += cfr(game, 1, 1);
 		}
 		System.out.println("Average game value: " + util / iterations);
-		for (Node n : nodeMap.values())
+		for (Entry<String, NodeImpl> n : nodeMap.entrySet())
 			System.out.println(n);
 	}
 
@@ -43,6 +44,7 @@ public class VanillaCFRTrainer {
 		NodeImpl node = nodeMap.get(nodeId);
 		if (node == null) {
 //			TODO remove poker references
+//			Not returning correct node
 			node = PokerInfoSetFactory.buildInformationSet((PokerGame) game);
 			nodeMap.put(nodeId, node);
 		}
