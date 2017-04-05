@@ -1,8 +1,14 @@
 package cfr.poker.actions;
 
-public class DealAction extends BasePokerAction {
+public final class DealAction extends BasePokerAction {
 
-	public DealAction() {
+	private static final DealAction DEAL_ACTION = new DealAction();
+	
+	public static DealAction getInstance(){
+		return DEAL_ACTION;
+	}
+	
+	private DealAction() {
 		super(PokerActionType.DEAL);
 	}
 

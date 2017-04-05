@@ -10,7 +10,7 @@ public class PokerInfoSetFactory {
 
 	
 	public static NodeImpl  buildInformationSet(PokerGame pokerGame){
-		if(pokerGame.raisesAllowed()){
+		if(!pokerGame.raisesAllowed()){
 			return new TerminalInfoSet();
 		}else if(pokerGame.getBettingLimit() == BettingLimit.LIMIT){
 			return new LimitPokerInfoSet();

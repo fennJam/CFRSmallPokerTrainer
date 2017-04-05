@@ -10,7 +10,6 @@ import cfr.poker.actions.*;
 import cfr.trainer.Action;
 import cfr.trainer.CardHistoryBuilder;
 import cfr.trainer.Game;
-import cfr.trainer.PayOffCalculator;
 
 public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 
@@ -27,8 +26,6 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	Board board;
 	Pot pot;
 
-	static DealAction dealAction = new DealAction();
-
 	BaseTwoPlayerPokerGame(BettingLimit bettingLimit, int raisesPerBettingRound) {
 		board = null;
 		hands = null;
@@ -41,7 +38,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	@Override
 	public Game startGame() {
 		dealCards(new Deck());
-		actions.add(dealAction);
+		actions.add(DealAction.getInstance());
 		postBlinds();
 		return this;
 	}
@@ -87,7 +84,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 
 	@Override
 	public boolean isAtTerminalNode() {
-		if (actions.get(actions.size() - 1).getActionType().equals(PokerActionType.FOLD)) {
+		if (actions.contains(FoldAction.getInstance())) {
 			return true;
 		} else if (this.betRound.equals(BetRound.RIVER) && lastActionIsTerminalCallForTheBettingRound()) {
 			return true;
@@ -130,6 +127,11 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	public BettingLimit getBettingLimit() {
 		return this.bettingLimit;
 	}
+	
+	@Override
+	public int getRaiseCount() {
+		return this.raiseCount;
+	}
 
 	@Override
 	public PokerGame importGameProperties(PokerGame game) {
@@ -140,8 +142,9 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 		this.bettingLimit = game.getBettingLimit();
 		this.hands = game.getHands();
 		this.raisesPerBettingRound = game.getRaisesAllowedPerBettingRound();
+		this.raiseCount = game.getRaiseCount();
 		this.betRound = game.getBettingRound();
-
+		
 		if (game.getBoard() == null) {
 			this.board = null;
 		} else {
@@ -154,7 +157,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 		} else {
 			this.pot = new Pot(players).importPotProperties(game.getPot());
 		}
-
+		this.actions = game.getActions();
 		actingPlayer = getPlayerToAct();
 
 		return this;
@@ -192,8 +195,8 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 			raiseCount++;
 			performRaiseAction(player, raiseAction.getRaiseAmount());
 		} else if (currentAction.equals(PokerActionType.DEAL)) {
-			betRound.next();
-			action = dealAction;
+			betRound = betRound.next();
+			action = DealAction.getInstance();
 			raiseCount = 0;
 		}
 		return actions.add(pokerAction);
@@ -218,7 +221,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	}
 
 	private boolean lastActionIsTerminalCallForTheBettingRound() {
-		int dealIndex = actions.lastIndexOf(dealAction);
+		int dealIndex = actions.lastIndexOf(DealAction.getInstance());
 		// any call that is not a "check" (a call after a deal action) is a
 		// terminal call for the betting round
 		return (actions.size() > (dealIndex)

@@ -44,6 +44,8 @@ public interface PokerGame extends Game {
 	BettingLimit getBettingLimit();
 
 	List<PokerAction> getActions();
+	
+	int getRaiseCount();
 
 
 }

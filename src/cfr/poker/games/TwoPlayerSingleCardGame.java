@@ -15,9 +15,10 @@ public class TwoPlayerSingleCardGame extends BaseTwoPlayerPokerGame {
 	@Override
 	public Map<Integer, Hand> dealCards(Deck deck) {
 		int numOfPlayers = players.length;
-		hands = new HashMap<Integer, Hand>();
+		this.hands = new HashMap<Integer, Hand>();
 		for (int player = 0; player < numOfPlayers; player++) {
-			hands.put(player, new HandSingleCard(deck.nextCard()));
+			HandSingleCard hand = new HandSingleCard(deck.nextCard());
+			this.hands.put(player, hand);
 		}
 		board = new Board(pokerGameType, deck);
 		this.betRound = BetRound.RIVER;
