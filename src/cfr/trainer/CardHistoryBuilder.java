@@ -28,7 +28,7 @@ public class CardHistoryBuilder {
 			cardRanks.add(handSingleCard.getRank());
 			// Add the board to the history
 
-			if (board.getNumberOfTurnedCards() != 0 && playerSuit != board.getCard(0).getSuit()) {
+			if (board.getTurnedCards().size() != 0 && playerSuit != board.getCard(0).getSuit()) {
 				playerSuitedWithTurn = false;
 			}
 			riverSuitedWithTurn = board.isSuited();

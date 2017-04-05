@@ -91,13 +91,6 @@ public class Board {
 	}
 
 	/**
-	 * Returns the number of cards on the board
-	 */
-	public int getNumberOfTurnedCards() {
-		return getTurnedCards().size();
-	}
-
-	/**
 	 * Turn the next unturned card
 	 */
 	public boolean turnNextCard() {
@@ -161,33 +154,6 @@ public class Board {
 		}
 	}
 
-	public int getNoOfTurnedCards() {
-		if (isVisible == null || isVisible.length == 0) {
-			return 0;
-		}
-		int noOfTurnedCards = 0;
-		for (boolean visible : isVisible) {
-			if (visible) {
-				noOfTurnedCards++;
-			}
-		}
-		return noOfTurnedCards;
-	}
-
-	public int getNoOfUnturnedCards() {
-
-		if (isVisible == null || isVisible.length == 0) {
-			return 0;
-		}
-
-		int noOfUnturnedCards = 0;
-		for (boolean visible : isVisible) {
-			if (!visible) {
-				noOfUnturnedCards++;
-			}
-		}
-		return noOfUnturnedCards;
-	}
 
 	public Card[] getCards() {
 		return cards;

@@ -41,6 +41,19 @@ public class Deck
 		Collections.shuffle(cardOrder);
 	}
 	
+	/**
+	 * Creates a new deck of 52 cards, represented by integers 0 to 51, which are
+	 * not shuffled.
+	 */
+	public Deck UnshuffledDeck()
+	{
+		cardOrder = new ArrayList<Integer>();
+		for(int i = 0; i < 52; i++)
+			cardOrder.add(i);
+		
+		return this;
+	}
+	
 	
 	/**
 	 * Refreshes the deck such that it is a shuffled deck of 52 cards again.
@@ -90,7 +103,7 @@ public class Deck
 		return card;
 	}
 	
-	public String peekAtNextCard(){
-		return new Card(cardOrder.get(cardOrder.size() - 1)).toString();
+	public Card peekAtNextCard(){
+		return new Card(cardOrder.get(cardOrder.size() - 1));
 	}
 }
