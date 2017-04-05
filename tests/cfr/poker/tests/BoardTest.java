@@ -1,0 +1,127 @@
+package cfr.poker.tests;
+
+import static org.junit.Assert.*;
+
+import java.util.Arrays;
+import java.util.Collection;
+
+import org.junit.Test;
+
+import cfr.poker.Board;
+import cfr.poker.Card;
+import cfr.poker.Deck;
+import cfr.poker.PokerGameType;
+
+public class BoardTest {
+
+
+
+	@Test
+	public void SingleCardConstructorTest() {
+		Deck deck = new Deck();
+		Card expectedCard = deck.peekAtNextCard();
+		Board board = new Board(PokerGameType.SINGLE_CARD,deck);
+		
+		assertEquals(0,board.getCards().length);
+		
+		assertEquals(0,board.getIsVisible().length);
+		
+		assertEquals(PokerGameType.SINGLE_CARD,board.getPokerGameType());
+		
+		assertEquals(0,board.getTurnedCards().size()); board.getTurnedCards();
+		
+		assertEquals(0,board.getTurnedSuits().size());
+		
+		assertTrue(board.isSuited());
+		
+		assertEquals(false,board.addTurnedCard(expectedCard));
+//		check that a card was not added to the board;
+		assertEquals(0,board.getCards().length);
+		
+		
+	}
+	
+	@Test
+	public void TwoCardConstructorTest() {
+		Deck deck = new Deck();
+		Card expectedCard = deck.peekAtNextCard();
+		Board board = new Board(PokerGameType.TWO_CARD,deck);
+		
+		assertEquals(1,board.getCards().length);
+		
+		assertArrayEquals(new Card[]{expectedCard},board.getCards());
+		
+		assertEquals(1,board.getIsVisible().length);
+		
+		assertArrayEquals(new Boolean[]{},board.getIsVisible());
+		
+		assertEquals(PokerGameType.TWO_CARD,board.getPokerGameType());
+		
+		assertEquals(0,board.getTurnedCards().size());
+		
+		assertEquals(0,board.getTurnedSuits().size());
+		
+		assertTrue(board.isSuited());
+		
+		assertEquals(false,board.addTurnedCard(expectedCard));
+//		check that a card was not added to the board;
+		assertEquals(1,board.getCards().length);
+		
+		
+	}
+	
+	@Test
+	public void RhodeIslandConstructorTest() {
+		Deck deck = new Deck().UnshuffledDeck();
+		Card expectedCard = deck.peekAtNextCard();
+		Board board = new Board(PokerGameType.RHODE_ISLAND,deck);
+		
+		assertEquals(2,board.getCards().length);
+		
+		assertEquals(2,board.getIsVisible().length);
+		
+		assertArrayEquals(new Boolean[]{false,false},board.getIsVisible());
+		
+		assertEquals(PokerGameType.RHODE_ISLAND,board.getPokerGameType());
+		
+		assertEquals(0,board.getTurnedCards().size());
+		
+		assertEquals(0,board.getTurnedSuits().size());
+		
+		assertTrue(board.isSuited());
+		
+		assertEquals(false,board.addTurnedCard(expectedCard));
+//		check that a card was not added to the board;
+		assertEquals(2,board.getCards().length);
+		
+		
+	}
+
+	@Test
+	public void TurnNextCardTest() {
+		Deck deck = new Deck().UnshuffledDeck();
+		Card expectedCard = deck.peekAtNextCard();
+		Board board = new Board(PokerGameType.RHODE_ISLAND,deck);
+		
+		assertEquals(2,board.getCards().length);
+		
+		assertEquals(2,board.getIsVisible().length);
+		
+		assertArrayEquals(new Boolean[]{false,false},board.getIsVisible());
+		
+		assertEquals(PokerGameType.RHODE_ISLAND,board.getPokerGameType());
+		
+		assertEquals(0,board.getTurnedCards().size());
+		
+		assertEquals(0,board.getTurnedSuits().size());
+		
+		assertTrue(board.isSuited());
+		
+		assertEquals(false,board.addTurnedCard(expectedCard));
+//		check that a card was not added to the board;
+		assertEquals(2,board.getCards().length);
+		
+		
+	}
+	
+}

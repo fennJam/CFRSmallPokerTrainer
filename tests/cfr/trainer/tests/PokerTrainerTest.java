@@ -18,11 +18,7 @@ public class PokerTrainerTest {
 	
 	@Test
 	public void isBelowMaxNumberOfRaisesTest() {
-		assertFalse(singleCardNLPokerTrainer.isBelowMaxNumberOfRaises("C5323", 3));
-		assertFalse(singleCardNLPokerTrainer.isBelowMaxNumberOfRaises("C532", 3));
-		assertFalse(singleCardNLPokerTrainer.isBelowMaxNumberOfRaises("532", 3));
-		assertTrue(singleCardNLPokerTrainer.isBelowMaxNumberOfRaises("532", 4));
-		assertTrue(singleCardNLPokerTrainer.isBelowMaxNumberOfRaises("32", 3));
+
 	}
 
 	

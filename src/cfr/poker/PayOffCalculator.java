@@ -1,4 +1,4 @@
-package cfr.trainer;
+package cfr.poker;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package cfr.trainer.tests;
+package cfr.poker.tests;
 
 import static org.junit.Assert.*;
 
@@ -10,7 +10,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import cfr.poker.*;
-import cfr.trainer.PayOffCalculator;
 
 public class PayOffCalculatorTest {
 

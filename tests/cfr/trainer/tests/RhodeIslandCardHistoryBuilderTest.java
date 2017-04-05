@@ -2,9 +2,6 @@ package cfr.trainer.tests;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,7 +11,7 @@ import cfr.trainer.CardHistoryBuilder;
 public class RhodeIslandCardHistoryBuilderTest {
 
 	CardHistoryBuilder rhodeIslandCardHistoryBuilder = null;
-	PokerGameType PokerGameType = PokerGameType.RHODE_ISLAND;
+	PokerGameType pokerGameType = PokerGameType.RHODE_ISLAND;
 
 	final Card twoOfSpades = new Card(0);
 	final Card threeOfSpades = new Card(1);
