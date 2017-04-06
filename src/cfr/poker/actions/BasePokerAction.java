@@ -2,7 +2,7 @@ package cfr.poker.actions;
 
 public class BasePokerAction implements PokerAction {
 
-	PokerActionType actionType = PokerActionType.FOLD;
+	PokerActionType actionType;
 	
 	BasePokerAction(PokerActionType pokerActionType){
 		actionType = pokerActionType;
