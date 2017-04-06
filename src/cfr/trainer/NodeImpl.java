@@ -56,7 +56,7 @@ public class NodeImpl implements Node {
 
 	@Override
 	public String toString() {
-		return String.format("%4s: %s", nodeIdentifier, Arrays.toString(getAverageStrategy()));
+		return String.format("%4s: %s", actions, Arrays.toString(getAverageStrategy()));
 	}
 
 	@Override

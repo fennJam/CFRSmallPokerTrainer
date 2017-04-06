@@ -2,6 +2,7 @@ package cfr.poker.games;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +41,6 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 		dealCards(new Deck());
 		actions.add(DealAction.getInstance());
 		postBlinds();
-		betRound = BetRound.RIVER;
 		return this;
 	}
 
@@ -68,6 +68,16 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 
 	@Override
 	public Map<Integer, Integer> getPayOffs() {
+		if(actions.get(actions.size()-1).equals(FoldAction.getInstance())){
+			Integer player = getPlayerToAct();
+			Integer opponent = 1-player;
+			Integer winnings = pot.getPlayersContributionToPot(1-player);
+			
+			Map<Integer, Integer> payOffs = new HashMap<Integer, Integer>();
+			payOffs.put(player, winnings);
+			payOffs.put(opponent, -winnings);	
+			
+		}
 		return PayOffCalculator.getPayOffsForTwoPlayerGame(hands, board, pot, pokerGameType);
 	}
 
@@ -79,12 +89,6 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 			return true;
 		}
 		return false;
-	}
-
-	@Override
-	public Board turnNextCard() {
-		board.turnNextCard();
-		return board;
 	}
 
 	@Override
@@ -156,10 +160,8 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	public int getPlayerToAct() {
 		// get number of actions since last instance of deal action
 		int noOfActions = 0;
-		for (int action = (actions.size() - 1); action == 0; action--) {
-			if (actions.get(action).getActionType().equals(PokerActionType.DEAL)) {
-				break;
-			}
+		actions.lastIndexOf(DealAction.getInstance());
+		for (int action = actions.lastIndexOf(DealAction.getInstance())+1; action < actions.size(); action++) {
 			noOfActions++;
 		}
 		return noOfActions % 2;
@@ -206,7 +208,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	@Override
 	public String getNodeId() {
 		String cardHistory = new CardHistoryBuilder(hands.get(actingPlayer), board).toString();
-		return cardHistory + actions.toString();
+		return cardHistory + getActionsString();
 	}
 
 	private boolean lastActionIsTerminalCallForTheBettingRound() {
@@ -225,5 +227,18 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 		}
 		return false;
 	}
+	
+	private String getActionsString(){
+		String actionString = "";
+		for(Action action:actions){
+			actionString+=action.toString();
+		}
+		return actionString;
+	}
 
+	public String toString(){
+		
+		return "Game - BetRound "+betRound+" PokerGameType "+pokerGameType+" actions "+actions+" actingPlayer "+actingPlayer+" raisesPerBettingRound "+raisesPerBettingRound+" raiseCount "+raiseCount+" bettingLimit "+bettingLimit+" board "+board+" pot "+pot;
+	}
+	
 }

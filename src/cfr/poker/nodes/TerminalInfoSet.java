@@ -7,7 +7,7 @@ import cfr.trainer.NodeImpl;
 
 public class TerminalInfoSet extends NodeImpl {
 
-	private static PokerAction[] actions = { FoldAction.getInstance(), new CallAction() };
+	private static PokerAction[] actions = {CallAction.getInstance(), FoldAction.getInstance() };
 
 	TerminalInfoSet(){
 		super(actions);

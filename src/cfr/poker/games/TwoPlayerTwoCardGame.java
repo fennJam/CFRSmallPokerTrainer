@@ -12,7 +12,7 @@ public class TwoPlayerTwoCardGame extends BaseTwoPlayerPokerGame {
 	public TwoPlayerTwoCardGame (BettingLimit bettingLimit, int raisesPerBettingRound) {
 		super(bettingLimit,raisesPerBettingRound);
 		this.pokerGameType = PokerGameType.TWO_CARD;
-		this.betRound =BetRound.RIVER;
+		this.betRound =BetRound.TURN;
 	}
 
 

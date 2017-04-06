@@ -29,8 +29,6 @@ public interface PokerGame extends Game {
 
 	BetRound getBettingRound();
 	
-	Board turnNextCard();
-	
 	Board getBoard();
 
 	Map<Integer, Hand> getHands();
