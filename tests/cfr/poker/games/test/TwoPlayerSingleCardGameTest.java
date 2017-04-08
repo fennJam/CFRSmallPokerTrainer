@@ -2,6 +2,9 @@ package cfr.poker.games.test;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Test;
 
 import cfr.poker.*;
@@ -221,6 +224,25 @@ twoPlayerTwoCardGame.startGame();
 		
 		assertEquals(0,twoPlayerSingleCardGame.getPlayerToAct());
 		twoPlayerSingleCardGame.performAction(0,new RaiseAction(1));
+		
+		
+		assertEquals(1,twoPlayerSingleCardGame.getPlayerToAct());
+	}
+	
+	@Test
+	public final void getNodeIdTest() {
+		TwoPlayerSingleCardGame twoPlayerSingleCardGame =	new TwoPlayerSingleCardGame(BettingLimit.LIMIT, 3);
+		Hand twoOfSpades =new HandSingleCard(new Card(0));
+		Map<Integer, Hand> testHands = new HashMap <Integer, Hand>();
+		testHands.put(0, twoOfSpades);
+		testHands.put(1, twoOfSpades);
+		
+		twoPlayerSingleCardGame.startGame();
+		twoPlayerSingleCardGame.setHands(testHands);
+		assertEquals(0,twoPlayerSingleCardGame.getPlayerToAct());
+		twoPlayerSingleCardGame.performAction(0,new RaiseAction(1));
+
+		assertEquals("[S, S, DEUCE]DEAL RAISE1",twoPlayerSingleCardGame.getNodeId());
 		
 		
 		assertEquals(1,twoPlayerSingleCardGame.getPlayerToAct());

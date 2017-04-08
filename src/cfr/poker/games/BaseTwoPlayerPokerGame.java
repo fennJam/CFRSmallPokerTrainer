@@ -106,6 +106,11 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 		return hands;
 	}
 
+
+	public void setHands(Map<Integer, Hand> newHands) {
+		 hands = newHands;
+	}
+	
 	@Override
 	public int getRaisesAllowedPerBettingRound() {
 		return raisesPerBettingRound;
@@ -231,9 +236,9 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	private String getActionsString(){
 		String actionString = "";
 		for(Action action:actions){
-			actionString+=action.toString();
+			actionString +=action.toString()+" ";
 		}
-		return actionString;
+		return actionString.trim();
 	}
 
 	public String toString(){
