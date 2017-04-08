@@ -71,12 +71,13 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 		if(actions.get(actions.size()-1).equals(FoldAction.getInstance())){
 			Integer player = getPlayerToAct();
 			Integer opponent = 1-player;
-			Integer winnings = pot.getPlayersContributionToPot(1-player);
+			Integer winnings = pot.getPlayersContributionToPot(opponent);
 			
 			Map<Integer, Integer> payOffs = new HashMap<Integer, Integer>();
 			payOffs.put(player, winnings);
 			payOffs.put(opponent, -winnings);	
 			
+			return payOffs;
 		}
 		return PayOffCalculator.getPayOffsForTwoPlayerGame(hands, board, pot, pokerGameType);
 	}
@@ -155,7 +156,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 		} else {
 			this.pot = new Pot(players).importPotProperties(game.getPot());
 		}
-		this.actions = game.getActions();
+		this.actions.addAll(game.getActions());
 		actingPlayer = getPlayerToAct();
 
 		return this;
@@ -218,10 +219,10 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 
 	private boolean lastActionIsTerminalCallForTheBettingRound() {
 		int dealIndex = actions.lastIndexOf(DealAction.getInstance());
+		int callIndex = actions.lastIndexOf(CallAction.getInstance());
 		// any call that is not a "check" (a call after a deal action) is a
 		// terminal call for the betting round
-		return (actions.size() > (dealIndex)
-				&& actions.get(actions.size() - 1).getActionType().equals(PokerActionType.CALL));
+		return (callIndex-dealIndex>1);
 
 	}
 

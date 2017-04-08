@@ -3,8 +3,7 @@ package cfr.trainer;
 import java.util.Arrays;
 
 public class NodeImpl implements Node {
-	
-	
+
 	String nodeIdentifier;
 	private Action[] actions;
 	private double[] strategy;
@@ -18,8 +17,7 @@ public class NodeImpl implements Node {
 		this.regretSum = new double[actionsLength];
 		this.strategySum = new double[actionsLength];
 	}
-	
-	
+
 	@Override
 	public double[] recalculateStrategy(double realizationWeight) {
 		double normalizingSum = 0;
@@ -56,7 +54,12 @@ public class NodeImpl implements Node {
 
 	@Override
 	public String toString() {
-		return String.format("%4s: %s", actions, Arrays.toString(getAverageStrategy()));
+		String strategiesString = "\n";
+		double[] avgStrategy = getAverageStrategy();
+		for (int i = 0; i < actions.length; i++) {
+			strategiesString += actions[i].toString() +": "+avgStrategy[i]+"\n";
+		}
+		return strategiesString;
 	}
 
 	@Override
@@ -83,4 +86,5 @@ public class NodeImpl implements Node {
 	public double[] getStrategy() {
 		return strategy;
 	}
+
 }
