@@ -1,7 +1,5 @@
 package cfr.trainer;
 
-import java.util.Arrays;
-
 public class NodeImpl implements Node {
 
 	protected String nodeIdentifier;

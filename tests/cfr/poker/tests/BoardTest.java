@@ -2,9 +2,6 @@ package cfr.poker.tests;
 
 import static org.junit.Assert.*;
 
-import java.util.Arrays;
-import java.util.Collection;
-
 import org.junit.Test;
 
 import cfr.poker.Board;

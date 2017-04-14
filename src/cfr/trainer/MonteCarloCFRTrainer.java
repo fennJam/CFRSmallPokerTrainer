@@ -1,24 +1,24 @@
 package cfr.trainer;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Random;
-import java.util.TreeMap;
-
 import cfr.poker.games.PokerGame;
 import cfr.poker.nodes.PokerInfoSetFactory;
 
-public class VanillaCFRTrainer {
+public class MonteCarloCFRTrainer {
 
-	public static final Random random = new Random();
-	public TreeMap<String, NodeImpl> nodeMap = new TreeMap<String, NodeImpl>();
+	public Map<String, NodeImpl> nodeMap = new HashMap<String, NodeImpl>();
+	double util = 0;
+	int iterations = 0;
 
 	public static void main(String[] args) {
-		int iterations = 200000;
-		new VanillaCFRTrainer().train(GameType.SINGLECARD_HEADSUP_LIMIT_POKER, iterations);
+		int iterations = 20000000;
+		new MonteCarloCFRTrainer().train(GameType.KUHN_POKER, iterations);
 	}
 
 	public void train(GameType gameType, int iterations) {
-		double util = 0;
+		this.iterations = iterations;
 		for (int i = 0; i < iterations; i++) {
 			Game game = GameFactory.setUpGame(gameType);
 			game.startGame();
@@ -38,7 +38,6 @@ public class VanillaCFRTrainer {
 		// Get Node
 		String nodeId = game.getNodeId();
 
-
 		NodeImpl node = nodeMap.get(nodeId);
 		if (node == null) {
 			// TODO remove poker references
@@ -51,16 +50,15 @@ public class VanillaCFRTrainer {
 		int actionsAvailable = node.getActions().length;
 		double[] util = new double[actionsAvailable];
 		double nodeUtil = 0;
-		
-		
+
 		for (int action = 0; action < actionsAvailable; action++) {
 			// TODO remove poker references
 			Game copyOfGame = GameFactory.copyGame((PokerGame) game);
 			copyOfGame.performAction(player, node.getActions()[action]);
-			
+
 			util[action] = player == 0 ? -cfr(copyOfGame, p0 * strategy[action], p1)
 					: -cfr(copyOfGame, p0, p1 * strategy[action]);
-			
+
 			nodeUtil += strategy[action] * util[action];
 		}
 
@@ -74,4 +72,11 @@ public class VanillaCFRTrainer {
 		return nodeUtil;
 	}
 
+	public double getAverageGameValue() {
+		return (util / iterations);
+	}
+
+	public Map<String, NodeImpl> getNodeMap() {
+		return nodeMap;
+	}
 }

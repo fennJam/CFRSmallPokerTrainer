@@ -1,7 +1,5 @@
 package cfr.trainer;
 
-import cfr.poker.actions.PokerAction;
-
 public interface Node {
 
 	Action getAction(int i);

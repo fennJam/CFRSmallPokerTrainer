@@ -3,6 +3,7 @@ package cfr.trainer.tests;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import cfr.poker.*;
@@ -51,6 +52,7 @@ public class RhodeIslandCardHistoryBuilderTest {
 	}
 
 	@Test
+	@Ignore
 	public void print_out_cards() {
 		System.out.println("twoOfSpades : "+ twoOfSpades);
 		System.out.println("threeOfSpades : "+ threeOfSpades);

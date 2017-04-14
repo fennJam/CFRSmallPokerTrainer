@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import cfr.poker.*;
+import cfr.poker.PokerGameType;
 import hand.evaluators.SmallHandEvaluator;
 
 public class PayOffCalculator {

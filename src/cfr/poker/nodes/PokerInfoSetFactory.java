@@ -1,7 +1,5 @@
 package cfr.poker.nodes;
 
-import java.util.Collection;
-
 import cfr.poker.BettingLimit;
 import cfr.poker.games.PokerGame;
 import cfr.trainer.NodeImpl;

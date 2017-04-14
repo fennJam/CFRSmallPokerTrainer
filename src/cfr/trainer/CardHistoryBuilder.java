@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cfr.poker.Board;
-import cfr.poker.Card;
 import cfr.poker.CardHeight;
 import cfr.poker.CardSuit;
 import cfr.poker.Hand;
