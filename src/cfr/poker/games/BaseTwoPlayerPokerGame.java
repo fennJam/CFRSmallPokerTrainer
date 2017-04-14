@@ -21,7 +21,6 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 
 	List<PokerAction> actions;
 	static int[] players = { 0, 1 };
-	int actingPlayer;
 	Map<Integer, Hand> hands;
 	int raisesPerBettingRound;
 	int raiseCount;
@@ -159,7 +158,6 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 			this.pot = new Pot(players).importPotProperties(game.getPot());
 		}
 		this.actions.addAll(game.getActions());
-		actingPlayer = getPlayerToAct();
 
 		return this;
 	}
