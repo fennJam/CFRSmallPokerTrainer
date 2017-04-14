@@ -10,10 +10,11 @@ public class PokerInfoSetFactory {
 
 	
 	public static NodeImpl  buildInformationSet(PokerGame pokerGame){
+		String nodeId = pokerGame.getNodeId();
 		if(!pokerGame.raisesAllowed()){
-			return new TerminalInfoSet();
+			return new TerminalInfoSet(nodeId);
 		}else if(pokerGame.getBettingLimit() == BettingLimit.LIMIT){
-			return new LimitPokerInfoSet();
+			return new LimitPokerInfoSet(nodeId);
 		}
 		
 		return null;

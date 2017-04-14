@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cfr.poker.*;
+import cfr.poker.decks.Deck;
 
 public class TwoPlayerTwoCardGame extends BaseTwoPlayerPokerGame {
 

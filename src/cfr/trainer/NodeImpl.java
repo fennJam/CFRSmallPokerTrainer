@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class NodeImpl implements Node {
 
-	String nodeIdentifier;
+	protected String nodeIdentifier;
 	private Action[] actions;
 	private double[] strategy;
 	double[] regretSum;
@@ -54,10 +54,10 @@ public class NodeImpl implements Node {
 
 	@Override
 	public String toString() {
-		String strategiesString = "\n";
+		String strategiesString = "";
 		double[] avgStrategy = getAverageStrategy();
 		for (int i = 0; i < actions.length; i++) {
-			strategiesString += actions[i].toString() +": "+avgStrategy[i]+"\n";
+			strategiesString += actions[i].toString() +": "+avgStrategy[i]+"    ";
 		}
 		return strategiesString;
 	}

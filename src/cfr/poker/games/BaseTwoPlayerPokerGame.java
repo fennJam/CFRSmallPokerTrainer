@@ -8,6 +8,8 @@ import java.util.Map;
 
 import cfr.poker.*;
 import cfr.poker.actions.*;
+import cfr.poker.decks.Deck;
+import cfr.poker.decks.DeckStandardShuffled;
 import cfr.trainer.Action;
 import cfr.trainer.CardHistoryBuilder;
 import cfr.trainer.Game;
@@ -38,7 +40,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 
 	@Override
 	public Game startGame() {
-		dealCards(new Deck());
+		dealCards(new DeckStandardShuffled());
 		actions.add(DealAction.getInstance());
 		postBlinds();
 		return this;
@@ -213,7 +215,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 
 	@Override
 	public String getNodeId() {
-		String cardHistory = new CardHistoryBuilder(hands.get(actingPlayer), board).toString();
+		String cardHistory = new CardHistoryBuilder(hands.get(getPlayerToAct()), board).toString();
 		return cardHistory + getActionsString();
 	}
 
@@ -244,7 +246,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 
 	public String toString(){
 		
-		return "Game - BetRound "+betRound+" PokerGameType "+pokerGameType+" actions "+actions+" actingPlayer "+actingPlayer+" raisesPerBettingRound "+raisesPerBettingRound+" raiseCount "+raiseCount+" bettingLimit "+bettingLimit+" board "+board+" pot "+pot;
+		return "Game - BetRound "+betRound+" PokerGameType "+pokerGameType+" actions "+actions+" actingPlayer "+getPlayerToAct()+" raisesPerBettingRound "+raisesPerBettingRound+" raiseCount "+raiseCount+" bettingLimit "+bettingLimit+"hands"+hands+" board "+board+" pot "+pot;
 	}
 	
 }

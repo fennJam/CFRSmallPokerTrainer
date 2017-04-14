@@ -4,7 +4,6 @@ import java.util.Map.Entry;
 import java.util.Random;
 import java.util.TreeMap;
 
-import cfr.poker.Deck;
 import cfr.poker.games.PokerGame;
 import cfr.poker.nodes.PokerInfoSetFactory;
 
@@ -13,9 +12,8 @@ public class VanillaCFRTrainer {
 	public static final Random random = new Random();
 	public TreeMap<String, NodeImpl> nodeMap = new TreeMap<String, NodeImpl>();
 
-
 	public static void main(String[] args) {
-		int iterations = 1000;
+		int iterations = 200000;
 		new VanillaCFRTrainer().train(GameType.SINGLECARD_HEADSUP_LIMIT_POKER, iterations);
 	}
 
@@ -28,7 +26,7 @@ public class VanillaCFRTrainer {
 		}
 		System.out.println("Average game value: " + util / iterations);
 		for (Entry<String, NodeImpl> n : nodeMap.entrySet())
-			System.out.println(n.getKey()+" : "+n.getValue());
+			System.out.println(n.getKey() + " : " + n.getValue());
 	}
 
 	private double cfr(Game game, double p0, double p1) {
@@ -43,8 +41,7 @@ public class VanillaCFRTrainer {
 
 		NodeImpl node = nodeMap.get(nodeId);
 		if (node == null) {
-//			TODO remove poker references
-//			Not returning correct node
+			// TODO remove poker references
 			node = PokerInfoSetFactory.buildInformationSet((PokerGame) game);
 			nodeMap.put(nodeId, node);
 		}
@@ -54,15 +51,16 @@ public class VanillaCFRTrainer {
 		int actionsAvailable = node.getActions().length;
 		double[] util = new double[actionsAvailable];
 		double nodeUtil = 0;
-
-		for (int action=0;action<actionsAvailable;action++) {
-//			TODO remove poker references
-			Game copyOfGame = GameFactory.copyGame((PokerGame)game);
+		
+		
+		for (int action = 0; action < actionsAvailable; action++) {
+			// TODO remove poker references
+			Game copyOfGame = GameFactory.copyGame((PokerGame) game);
 			copyOfGame.performAction(player, node.getActions()[action]);
-//			System.out.println("copyOfGame.performAction(player, node.getActions()[action]);"+player+" : "+node.getActions()[action]);
-
+			
 			util[action] = player == 0 ? -cfr(copyOfGame, p0 * strategy[action], p1)
 					: -cfr(copyOfGame, p0, p1 * strategy[action]);
+			
 			nodeUtil += strategy[action] * util[action];
 		}
 
@@ -75,6 +73,5 @@ public class VanillaCFRTrainer {
 
 		return nodeUtil;
 	}
-
 
 }

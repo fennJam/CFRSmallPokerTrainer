@@ -11,8 +11,10 @@ public class GameFactory {
 		if (gameType == GameType.TWOCARD_HEADSUP_LIMIT_POKER) {
 			return new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
 		} else if (gameType == GameType.SINGLECARD_HEADSUP_LIMIT_POKER) {
-			return new TwoPlayerSingleCardGame(BettingLimit.LIMIT, 3);
+			return new TwoPlayerSingleCardGame(BettingLimit.LIMIT, 1);
 
+		}else if (gameType == GameType.KUHN_POKER){
+			return new KuhnPoker();
 		}
 
 		return null;

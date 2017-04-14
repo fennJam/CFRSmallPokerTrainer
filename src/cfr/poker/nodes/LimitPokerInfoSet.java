@@ -4,11 +4,11 @@ import cfr.poker.actions.*;
 import cfr.trainer.NodeImpl;
 
 public class LimitPokerInfoSet extends NodeImpl {
-	static PokerAction[] singleRaiseoption = { CallAction.getInstance(), FoldAction.getInstance(), new RaiseAction(1) };
+	static PokerAction[] singleRaiseoption = { FoldAction.getInstance(),CallAction.getInstance(),  new RaiseAction(1) };
 
-	LimitPokerInfoSet() {
+	LimitPokerInfoSet(String nodeId) {
 		super(singleRaiseoption);
-
+		nodeIdentifier = nodeId;
 	}
 
 }

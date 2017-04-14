@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cfr.poker.PokerGameType;
+import cfr.poker.decks.Deck;
 
 public class Board {
 

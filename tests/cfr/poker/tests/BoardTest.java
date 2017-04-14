@@ -9,8 +9,10 @@ import org.junit.Test;
 
 import cfr.poker.Board;
 import cfr.poker.Card;
-import cfr.poker.Deck;
 import cfr.poker.PokerGameType;
+import cfr.poker.decks.Deck;
+import cfr.poker.decks.DeckStandardShuffled;
+import cfr.poker.decks.DeckStandardUnShuffled;
 
 public class BoardTest {
 
@@ -18,7 +20,7 @@ public class BoardTest {
 
 	@Test
 	public void SingleCardConstructorTest() {
-		Deck deck = new Deck();
+		Deck deck = new DeckStandardShuffled();
 		Card expectedCard = deck.peekAtNextCard();
 		Board board = new Board(PokerGameType.SINGLE_CARD,deck);
 		
@@ -43,7 +45,7 @@ public class BoardTest {
 	
 	@Test
 	public void TwoCardConstructorTest() {
-		Deck deck = new Deck();
+		Deck deck = new DeckStandardShuffled();
 		Card expectedCard = deck.peekAtNextCard();
 		Board board = new Board(PokerGameType.TWO_CARD,deck);
 		
@@ -72,7 +74,7 @@ public class BoardTest {
 	
 	@Test
 	public void RhodeIslandConstructorTest() {
-		Deck deck = new Deck().UnshuffledDeck();
+		Deck deck = new DeckStandardUnShuffled();
 		Card expectedCard = deck.peekAtNextCard();
 		Board board = new Board(PokerGameType.RHODE_ISLAND,deck);
 		
@@ -99,7 +101,7 @@ public class BoardTest {
 
 	@Test
 	public void TurnNextCardTest() {
-		Deck deck = new Deck().UnshuffledDeck();
+		Deck deck = new DeckStandardUnShuffled();
 		Card expectedCard = deck.peekAtNextCard();
 		Board board = new Board(PokerGameType.RHODE_ISLAND,deck);
 		
