@@ -20,7 +20,7 @@ public class PokerTrainerTest {
 
 		// Comments taken from wikipdeia page on Kuhn Poker
 		// https://en.wikipedia.org/wiki/Kuhn_poker
-//		
+		//
 
 		// The game has a mixed-strategy Nash equilibrium; when both players
 		// play equilibrium strategies, the first player should expect to lose
@@ -33,18 +33,20 @@ public class PokerTrainerTest {
 
 		Map<String, NodeImpl> nodeMap = monteCarloCFRTrainer.getNodeMap();
 
-		Node kingDealRaise = nodeMap.get("[S, S, KING]DEAL RAISE1");
-		Node queenDealRaise = nodeMap.get("[S, S, QUEEN]DEAL RAISE1");
-		Node jackDealRaise = nodeMap.get("[S, S, JACK]DEAL RAISE1");
-		Node jackDealCallRaise = nodeMap.get("[S, S, JACK]DEAL CALL RAISE1");
 		Node kingDeal = nodeMap.get("[S, S, KING]DEAL");
-		Node queenDealCallRaise = nodeMap.get("[S, S, QUEEN]DEAL CALL RAISE1");
-		Node queenDealCall = nodeMap.get("[S, S, QUEEN]DEAL CALL");
-		Node kingDealCallRaise = nodeMap.get("[S, S, KING]DEAL CALL RAISE1");
-		Node queenDeal = nodeMap.get("[S, S, QUEEN]DEAL");
-		Node jackDealCall = nodeMap.get("[S, S, JACK]DEAL CALL");
-		Node jackDeal = nodeMap.get("[S, S, JACK]DEAL");
 		Node kingDealCall = nodeMap.get("[S, S, KING]DEAL CALL");
+		Node kingDealCallRaise = nodeMap.get("[S, S, KING]DEAL CALL RAISE1");
+		Node kingDealRaise = nodeMap.get("[S, S, KING]DEAL RAISE1");
+
+		Node queenDeal = nodeMap.get("[S, S, QUEEN]DEAL");
+		Node queenDealCall = nodeMap.get("[S, S, QUEEN]DEAL CALL");
+		Node queenDealCallRaise = nodeMap.get("[S, S, QUEEN]DEAL CALL RAISE1");
+		Node queenDealRaise = nodeMap.get("[S, S, QUEEN]DEAL RAISE1");
+
+		Node jackDeal = nodeMap.get("[S, S, JACK]DEAL");
+		Node jackDealCallRaise = nodeMap.get("[S, S, JACK]DEAL CALL RAISE1");
+		Node jackDealCall = nodeMap.get("[S, S, JACK]DEAL CALL");
+		Node jackDealRaise = nodeMap.get("[S, S, JACK]DEAL RAISE1");
 
 		final int FOLD_INDEX = 0;
 		final int CALL_INDEX = 1;
