@@ -10,8 +10,8 @@ import cfr.poker.actions.*;
 import cfr.poker.decks.Deck;
 import cfr.poker.decks.DeckStandardShuffled;
 import cfr.poker.nodes.CardHistoryBuilder;
-import cfr.trainer.Action;
-import cfr.trainer.Game;
+import cfr.trainer.action.Action;
+import cfr.trainer.games.Game;
 
 public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 

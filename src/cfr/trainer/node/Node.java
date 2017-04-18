@@ -1,4 +1,6 @@
-package cfr.trainer;
+package cfr.trainer.node;
+
+import cfr.trainer.action.Action;
 
 public interface Node {
 

@@ -1,6 +1,8 @@
-package cfr.trainer;
+package cfr.trainer.games;
 
 import java.util.Map;
+
+import cfr.trainer.action.Action;
 
 public interface Game {
 

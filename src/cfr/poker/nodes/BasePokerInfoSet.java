@@ -2,7 +2,7 @@ package cfr.poker.nodes;
 
 import java.util.Arrays;
 import cfr.poker.actions.PokerAction;
-import cfr.trainer.Node;
+import cfr.trainer.node.Node;
 
 public class BasePokerInfoSet implements Node {
 

@@ -1,4 +1,4 @@
-package hand.evaluators;
+package cfr.poker.hand.evaluators;
 
 public class SmallHandEvaluator {
 	

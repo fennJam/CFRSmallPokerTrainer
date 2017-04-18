@@ -2,7 +2,7 @@ package cfr.poker.nodes;
 
 import cfr.poker.BettingLimit;
 import cfr.poker.games.PokerGame;
-import cfr.trainer.NodeImpl;
+import cfr.trainer.node.NodeImpl;
 
 public class PokerInfoSetFactory {
 

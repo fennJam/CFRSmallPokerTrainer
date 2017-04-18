@@ -6,17 +6,17 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import cfr.trainer.GameType;
 import cfr.trainer.MonteCarloCFRTrainer;
-import cfr.trainer.Node;
-import cfr.trainer.NodeImpl;
+import cfr.trainer.games.GameDescription;
+import cfr.trainer.node.Node;
+import cfr.trainer.node.NodeImpl;
 
 public class PokerTrainerTest {
 
 	@Test
 	public void monteCarloCFRTrainer_test() {
 		MonteCarloCFRTrainer monteCarloCFRTrainer = new MonteCarloCFRTrainer();
-		monteCarloCFRTrainer.train(GameType.KUHN_POKER, 1000000);
+		monteCarloCFRTrainer.train(GameDescription.KUHN_POKER, 1000000);
 
 		// Comments taken from wikipdeia page on Kuhn Poker
 		// https://en.wikipedia.org/wiki/Kuhn_poker

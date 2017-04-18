@@ -1,11 +1,13 @@
-package cfr.trainer;
+package cfr.trainer.node;
+
+import cfr.trainer.action.Action;
 
 public class NodeImpl implements Node {
 
 	protected String nodeIdentifier;
 	private Action[] actions;
 	private double[] strategy;
-	double[] regretSum;
+	public double[] regretSum;
 	private double[] strategySum;
 
 	protected NodeImpl(Action[] actions) {

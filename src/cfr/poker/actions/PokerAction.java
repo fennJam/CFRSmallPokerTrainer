@@ -1,6 +1,6 @@
 package cfr.poker.actions;
 
-import cfr.trainer.Action;
+import cfr.trainer.action.Action;
 
 public interface PokerAction extends Action {
 

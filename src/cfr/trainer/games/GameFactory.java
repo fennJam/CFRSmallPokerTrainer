@@ -1,4 +1,4 @@
-package cfr.trainer;
+package cfr.trainer.games;
 
 import cfr.poker.BettingLimit;
 import cfr.poker.PokerGameType;
@@ -6,14 +6,14 @@ import cfr.poker.games.*;
 
 public class GameFactory {
 
-	public static PokerGame setUpGame(GameType gameType) {
+	public static PokerGame setUpGame(GameDescription gameType) {
 
-		if (gameType == GameType.TWOCARD_HEADSUP_LIMIT_POKER) {
+		if (gameType == GameDescription.TWOCARD_HEADSUP_LIMIT_POKER) {
 			return new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
-		} else if (gameType == GameType.SINGLECARD_HEADSUP_LIMIT_POKER) {
+		} else if (gameType == GameDescription.SINGLECARD_HEADSUP_LIMIT_POKER) {
 			return new TwoPlayerSingleCardGame(BettingLimit.LIMIT, 1);
 
-		}else if (gameType == GameType.KUHN_POKER){
+		}else if (gameType == GameDescription.KUHN_POKER){
 			return new KuhnPoker();
 		}
 

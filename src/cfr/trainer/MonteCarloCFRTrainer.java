@@ -5,6 +5,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import cfr.poker.games.PokerGame;
 import cfr.poker.nodes.PokerInfoSetFactory;
+import cfr.trainer.games.Game;
+import cfr.trainer.games.GameDescription;
+import cfr.trainer.games.GameFactory;
+import cfr.trainer.node.NodeImpl;
 
 public class MonteCarloCFRTrainer {
 
@@ -14,10 +18,10 @@ public class MonteCarloCFRTrainer {
 
 	public static void main(String[] args) {
 		int iterations = 20000000;
-		new MonteCarloCFRTrainer().train(GameType.KUHN_POKER, iterations);
+		new MonteCarloCFRTrainer().train(GameDescription.KUHN_POKER, iterations);
 	}
 
-	public void train(GameType gameType, int iterations) {
+	public void train(GameDescription gameType, int iterations) {
 		this.iterations = iterations;
 		for (int i = 0; i < iterations; i++) {
 			Game game = GameFactory.setUpGame(gameType);

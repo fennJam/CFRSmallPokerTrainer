@@ -3,7 +3,7 @@ package cfr.poker.nodes;
 import cfr.poker.actions.CallAction;
 import cfr.poker.actions.FoldAction;
 import cfr.poker.actions.PokerAction;
-import cfr.trainer.NodeImpl;
+import cfr.trainer.node.NodeImpl;
 
 public class TerminalInfoSet extends NodeImpl {
 
