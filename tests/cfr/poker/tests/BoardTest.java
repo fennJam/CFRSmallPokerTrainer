@@ -4,12 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import cfr.poker.Board;
-import cfr.poker.Card;
-import cfr.poker.PokerGameType;
-import cfr.poker.decks.Deck;
-import cfr.poker.decks.DeckStandardShuffled;
-import cfr.poker.decks.DeckStandardUnShuffled;
+import cfr.trainer.games.poker.Board;
+import cfr.trainer.games.poker.Card;
+import cfr.trainer.games.poker.PokerGameType;
+import cfr.trainer.games.poker.decks.Deck;
+import cfr.trainer.games.poker.decks.DeckStandardShuffled;
+import cfr.trainer.games.poker.decks.DeckStandardUnShuffled;
 
 public class BoardTest {
 

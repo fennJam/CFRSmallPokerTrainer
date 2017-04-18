@@ -1,8 +1,8 @@
 package cfr.trainer.games;
 
-import cfr.poker.BettingLimit;
-import cfr.poker.PokerGameType;
-import cfr.poker.games.*;
+import cfr.trainer.games.poker.BettingLimit;
+import cfr.trainer.games.poker.PokerGameType;
+import cfr.trainer.games.poker.games.*;
 
 public class GameFactory {
 

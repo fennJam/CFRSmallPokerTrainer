@@ -7,14 +7,14 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import cfr.poker.*;
-import cfr.poker.actions.CallAction;
-import cfr.poker.actions.DealAction;
-import cfr.poker.actions.FoldAction;
-import cfr.poker.actions.RaiseAction;
-import cfr.poker.games.PokerGame;
-import cfr.poker.games.TwoPlayerSingleCardGame;
-import cfr.poker.games.TwoPlayerTwoCardGame;
+import cfr.trainer.games.poker.*;
+import cfr.trainer.games.poker.actions.CallAction;
+import cfr.trainer.games.poker.actions.DealAction;
+import cfr.trainer.games.poker.actions.FoldAction;
+import cfr.trainer.games.poker.actions.RaiseAction;
+import cfr.trainer.games.poker.games.PokerGame;
+import cfr.trainer.games.poker.games.TwoPlayerSingleCardGame;
+import cfr.trainer.games.poker.games.TwoPlayerTwoCardGame;
 
 public class TwoPlayerSingleCardGameTest {
 

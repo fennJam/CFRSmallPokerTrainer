@@ -6,8 +6,8 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import cfr.poker.*;
-import cfr.poker.nodes.CardHistoryBuilder;
+import cfr.trainer.games.poker.*;
+import cfr.trainer.games.poker.nodes.CardHistoryBuilder;
 
 public class RhodeIslandCardHistoryBuilderTest {
 

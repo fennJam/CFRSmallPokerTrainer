@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import cfr.poker.*;
+import cfr.trainer.games.poker.*;
 
 public class PayOffCalculatorTest {
 

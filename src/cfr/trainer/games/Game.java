@@ -1,5 +1,6 @@
 package cfr.trainer.games;
 
+import java.util.List;
 import java.util.Map;
 
 import cfr.trainer.action.Action;
@@ -17,4 +18,6 @@ public interface Game {
 	boolean performAction(int player, Action action);
 
 	Game startGame();
+	
+	List<Game> getListOfGamesWithAllPossibleChanceNodes();
 }

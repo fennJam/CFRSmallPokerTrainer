@@ -3,11 +3,12 @@ package cfr.trainer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import cfr.poker.games.PokerGame;
-import cfr.poker.nodes.PokerInfoSetFactory;
+
 import cfr.trainer.games.Game;
 import cfr.trainer.games.GameDescription;
 import cfr.trainer.games.GameFactory;
+import cfr.trainer.games.poker.games.PokerGame;
+import cfr.trainer.games.poker.nodes.PokerInfoSetFactory;
 import cfr.trainer.node.NodeImpl;
 
 public class MonteCarloCFRTrainer {
@@ -17,7 +18,7 @@ public class MonteCarloCFRTrainer {
 	int iterations = 0;
 
 	public static void main(String[] args) {
-		int iterations = 20000000;
+		int iterations = 6000000;
 		new MonteCarloCFRTrainer().train(GameDescription.KUHN_POKER, iterations);
 	}
 
