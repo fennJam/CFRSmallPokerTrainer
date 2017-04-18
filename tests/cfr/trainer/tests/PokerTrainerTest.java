@@ -49,7 +49,6 @@ public class PokerTrainerTest {
 		Node jackDealCall = nodeMap.get("[S, S, JACK]DEAL CALL");
 		Node jackDealRaise = nodeMap.get("[S, S, JACK]DEAL RAISE1");
 
-		final int FOLD_INDEX = 0;
 		final int CALL_INDEX = 1;
 		final int RAISE_INDEX = 2;
 
@@ -127,7 +126,6 @@ public class PokerTrainerTest {
 		Node jackDealCall = nodeMap.get("[S, S, JACK]DEAL CALL");
 		Node jackDealRaise = nodeMap.get("[S, S, JACK]DEAL RAISE1");
 
-		final int FOLD_INDEX = 0;
 		final int CALL_INDEX = 1;
 		final int RAISE_INDEX = 2;
 

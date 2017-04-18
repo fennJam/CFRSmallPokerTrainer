@@ -14,10 +14,8 @@ import cfr.trainer.games.poker.Hand;
 import cfr.trainer.games.poker.HandSingleCard;
 import cfr.trainer.games.poker.PokerGameType;
 import cfr.trainer.games.poker.Pot;
-import cfr.trainer.games.poker.actions.DealAction;
 import cfr.trainer.games.poker.decks.Deck;
 import cfr.trainer.games.poker.decks.DeckKuhnShuffled;
-import cfr.trainer.games.poker.decks.DeckStandardUnShuffled;
 
 public class KuhnPoker extends BaseTwoPlayerPokerGame {
 
