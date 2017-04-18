@@ -12,7 +12,7 @@ import cfr.trainer.games.poker.games.PokerGame;
 import cfr.trainer.games.poker.nodes.PokerInfoSetFactory;
 import cfr.trainer.node.NodeImpl;
 
-public class VannillaCFRTrainer {
+public class VanillaCFRTrainer {
 
 	public Map<String, NodeImpl> nodeMap = new HashMap<String, NodeImpl>();
 	double util = 0;
@@ -21,7 +21,7 @@ public class VannillaCFRTrainer {
 
 	public static void main(String[] args) {
 		int iterations = 200000;
-		new VannillaCFRTrainer().train(GameDescription.KUHN_POKER, iterations);
+		new VanillaCFRTrainer().train(GameDescription.KUHN_POKER, iterations);
 	}
 
 	public void train(GameDescription gameType, int iterations) {

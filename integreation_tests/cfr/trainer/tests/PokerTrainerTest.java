@@ -7,7 +7,7 @@ import java.util.Map;
 import org.junit.Test;
 
 import cfr.trainer.MonteCarloCFRTrainer;
-import cfr.trainer.VannillaCFRTrainer;
+import cfr.trainer.VanillaCFRTrainer;
 import cfr.trainer.games.GameDescription;
 import cfr.trainer.node.Node;
 import cfr.trainer.node.NodeImpl;
@@ -93,8 +93,8 @@ public class PokerTrainerTest {
 
 	@Test
 	public void vannillaCFRTrainer_test() {
-		VannillaCFRTrainer vannillaCFRTrainer = new VannillaCFRTrainer();
-		vannillaCFRTrainer.train(GameDescription.KUHN_POKER, 1000000);
+		VanillaCFRTrainer vanillaCFRTrainer = new VanillaCFRTrainer();
+		vanillaCFRTrainer.train(GameDescription.KUHN_POKER, 1000000);
 
 		// Comments taken from wikipdeia page on Kuhn Poker
 		// https://en.wikipedia.org/wiki/Kuhn_poker
@@ -106,10 +106,10 @@ public class PokerTrainerTest {
 		// player should expect to win at a rate of 1/18). There is no
 		// pure-strategy equilibrium.
 
-		double avgGameValue = vannillaCFRTrainer.getAverageGameValue();
+		double avgGameValue = vanillaCFRTrainer.getAverageGameValue();
 		assertEquals(-0.05555, avgGameValue, 0.003);
 
-		Map<String, NodeImpl> nodeMap = vannillaCFRTrainer.getNodeMap();
+		Map<String, NodeImpl> nodeMap = vanillaCFRTrainer.getNodeMap();
 
 		Node kingDeal = nodeMap.get("[S, S, KING]DEAL");
 		Node kingDealCall = nodeMap.get("[S, S, KING]DEAL CALL");
