@@ -1,4 +1,4 @@
-package cfr.poker.games;
+package cfr.poker.nodes;
 
 import java.util.ArrayList;
 import java.util.List;
