@@ -20,6 +20,10 @@ public class PokerTrainerTest {
 		MonteCarloCFRTrainer monteCarloCFRTrainer = new MonteCarloCFRTrainer();
 		monteCarloCFRTrainer.train(GameType.KUHN_POKER, 1000000);
 
+		// Comments taken from wikipdeia page on Kuhn Poker
+		// https://en.wikipedia.org/wiki/Kuhn_poker
+//		
+
 		// The game has a mixed-strategy Nash equilibrium; when both players
 		// play equilibrium strategies, the first player should expect to lose
 		// at a rate of -1/18 per hand (as the game is zero-sum, the second
@@ -28,7 +32,7 @@ public class PokerTrainerTest {
 
 		double avgGameValue = monteCarloCFRTrainer.getAverageGameValue();
 		assertEquals(-0.05555, avgGameValue, 0.003);
-		
+
 		Map<String, NodeImpl> nodeMap = monteCarloCFRTrainer.getNodeMap();
 
 		Node kingDealRaise = nodeMap.get("[S, S, KING]DEAL RAISE1");
@@ -47,7 +51,7 @@ public class PokerTrainerTest {
 		final int FOLD_INDEX = 0;
 		final int CALL_INDEX = 1;
 		final int RAISE_INDEX = 2;
-		
+
 		// Kuhn demonstrated there are infinitely many equilibrium strategies
 		// for the first player, forming a continuum governed by a single
 		// parameter. In one possible formulation, player one freely chooses the
@@ -71,8 +75,15 @@ public class PokerTrainerTest {
 		// or calling when having a King; when having a Queen, checking if
 		// possible, otherwise calling with the probability of 1/3; when having
 		// a Jack, never calling and betting with the probability of 1/3.
-		
 
+		
+		NodeImpl niJackDeal = (NodeImpl)jackDeal;
+		System.out.println("\n\nJack Deal regrets\n\n");
+		for (double regret:niJackDeal.getRegretSum()){
+
+			System.out.println(regret);
+		}
+		
 	}
 
 }

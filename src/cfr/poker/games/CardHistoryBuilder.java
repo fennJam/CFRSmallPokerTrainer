@@ -1,4 +1,4 @@
-package cfr.trainer;
+package cfr.poker.games;
 
 import java.util.ArrayList;
 import java.util.List;
