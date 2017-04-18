@@ -30,17 +30,17 @@ public interface Deck {
 	 */
 	public void resetDeck();
 
-	/**
-	 * Set a save point for the deck status, can be used for trying multiple
-	 * random draws from a non-complete deck.
-	 */
-	public void setSavePoint();
-
-	/**
-	 * Set the deck back to the status of the last restore point, reshuffling
-	 * the remaining cards.
-	 */
-	public void restoreToSavePoint();
+//	/**
+//	 * Set a save point for the deck status, can be used for trying multiple
+//	 * random draws from a non-complete deck.
+//	 */
+//	public void setSavePoint();
+//
+//	/**
+//	 * Set the deck back to the status of the last restore point, reshuffling
+//	 * the remaining cards.
+//	 */
+//	public void restoreToSavePoint();
 
 	/**
 	 * Pushes and returns the next card from the deck.

@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import java.util.Map;
 
-import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import cfr.trainer.GameType;
@@ -76,14 +74,6 @@ public class PokerTrainerTest {
 		// possible, otherwise calling with the probability of 1/3; when having
 		// a Jack, never calling and betting with the probability of 1/3.
 
-		
-		NodeImpl niJackDeal = (NodeImpl)jackDeal;
-		System.out.println("\n\nJack Deal regrets\n\n");
-		for (double regret:niJackDeal.getRegretSum()){
-
-			System.out.println(regret);
-		}
-		
 	}
 
 }

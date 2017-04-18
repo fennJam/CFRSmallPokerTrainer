@@ -20,8 +20,8 @@ public class PayOffCalculator {
 
 	}
 
-	public static Integer getHandStrength(Hand playerHand, Board board, PokerGameType PokerGameType) {
-		if (PokerGameType == PokerGameType.RHODE_ISLAND) {
+	public static Integer getHandStrength(Hand playerHand, Board board, PokerGameType pokerGameType) {
+		if (pokerGameType == PokerGameType.RHODE_ISLAND) {
 			// store the hand and table cards together
 			HandSingleCard playerSingleCardHand = (HandSingleCard) playerHand;
 			long combinationCode = 0l;
@@ -31,7 +31,7 @@ public class PayOffCalculator {
 
 			return SmallHandEvaluator.evaluateRhodeIslandHand(combinationCode);
 
-		} else if (PokerGameType == PokerGameType.SINGLE_CARD) {
+		} else if (pokerGameType == PokerGameType.SINGLE_CARD) {
 			// store the hand and table cards together
 			HandSingleCard playerSingleCardHand = (HandSingleCard) playerHand;
 			long combinationCode = 0l;
@@ -39,7 +39,7 @@ public class PayOffCalculator {
 
 			return SmallHandEvaluator.evaluateSingleCardPokerHand(combinationCode);
 
-		}else if (PokerGameType == PokerGameType.TWO_CARD) {
+		}else if (pokerGameType == PokerGameType.TWO_CARD) {
 
 			// store the hand and table cards together
 			HandSingleCard playerSingleCardHand = (HandSingleCard) playerHand;
