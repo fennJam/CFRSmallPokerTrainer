@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cfr.trainer.games.Game;
 import cfr.trainer.games.poker.*;
 import cfr.trainer.games.poker.decks.Deck;
 
@@ -30,11 +29,11 @@ public class TwoPlayerTwoCardGame extends BaseTwoPlayerPokerGame {
 	}
 
 	@Override
-	public List<Game> getListOfGamesWithAllPossibleChanceNodes() {
+	public List<PokerGame> getListOfGamesWithAllPossibleChanceNodes() {
 		int player0 = 0;
 		int player1 = 1;
 
-		List<Game> games = new ArrayList<Game>();
+		List<PokerGame> games = new ArrayList<PokerGame>();
 
 		for (int player1Card = 0; player1Card < 52; player1Card++) {
 			Hand hand0 = new HandSingleCard(new Card(player1Card));

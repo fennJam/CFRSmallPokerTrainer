@@ -216,7 +216,8 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 		return cardHistory + getActionsString();
 	}
 
-	private boolean lastActionIsTerminalCallForTheBettingRound() {
+	@Override
+	public boolean lastActionIsTerminalCallForTheBettingRound() {
 		int dealIndex = actions.lastIndexOf(DealAction.getInstance());
 		int callIndex = actions.lastIndexOf(CallAction.getInstance());
 		// any call that is not a "check" (a call after a deal action) is a

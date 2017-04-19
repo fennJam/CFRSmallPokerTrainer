@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import cfr.trainer.action.Action;
+import cfr.trainer.games.poker.games.PokerGame;
 
 public interface Game {
 
@@ -19,5 +20,5 @@ public interface Game {
 
 	Game startGame();
 	
-	List<Game> getListOfGamesWithAllPossibleChanceNodes();
+	List<PokerGame> getListOfGamesWithAllPossibleChanceNodes();
 }

@@ -41,5 +41,7 @@ public interface PokerGame extends Game {
 	
 	int getRaiseCount();
 
+	boolean lastActionIsTerminalCallForTheBettingRound();
+
 
 }
