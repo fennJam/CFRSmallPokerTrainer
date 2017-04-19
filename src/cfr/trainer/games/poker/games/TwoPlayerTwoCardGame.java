@@ -58,7 +58,7 @@ public class TwoPlayerTwoCardGame extends BaseTwoPlayerPokerGame {
 
 					Board board = new Board();
 					board.setPokerGameType(PokerGameType.TWO_CARD);
-					board.setCard(new Card(boardCard), 1, false);
+					board.setCard(new Card(boardCard), 0, false);
 
 					game.setHands(newHands);
 					games.add(game);

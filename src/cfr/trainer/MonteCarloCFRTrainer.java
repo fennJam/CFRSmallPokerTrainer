@@ -19,13 +19,13 @@ public class MonteCarloCFRTrainer {
 
 	public static void main(String[] args) {
 		int iterations = 6000000;
-		new MonteCarloCFRTrainer().train(GameDescription.KUHN_POKER, iterations);
+		new MonteCarloCFRTrainer().train(GameDescription.SINGLECARD_HEADSUP_POT_LIMIT_POKER, iterations);
 	}
 
-	public void train(GameDescription gameType, int iterations) {
+	public void train(GameDescription gameDescription, int iterations) {
 		this.iterations = iterations;
 		for (int i = 0; i < iterations; i++) {
-			Game game = GameFactory.setUpGame(gameType);
+			Game game = GameFactory.setUpGame(gameDescription);
 			game.startGame();
 			util += cfr(game, 1, 1);
 		}
