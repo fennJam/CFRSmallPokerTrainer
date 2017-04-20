@@ -7,13 +7,26 @@ import java.util.Map;
 
 import cfr.trainer.games.poker.*;
 import cfr.trainer.games.poker.decks.Deck;
-import cfr.trainer.games.poker.decks.DeckKuhnShuffled;
 
 public class TwoPlayerSingleCardGame extends BaseTwoPlayerPokerGame {
 
 	public TwoPlayerSingleCardGame(BettingLimit bettingLimit, int raisesPerBettingRound) {
 		super(bettingLimit,raisesPerBettingRound);
 		this.pokerGameType = PokerGameType.SINGLE_CARD;
+	}
+	
+	
+	@Override
+	public Map<Integer, Hand> dealCards(Deck deck) {
+		int numOfPlayers = players.length;
+		this.hands = new HashMap<Integer, Hand>();
+		for (int player = 0; player < numOfPlayers; player++) {
+			HandSingleCard hand = new HandSingleCard(deck.nextCard());
+			this.hands.put(player, hand);
+		}
+		board = new Board(pokerGameType, deck);
+		this.betRound = BetRound.RIVER;
+		return hands;
 	}
 
 	@Override
@@ -45,19 +58,7 @@ public class TwoPlayerSingleCardGame extends BaseTwoPlayerPokerGame {
 
 	}
 
-	@Override
-	public Map<Integer, Hand> dealCards(Deck deck) {
-		deck = new DeckKuhnShuffled();
-		int numOfPlayers = players.length;
-		this.hands = new HashMap<Integer, Hand>();
-		for (int player = 0; player < numOfPlayers; player++) {
-			HandSingleCard hand = new HandSingleCard(deck.nextCard());
-			this.hands.put(player, hand);
-		}
-		board = new Board(pokerGameType, deck);
-		this.betRound = BetRound.RIVER;
-		return hands;
-	}
+
 
 
 }

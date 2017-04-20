@@ -19,7 +19,7 @@ public class MonteCarloCFRTrainer {
 
 	public static void main(String[] args) {
 		int iterations = 6000000;
-		new MonteCarloCFRTrainer().train(GameDescription.SINGLECARD_HEADSUP_POT_LIMIT_POKER, iterations);
+		new MonteCarloCFRTrainer().train(GameDescription.SINGLECARD_HEADSUP_LIMIT_POKER, iterations);
 	}
 
 	public void train(GameDescription gameDescription, int iterations) {
