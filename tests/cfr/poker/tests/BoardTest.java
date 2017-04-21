@@ -120,7 +120,45 @@ public class BoardTest {
 //		check that a card was not added to the board;
 		assertEquals(2,board.getCards().length);
 		
+		board.turnNextCard();
 		
+assertEquals(2,board.getCards().length);
+		
+		assertEquals(2,board.getIsVisible().length);
+		
+		assertArrayEquals(new Boolean[]{true,false},board.getIsVisible());
+		
+		assertEquals(PokerGameType.RHODE_ISLAND,board.getPokerGameType());
+		
+		assertEquals(1,board.getTurnedCards().size());
+		
+		assertEquals(1,board.getTurnedSuits().size());
+		
+		assertTrue(board.isSuited());
+		
+		assertEquals(false,board.addTurnedCard(expectedCard));
+//		check that a card was not added to the board;
+		assertEquals(2,board.getCards().length);
+		
+		board.turnNextCard();
+		
+assertEquals(2,board.getCards().length);
+		
+		assertEquals(2,board.getIsVisible().length);
+		
+		assertArrayEquals(new Boolean[]{true,true},board.getIsVisible());
+		
+		assertEquals(PokerGameType.RHODE_ISLAND,board.getPokerGameType());
+		
+		assertEquals(2,board.getTurnedCards().size());
+		
+		assertEquals(2,board.getTurnedSuits().size());
+//		unshuffled deck
+		assertTrue(board.isSuited());
+		
+		assertEquals(false,board.addTurnedCard(expectedCard));
+//		check that a card was not added to the board;
+		assertEquals(2,board.getCards().length);
 	}
 	
 }
