@@ -76,6 +76,12 @@ public class NodeImpl implements Node {
 	public Action[] getActions() {
 		return actions;
 	}
+	
+
+	protected Action[] setActions(Action[] newActions) {
+		actions = newActions;
+		return actions;
+	}
 
 	@Override
 	public int numOfActions() {

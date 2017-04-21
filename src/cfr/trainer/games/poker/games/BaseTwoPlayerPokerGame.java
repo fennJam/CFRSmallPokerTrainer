@@ -191,6 +191,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 			raiseCount++;
 			performRaiseAction(player, raiseAction.getRaiseAmount());
 		} else if (currentAction.equals(PokerActionType.DEAL)) {
+			board.turnNextCard();
 			betRound = betRound.next();
 			action = DealAction.getInstance();
 			raiseCount = 0;
@@ -211,11 +212,17 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	}
 
 	@Override
-	public String getNodeId() {
+	public String getNodeIdWithActionMemory() {
 		String cardHistory = new CardHistoryBuilder(hands.get(getPlayerToAct()), board).toString();
 		return cardHistory + getActionsString();
 	}
 
+	@Override
+	public String getNodeIdWithGameState(){
+		String cardHistory = new CardHistoryBuilder(hands.get(getPlayerToAct()), board).toString();
+		return cardHistory + pot.getTotalPotSize() + " raisesAllowed : "+raisesAllowed();
+	}
+	
 	@Override
 	public boolean lastActionIsTerminalCallForTheBettingRound() {
 		int dealIndex = actions.lastIndexOf(DealAction.getInstance());

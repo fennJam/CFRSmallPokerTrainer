@@ -25,7 +25,7 @@ public class PokerInfoSetFactoryTest {
 	public final void nodeFactoryReturnsTerminalNode_test() {
 		Mockito.when(mockedPokerGame.raisesAllowed()).thenReturn(false);
 		
-		Node infoSet = PokerInfoSetFactory.buildInformationSet(mockedPokerGame);
+		Node infoSet = PokerInfoSetFactory.buildInformationSet("nodeID",mockedPokerGame);
 		
 		assertTrue(infoSet instanceof TerminalInfoSet);
 
@@ -36,7 +36,7 @@ public class PokerInfoSetFactoryTest {
 		Mockito.when(mockedPokerGame.raisesAllowed()).thenReturn(true);
 		Mockito.when(mockedPokerGame.getBettingLimit()).thenReturn(BettingLimit.LIMIT);
 		
-		Node infoSet = PokerInfoSetFactory.buildInformationSet(mockedPokerGame);
+		Node infoSet = PokerInfoSetFactory.buildInformationSet("nodeID",mockedPokerGame);
 		
 		assertTrue(infoSet instanceof LimitPokerInfoSet);
 
@@ -51,7 +51,7 @@ public class PokerInfoSetFactoryTest {
 		Mockito.when(mockedPot.getTotalPotSize()).thenReturn(5);
 		
 		
-		Node infoSet = PokerInfoSetFactory.buildInformationSet(mockedPokerGame);
+		Node infoSet = PokerInfoSetFactory.buildInformationSet("nodeID",mockedPokerGame);
 		
 		assertTrue(infoSet instanceof PotLimitPokerInfoSet);
 		assertEquals(10,infoSet.getActions().length);

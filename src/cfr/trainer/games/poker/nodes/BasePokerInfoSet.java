@@ -5,7 +5,7 @@ import java.util.Arrays;
 import cfr.trainer.games.poker.actions.PokerAction;
 import cfr.trainer.node.Node;
 
-public class BasePokerInfoSet implements Node {
+public abstract class BasePokerInfoSet implements Node {
 
 	String nodeIdentifier;
 	private PokerAction[] actions;

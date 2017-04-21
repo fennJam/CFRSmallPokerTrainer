@@ -18,8 +18,8 @@ public class MonteCarloCFRTrainer {
 	int iterations = 0;
 
 	public static void main(String[] args) {
-		int iterations = 6000000;
-		new MonteCarloCFRTrainer().train(GameDescription.SINGLECARD_HEADSUP_LIMIT_POKER, iterations);
+		int iterations = 600000;
+		new MonteCarloCFRTrainer().train(GameDescription.RHODE_ISLAND_HEADSUP_LIMIT_POKER, iterations);
 	}
 
 	public void train(GameDescription gameDescription, int iterations) {
@@ -45,14 +45,15 @@ public class MonteCarloCFRTrainer {
 		}
 
 		// Get Node
-		String nodeId = pokerGame.getNodeId();
+		String nodeId = pokerGame.getNodeIdWithGameState();
 
 		NodeImpl node = nodeMap.get(nodeId);
 		if (node == null) {
 			// TODO remove poker references
-			node = PokerInfoSetFactory.buildInformationSet(pokerGame);
+			node = PokerInfoSetFactory.buildInformationSet(nodeId,pokerGame);
 			nodeMap.put(nodeId, node);
 		}
+		
 		// recursively call cfr
 		int player = pokerGame.getPlayerToAct();
 		double[] strategy = node.recalculateStrategy(player == 0 ? p0 : p1);

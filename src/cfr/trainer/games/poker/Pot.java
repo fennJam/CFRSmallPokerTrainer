@@ -136,6 +136,10 @@ public class Pot {
 	public Entry<Integer, Integer> getLastBet() {
 		return lastBet;
 	}
+	
+	public Integer getLastBetValue() {
+		return lastBet.getValue();
+	}
 
 	public Pot importPotProperties(Pot pot) {
 		Map<Integer, Integer> copiedBetMap = pot.getPlayerBetsMap();

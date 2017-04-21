@@ -8,7 +8,9 @@ import cfr.trainer.games.poker.games.PokerGame;
 
 public interface Game {
 
-	String getNodeId();
+	String getNodeIdWithActionMemory();
+	
+	String getNodeIdWithGameState();
 
 	boolean isAtTerminalNode();
 

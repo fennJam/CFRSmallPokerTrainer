@@ -50,12 +50,12 @@ public class VanillaCFRTrainer {
 		}
 
 		// Get Node
-		String nodeId = pokerGame.getNodeId();
+		String nodeId = pokerGame.getNodeIdWithActionMemory();
 
 		NodeImpl node = nodeMap.get(nodeId);
 		if (node == null) {
 			// TODO remove poker references
-			node = PokerInfoSetFactory.buildInformationSet(pokerGame);
+			node = PokerInfoSetFactory.buildInformationSet(nodeId,pokerGame);
 			nodeMap.put(nodeId, node);
 		}
 		// recursively call cfr
