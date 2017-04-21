@@ -14,8 +14,6 @@ import cfr.trainer.node.Node;
 
 import static org.junit.Assert.*;
 
-import java.util.Map;
-
 public class PokerInfoSetFactoryTest {
 
 	PokerGame mockedPokerGame = Mockito.mock(PokerGame.class);
