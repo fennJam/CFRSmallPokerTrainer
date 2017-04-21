@@ -24,13 +24,17 @@ public class GameFactory {
 	public static PokerGame copyGame(PokerGame game) {
 		 if(game.getGameType()==PokerGameType.SINGLE_CARD){
 		 PokerGame copiedGame = new
-		 TwoPlayerSingleCardGame(BettingLimit.LIMIT,3);
+		 TwoPlayerSingleCardGame(game.getBettingLimit(),game.getRaisesAllowedPerBettingRound());
 		 return copiedGame.importGameProperties(game);
 		 }else if(game.getGameType()==PokerGameType.TWO_CARD){
 		 PokerGame copiedGame = new
-		 TwoPlayerTwoCardGame(BettingLimit.LIMIT,3);
+		 TwoPlayerTwoCardGame(game.getBettingLimit(),game.getRaisesAllowedPerBettingRound());
 		 return copiedGame.importGameProperties(game);
-		 }
+		 }else if(game.getGameType()==PokerGameType.RHODE_ISLAND){
+			 PokerGame copiedGame = new
+					 TwoPlayerRhodeIslandGame(game.getBettingLimit(),game.getRaisesAllowedPerBettingRound());
+					 return copiedGame.importGameProperties(game);
+					 }
 		
 		return null;
 	}
