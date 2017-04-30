@@ -26,7 +26,7 @@ public class TwoPlayerSingleCardGameTest {
 		assertEquals(BettingLimit.LIMIT, twoPlayerSingleCardGame.getBettingLimit());
 		assertNull(twoPlayerSingleCardGame.getBettingRound());
 		assertNull(twoPlayerSingleCardGame.getBoard());
-		assertEquals(PokerGameType.SINGLE_CARD, twoPlayerSingleCardGame.getGameType());
+		assertEquals(PokerGameType.SINGLE_CARD, twoPlayerSingleCardGame.getPokerGameType());
 		assertNull(twoPlayerSingleCardGame.getHands());
 		// assertNull(twoPlayerSingleCardGame.getNodeId());
 		// assertNull(twoPlayerSingleCardGame.getPayOffs());
@@ -55,7 +55,7 @@ public class TwoPlayerSingleCardGameTest {
 
 		assertEquals(BetRound.RIVER, twoPlayerSingleCardGame.getBettingRound());
 		assertEquals("No cards turned", twoPlayerSingleCardGame.getBoard().toString());
-		assertEquals(PokerGameType.SINGLE_CARD, twoPlayerSingleCardGame.getGameType());
+		assertEquals(PokerGameType.SINGLE_CARD, twoPlayerSingleCardGame.getPokerGameType());
 
 		assertEquals(2, twoPlayerSingleCardGame.getHands().size());
 		assertTrue(twoPlayerSingleCardGame.getHands().get(0) instanceof Hand);
@@ -96,7 +96,7 @@ public class TwoPlayerSingleCardGameTest {
 
 		assertEquals(BetRound.RIVER, twoPlayerSingleCardGame.getBettingRound());
 		assertEquals("No cards turned", twoPlayerSingleCardGame.getBoard().toString());
-		assertEquals(PokerGameType.SINGLE_CARD, twoPlayerSingleCardGame.getGameType());
+		assertEquals(PokerGameType.SINGLE_CARD, twoPlayerSingleCardGame.getPokerGameType());
 
 		assertEquals(2, twoPlayerSingleCardGame.getHands().size());
 		assertTrue(twoPlayerSingleCardGame.getHands().get(0) instanceof Hand);
@@ -131,7 +131,7 @@ public class TwoPlayerSingleCardGameTest {
 
 		assertEquals(BetRound.RIVER, twoPlayerSingleCardGameToBeCopied.getBettingRound());
 		assertEquals("No cards turned", twoPlayerSingleCardGameToBeCopied.getBoard().toString());
-		assertEquals(PokerGameType.SINGLE_CARD, twoPlayerSingleCardGameToBeCopied.getGameType());
+		assertEquals(PokerGameType.SINGLE_CARD, twoPlayerSingleCardGameToBeCopied.getPokerGameType());
 
 		assertEquals(2, twoPlayerSingleCardGameToBeCopied.getHands().size());
 		assertTrue(twoPlayerSingleCardGameToBeCopied.getHands().get(0) instanceof Hand);

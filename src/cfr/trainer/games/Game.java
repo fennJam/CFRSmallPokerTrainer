@@ -22,5 +22,13 @@ public interface Game {
 
 	Game startGame();
 	
-	List<PokerGame> getListOfGamesWithAllPossibleChanceNodes();
+	List<Game> getListOfGamesWithAllPossibleChanceNodes();
+	
+	boolean isAtChanceNode();
+	
+	boolean performChanceAction();
+	
+	GameType getGameType();
+	
+	
 }

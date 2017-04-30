@@ -21,7 +21,7 @@ public interface PokerGame extends Game {
 
 	Pot getPot();
 
-	PokerGameType getGameType();
+	PokerGameType getPokerGameType();
 	
 	int getRaisesAllowedPerBettingRound();
 	

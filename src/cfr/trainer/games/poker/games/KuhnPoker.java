@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cfr.trainer.games.Game;
 import cfr.trainer.games.poker.BetRound;
 import cfr.trainer.games.poker.BettingLimit;
 import cfr.trainer.games.poker.Board;
@@ -44,11 +45,11 @@ public class KuhnPoker extends BaseTwoPlayerPokerGame {
 	}
 
 	@Override
-	public List<PokerGame> getListOfGamesWithAllPossibleChanceNodes() {
+	public List<Game> getListOfGamesWithAllPossibleChanceNodes() {
 		int player0 = 0;
 		int player1 = 1;
 
-		List<PokerGame> games = new ArrayList<PokerGame>();
+		List<Game> games = new ArrayList<Game>();
 
 		for (int i = 9; i < 12; i++) {
 			Hand hand0 = new HandSingleCard(new Card(i));

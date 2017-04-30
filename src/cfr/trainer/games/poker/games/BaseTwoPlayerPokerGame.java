@@ -7,6 +7,7 @@ import java.util.Map;
 
 import cfr.trainer.action.Action;
 import cfr.trainer.games.Game;
+import cfr.trainer.games.GameType;
 import cfr.trainer.games.poker.*;
 import cfr.trainer.games.poker.actions.*;
 import cfr.trainer.games.poker.decks.Deck;
@@ -16,6 +17,7 @@ import cfr.trainer.games.poker.nodes.CardHistoryBuilder;
 public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 
 	BetRound betRound;
+	GameType gameType = GameType.POKER;
 	PokerGameType pokerGameType;
 
 	List<PokerAction> actions;
@@ -57,7 +59,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	}
 
 	@Override
-	public PokerGameType getGameType() {
+	public PokerGameType getPokerGameType() {
 		return pokerGameType;
 	}
 
@@ -135,7 +137,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	@Override
 	public PokerGame importGameProperties(PokerGame game) {
 
-		if (this.pokerGameType != game.getGameType()) {
+		if (this.pokerGameType != game.getPokerGameType()) {
 			throw new Error("Different game type or number of betting rounds in game you are trying to copy!!");
 		}
 		this.bettingLimit = game.getBettingLimit();
@@ -252,6 +254,22 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	public String toString(){
 		
 		return "Game - BetRound "+betRound+" PokerGameType "+pokerGameType+" actions "+actions+" actingPlayer "+getPlayerToAct()+" raisesPerBettingRound "+raisesPerBettingRound+" raiseCount "+raiseCount+" bettingLimit "+bettingLimit+"hands"+hands+" board "+board+" pot "+pot;
+	}
+	
+
+	@Override
+	public boolean isAtChanceNode() {
+		return lastActionIsTerminalCallForTheBettingRound();
+	}
+
+	@Override
+	public boolean performChanceAction() {
+		return performAction(0, DealAction.getInstance());
+	}
+	
+	@Override
+	public GameType getGameType(){
+		return gameType;
 	}
 	
 }

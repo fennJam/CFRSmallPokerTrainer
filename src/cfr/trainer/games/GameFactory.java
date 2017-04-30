@@ -6,14 +6,14 @@ import cfr.trainer.games.poker.games.*;
 
 public class GameFactory {
 
-	public static PokerGame setUpGame(GameDescription gameType) {
+	public static Game setUpGame(GameDescription gameType) {
 
 		if (gameType == GameDescription.TWOCARD_HEADSUP_LIMIT_POKER) {
 			return new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
 		} else if (gameType == GameDescription.SINGLECARD_HEADSUP_LIMIT_POKER) {
 			return new TwoPlayerSingleCardGame(BettingLimit.LIMIT, 3);
 
-		}else if (gameType == GameDescription.KUHN_POKER){
+		} else if (gameType == GameDescription.KUHN_POKER) {
 			return new KuhnPoker();
 		}
 
@@ -21,21 +21,25 @@ public class GameFactory {
 
 	}
 
-	public static PokerGame copyGame(PokerGame game) {
-		 if(game.getGameType()==PokerGameType.SINGLE_CARD){
-		 PokerGame copiedGame = new
-		 TwoPlayerSingleCardGame(game.getBettingLimit(),game.getRaisesAllowedPerBettingRound());
-		 return copiedGame.importGameProperties(game);
-		 }else if(game.getGameType()==PokerGameType.TWO_CARD){
-		 PokerGame copiedGame = new
-		 TwoPlayerTwoCardGame(game.getBettingLimit(),game.getRaisesAllowedPerBettingRound());
-		 return copiedGame.importGameProperties(game);
-		 }else if(game.getGameType()==PokerGameType.RHODE_ISLAND){
-			 PokerGame copiedGame = new
-					 TwoPlayerRhodeIslandGame(game.getBettingLimit(),game.getRaisesAllowedPerBettingRound());
-					 return copiedGame.importGameProperties(game);
-					 }
-		
+	public static Game copyGame(Game game) {
+		if (game.getGameType() == GameType.POKER) {
+
+			PokerGame pokerGame = (PokerGame) game;
+			if (pokerGame.getPokerGameType() == PokerGameType.SINGLE_CARD) {
+				PokerGame copiedGame = new TwoPlayerSingleCardGame(pokerGame.getBettingLimit(),
+						pokerGame.getRaisesAllowedPerBettingRound());
+				return copiedGame.importGameProperties(pokerGame);
+			} else if (pokerGame.getPokerGameType() == PokerGameType.TWO_CARD) {
+				PokerGame copiedGame = new TwoPlayerTwoCardGame(pokerGame.getBettingLimit(),
+						pokerGame.getRaisesAllowedPerBettingRound());
+				return copiedGame.importGameProperties(pokerGame);
+			} else if (pokerGame.getPokerGameType() == PokerGameType.RHODE_ISLAND) {
+				PokerGame copiedGame = new TwoPlayerRhodeIslandGame(pokerGame.getBettingLimit(),
+						pokerGame.getRaisesAllowedPerBettingRound());
+				return copiedGame.importGameProperties(pokerGame);
+			}
+		}
+
 		return null;
 	}
 }

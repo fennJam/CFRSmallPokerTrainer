@@ -92,7 +92,7 @@ public class PokerTrainerTest {
 		assertEquals(0.33, jackDealCall.getAverageStrategy()[RAISE_INDEX], 0.02);
 		assertEquals(0, jackDealRaise.getAverageStrategy()[CALL_INDEX], 0.001);
 	}
-	@Ignore
+
 	@Test
 	public void vannillaCFRTrainer_test() {
 		VanillaCFRTrainer vanillaCFRTrainer = new VanillaCFRTrainer();

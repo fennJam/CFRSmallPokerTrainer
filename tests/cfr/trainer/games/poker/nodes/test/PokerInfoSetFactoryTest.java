@@ -3,6 +3,7 @@ package cfr.trainer.games.poker.nodes.test;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import cfr.trainer.games.GameType;
 import cfr.trainer.games.poker.BettingLimit;
 import cfr.trainer.games.poker.Pot;
 import cfr.trainer.games.poker.games.PokerGame;
@@ -22,6 +23,7 @@ public class PokerInfoSetFactoryTest {
 	@Test
 	public final void nodeFactoryReturnsTerminalNode_test() {
 		Mockito.when(mockedPokerGame.raisesAllowed()).thenReturn(false);
+		Mockito.when(mockedPokerGame.getGameType()).thenReturn(GameType.POKER);
 		
 		Node infoSet = PokerInfoSetFactory.buildInformationSet("nodeID",mockedPokerGame);
 		
@@ -33,6 +35,7 @@ public class PokerInfoSetFactoryTest {
 	public final void nodeFactoryReturnsLimitPokerInfoSet_test() {
 		Mockito.when(mockedPokerGame.raisesAllowed()).thenReturn(true);
 		Mockito.when(mockedPokerGame.getBettingLimit()).thenReturn(BettingLimit.LIMIT);
+		Mockito.when(mockedPokerGame.getGameType()).thenReturn(GameType.POKER);
 		
 		Node infoSet = PokerInfoSetFactory.buildInformationSet("nodeID",mockedPokerGame);
 		
@@ -42,6 +45,7 @@ public class PokerInfoSetFactoryTest {
 	
 	@Test
 	public final void nodeFactoryReturnsPotLimitPokerInfoSet_test() {
+		Mockito.when(mockedPokerGame.getGameType()).thenReturn(GameType.POKER);
 		Mockito.when(mockedPokerGame.raisesAllowed()).thenReturn(true);
 		Mockito.when(mockedPokerGame.getBettingLimit()).thenReturn(BettingLimit.POT_LIMIT);
 		Mockito.when(mockedPokerGame.getPot()).thenReturn(mockedPot);

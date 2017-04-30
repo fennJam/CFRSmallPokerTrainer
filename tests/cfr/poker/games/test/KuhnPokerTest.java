@@ -10,14 +10,13 @@ import org.junit.Test;
 import cfr.trainer.games.Game;
 import cfr.trainer.games.poker.CardHeight;
 import cfr.trainer.games.poker.games.KuhnPoker;
-import cfr.trainer.games.poker.games.PokerGame;
 
 public class KuhnPokerTest {
 
 	@Test
 	public void getListOfGamesWithAllPossibleChanceNodesTest(){
 		Game game = new KuhnPoker();
-		List<PokerGame> gameList = game.getListOfGamesWithAllPossibleChanceNodes();
+		List<Game> gameList = game.getListOfGamesWithAllPossibleChanceNodes();
 		
 		assertEquals(6,gameList.size());
 		
