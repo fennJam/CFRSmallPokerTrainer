@@ -6,15 +6,17 @@ import cfr.trainer.games.poker.games.*;
 
 public class GameFactory {
 
-	public static Game setUpGame(GameDescription gameType) {
+	public static Game setUpGame(GameDescription gameDescription) {
 
-		if (gameType == GameDescription.TWOCARD_HEADSUP_LIMIT_POKER) {
+		if (gameDescription == GameDescription.TWOCARD_HEADSUP_LIMIT_POKER) {
 			return new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
-		} else if (gameType == GameDescription.SINGLECARD_HEADSUP_LIMIT_POKER) {
+		} else if (gameDescription == GameDescription.SINGLECARD_HEADSUP_LIMIT_POKER) {
 			return new TwoPlayerSingleCardGame(BettingLimit.LIMIT, 3);
 
-		} else if (gameType == GameDescription.KUHN_POKER) {
+		} else if (gameDescription == GameDescription.KUHN_POKER) {
 			return new KuhnPoker();
+		}else if (gameDescription == GameDescription.RHODE_ISLAND_HEADSUP_LIMIT_POKER){
+			return new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT,1);
 		}
 
 		return null;

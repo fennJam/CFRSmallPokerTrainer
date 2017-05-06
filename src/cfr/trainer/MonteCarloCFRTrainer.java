@@ -39,25 +39,19 @@ public class MonteCarloCFRTrainer {
 			return game.getPayOffs().get(game.getPlayerToAct());
 		}
 
-//		if (pokerGame.lastActionIsTerminalCallForTheBettingRound()) {
-//			pokerGame.performAction(0, DealAction.getInstance());
-//		}
-		
 		if (game.isAtChanceNode()) {
 			game.performChanceAction();
-	}
-		
+		}
 
 		// Get Node
 		String nodeId = game.getNodeIdWithGameState();
 
 		NodeImpl node = nodeMap.get(nodeId);
 		if (node == null) {
-			// TODO remove poker references
-			node = PokerInfoSetFactory.buildInformationSet(nodeId,game);
+			node = PokerInfoSetFactory.buildInformationSet(nodeId, game);
 			nodeMap.put(nodeId, node);
 		}
-		
+
 		// recursively call cfr
 		int player = game.getPlayerToAct();
 		double[] strategy = node.recalculateStrategy(player == 0 ? p0 : p1);
@@ -66,7 +60,6 @@ public class MonteCarloCFRTrainer {
 		double nodeUtil = 0;
 
 		for (int action = 0; action < actionsAvailable; action++) {
-			// TODO remove poker references
 			Game copyOfGame = GameFactory.copyGame(game);
 			copyOfGame.performAction(player, node.getActions()[action]);
 

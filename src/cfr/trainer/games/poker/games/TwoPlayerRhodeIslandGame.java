@@ -61,9 +61,8 @@ public class TwoPlayerRhodeIslandGame extends BaseTwoPlayerPokerGame {
 						newHands.put(player1, hand1);
 
 						Board board = new Board();
-						board.setPokerGameType(PokerGameType.TWO_CARD);
+						board.setPokerGameType(PokerGameType.RHODE_ISLAND);
 						board.setCard(new Card(boardCard1), 0, false);
-						board.setPokerGameType(PokerGameType.TWO_CARD);
 						board.setCard(new Card(boardCard2), 1, false);
 
 						game.setHands(newHands);
