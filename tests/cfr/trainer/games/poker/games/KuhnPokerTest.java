@@ -1,4 +1,4 @@
-package cfr.poker.games.test;
+package cfr.trainer.games.poker.games;
 
 
 import static org.junit.Assert.assertEquals;
