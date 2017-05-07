@@ -15,9 +15,10 @@ import cfr.trainer.node.Node;
 import cfr.trainer.node.NodeImpl;
 
 public class PokerTrainerTest {
-	@Ignore
+	
+	
 	@Test
-	public void monteCarloCFRTrainer_test() {
+	public void monteCarloCFRTrainer_test() throws Exception {
 		MonteCarloCFRTrainer monteCarloCFRTrainer = new MonteCarloCFRTrainer();
 		monteCarloCFRTrainer.train(GameDescription.KUHN_POKER, 1000000);
 
@@ -94,7 +95,7 @@ public class PokerTrainerTest {
 	}
 
 	@Test
-	public void vannillaCFRTrainer_test() {
+	public void vannillaCFRTrainer_test() throws Exception {
 		VanillaCFRTrainer vanillaCFRTrainer = new VanillaCFRTrainer();
 		vanillaCFRTrainer.train(GameDescription.KUHN_POKER, 1000000);
 
@@ -172,7 +173,7 @@ public class PokerTrainerTest {
 	
 
 	@Test
-	public void CFRPlusTrainer_test() {
+	public void CFRPlusTrainer_test() throws Exception {
 		CFRPlusTrainer cfrPlusTrainer = new CFRPlusTrainer();							
 		cfrPlusTrainer.train(GameDescription.KUHN_POKER, 1000000);
 

@@ -18,14 +18,14 @@ public class VanillaCFRTrainer {
 	int iterations = 0;
 	double averageGameValue = 0;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		int iterations = 200000;
 		new VanillaCFRTrainer().train(GameDescription.KUHN_POKER, iterations);
 	}
 
-	public void train(GameDescription gameType, int iterations) {
+	public void train(GameDescription gameType, int iterations) throws Exception {
 		this.iterations = iterations;
-		Game gameStructure = GameFactory.setUpGame(gameType);
+		Game gameStructure = GameFactory.setUpGame(gameType,3);
 		List<Game> listGames = gameStructure.getListOfGamesWithAllPossibleChanceNodes();
 		for (int i = 0; i < iterations; i++) {
 			for (Game game : listGames) {
@@ -38,7 +38,7 @@ public class VanillaCFRTrainer {
 			System.out.println(n.getKey() + " : " + n.getValue());
 	}
 
-	private double cfr(Game game, double p0, double p1) {
+	private double cfr(Game game, double p0, double p1) throws Exception {
 
 		if (game.isAtTerminalNode()) {
 			return game.getPayOffs().get(game.getPlayerToAct());

@@ -6,25 +6,26 @@ import cfr.trainer.games.poker.games.*;
 
 public class GameFactory {
 
-	public static Game setUpGame(GameDescription gameDescription) {
+	public static Game setUpGame(GameDescription gameDescription, int numberOfRaisesPerBettingRound) throws Exception {
 
 		if (gameDescription == GameDescription.TWOCARD_HEADSUP_LIMIT_POKER) {
-			return new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
+			return new TwoPlayerTwoCardGame(BettingLimit.LIMIT, numberOfRaisesPerBettingRound);
 		} else if (gameDescription == GameDescription.SINGLECARD_HEADSUP_LIMIT_POKER) {
-			return new TwoPlayerSingleCardGame(BettingLimit.LIMIT, 3);
+			return new TwoPlayerSingleCardGame(BettingLimit.LIMIT, numberOfRaisesPerBettingRound);
 
 		} else if (gameDescription == GameDescription.KUHN_POKER) {
 			return new KuhnPoker();
 		}else if (gameDescription == GameDescription.RHODE_ISLAND_HEADSUP_LIMIT_POKER){
-			return new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT,1);
-		}
-
-		return null;
+			return new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT,numberOfRaisesPerBettingRound);
+		}else{
+			throw new Exception("The setUpGame method in the class GameFactory does not cater for the GameDescription "+gameDescription);	
+			}
 
 	}
 
-	public static Game copyGame(Game game) {
-		if (game.getGameType() == GameType.POKER) {
+	public static Game copyGame(Game game) throws Exception {
+		GameType gameType = game.getGameType();
+		if (gameType == GameType.POKER) {
 
 			PokerGame pokerGame = (PokerGame) game;
 			if (pokerGame.getPokerGameType() == PokerGameType.SINGLE_CARD) {
@@ -40,6 +41,8 @@ public class GameFactory {
 						pokerGame.getRaisesAllowedPerBettingRound());
 				return copiedGame.importGameProperties(pokerGame);
 			}
+		}else{
+		throw new Exception("The copyGame method in the class GameFactory does not cater for the GameType "+gameType);	
 		}
 
 		return null;

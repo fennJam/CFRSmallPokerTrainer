@@ -16,15 +16,15 @@ public class MonteCarloCFRTrainer {
 	double util = 0;
 	int iterations = 0;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		int iterations = 600000;
 		new MonteCarloCFRTrainer().train(GameDescription.KUHN_POKER, iterations);
 	}
 
-	public void train(GameDescription gameDescription, int iterations) {
+	public void train(GameDescription gameDescription, int iterations) throws Exception {
 		this.iterations = iterations;
 		for (int i = 0; i < iterations; i++) {
-			Game game = GameFactory.setUpGame(gameDescription);
+			Game game = GameFactory.setUpGame(gameDescription,3);
 			game.startGame();
 			util += cfr(game, 1, 1);
 		}
@@ -33,7 +33,7 @@ public class MonteCarloCFRTrainer {
 			System.out.println(n.getKey() + " : " + n.getValue());
 	}
 
-	private double cfr(Game game, double p0, double p1) {
+	private double cfr(Game game, double p0, double p1) throws Exception {
 
 		if (game.isAtTerminalNode()) {
 			return game.getPayOffs().get(game.getPlayerToAct());
@@ -44,7 +44,7 @@ public class MonteCarloCFRTrainer {
 		}
 
 		// Get Node
-		String nodeId = game.getNodeIdWithGameState();
+		String nodeId = game.getNodeIdWithActionMemory();
 
 		NodeImpl node = nodeMap.get(nodeId);
 		if (node == null) {
