@@ -49,14 +49,14 @@ public class TwoPlayerTwoCardGame extends BaseTwoPlayerPokerGame {
 					if (boardCard == player2Card || boardCard == player1Card) {
 						continue;
 					}
-
-					TwoPlayerSingleCardGame game = new TwoPlayerSingleCardGame(bettingLimit, raisesPerBettingRound);
+					
+					TwoPlayerTwoCardGame game = new TwoPlayerTwoCardGame(bettingLimit, raisesPerBettingRound);
 					game.startGame();
 					Map<Integer, Hand> newHands = new HashMap<Integer, Hand>();
 					newHands.put(player0, hand0);
 					newHands.put(player1, hand1);
 
-					Board board = new Board();
+					Board board = game.getBoard();
 					board.setPokerGameType(PokerGameType.TWO_CARD);
 					board.setCard(new Card(boardCard), 0, false);
 

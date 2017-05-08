@@ -3,10 +3,12 @@ package cfr.trainer.games.poker.games;
 import static org.junit.Assert.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
 
+import cfr.trainer.games.Game;
 import cfr.trainer.games.poker.*;
 import cfr.trainer.games.poker.actions.CallAction;
 import cfr.trainer.games.poker.actions.DealAction;
@@ -279,4 +281,34 @@ public class TwoPlayerSingleCardGameTest {
 		assertEquals(1, twoPlayerSingleCardGame.getPlayerToAct());
 	}
 
+	@Test
+	public void getListOfGamesWithAllPossibleChanceNodesTest(){
+		TwoPlayerSingleCardGame game = new TwoPlayerSingleCardGame(BettingLimit.LIMIT, 3);
+		List<Game> gameList = game.getListOfGamesWithAllPossibleChanceNodes();
+		
+		assertEquals(2652,gameList.size());
+		
+		Game game0 = gameList.get(0);
+		Game game2651 = gameList.get(2651);
+		
+		assertTrue(game0 instanceof TwoPlayerSingleCardGame);
+		assertTrue(game2651 instanceof TwoPlayerSingleCardGame);
+		
+		TwoPlayerSingleCardGame TwoPlayerSingleCardGame0 = (TwoPlayerSingleCardGame) game0;
+		TwoPlayerSingleCardGame TwoPlayerSingleCardGame2651 = (TwoPlayerSingleCardGame) game2651;
+		
+		assertEquals(CardHeight.DEUCE, TwoPlayerSingleCardGame0.getHands().get(0).getCard(0).getHeight());
+		assertEquals(CardHeight.THREE, TwoPlayerSingleCardGame0.getHands().get(1).getCard(0).getHeight());
+		
+		assertEquals(CardHeight.ACE, TwoPlayerSingleCardGame2651.getHands().get(0).getCard(0).getHeight());
+		assertEquals(CardHeight.KING, TwoPlayerSingleCardGame2651.getHands().get(1).getCard(0).getHeight());
+		
+		assertEquals(CardSuit.SPADES, TwoPlayerSingleCardGame0.getHands().get(0).getCard(0).getSuit());
+		assertEquals(CardSuit.SPADES, TwoPlayerSingleCardGame0.getHands().get(1).getCard(0).getSuit());
+		
+		assertEquals(CardSuit.DIAMONDS, TwoPlayerSingleCardGame2651.getHands().get(0).getCard(0).getSuit());
+		assertEquals(CardSuit.DIAMONDS, TwoPlayerSingleCardGame2651.getHands().get(1).getCard(0).getSuit());
+	}
+	
+	
 }
