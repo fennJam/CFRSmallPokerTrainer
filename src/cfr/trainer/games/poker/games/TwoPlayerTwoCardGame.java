@@ -30,42 +30,52 @@ public class TwoPlayerTwoCardGame extends BaseTwoPlayerPokerGame {
 	}
 
 	@Override
-	public List<Game> getListOfGamesWithAllPossibleChanceNodes() {
-		int player0 = 0;
-		int player1 = 1;
+	public List<List<Integer>> getListOfValidChanceCombinations() {
+		List<List<Integer>> validCardCombinationLists = new ArrayList<List<Integer>>();
 
-		List<Game> games = new ArrayList<Game>();
-
-		for (int player1Card = 0; player1Card < 52; player1Card++) {
-			Hand hand0 = new HandSingleCard(new Card(player1Card));
-			for (int player2Card = 0; player2Card < 52; player2Card++) {
-				if (player1Card == player2Card) {
+		for (int card0 = 0; card0 < 52; card0++) {
+			for (int card1 = 0; card1 < 52; card1++) {
+				if (card0 == card1) {
 					continue;
 				}
-
-				Hand hand1 = new HandSingleCard(new Card(player2Card));
-
-				for (int boardCard = 0; boardCard < 52; boardCard++) {
-					if (boardCard == player2Card || boardCard == player1Card) {
+				for (int boardCard1 = 0; boardCard1 < 52; boardCard1++) {
+					if (boardCard1 == card1|| boardCard1 == card0) {
 						continue;
 					}
-					
-					TwoPlayerTwoCardGame game = new TwoPlayerTwoCardGame(bettingLimit, raisesPerBettingRound);
-					game.startGame();
-					Map<Integer, Hand> newHands = new HashMap<Integer, Hand>();
-					newHands.put(player0, hand0);
-					newHands.put(player1, hand1);
-
-					Board board = game.getBoard();
-					board.setPokerGameType(PokerGameType.TWO_CARD);
-					board.setCard(new Card(boardCard), 0, false);
-
-					game.setHands(newHands);
-					games.add(game);
+				List<Integer> validCardComination = new ArrayList<Integer>();
+				validCardComination.add(card0);
+				validCardComination.add(card1);
+				validCardComination.add(boardCard1);
+				validCardCombinationLists.add(validCardComination);
 				}
 			}
 		}
-		return games;
+
+		return validCardCombinationLists;
 	}
 
+	@Override
+	public Game setValidChanceCombinations(List<Integer> listOfChanceCombinations) {
+	
+		Integer card0= listOfChanceCombinations.get(0);
+		Integer card1= listOfChanceCombinations.get(1);
+		Integer boardCard1= listOfChanceCombinations.get(2);
+		
+		
+		Hand hand0 = new HandSingleCard(new Card(card0));
+		Hand hand1 = new HandSingleCard(new Card(card1));
+
+		Map<Integer, Hand> newHands = new HashMap<Integer, Hand>();
+		newHands.put(0, hand0);
+		newHands.put(1, hand1);
+		this.setHands(newHands);
+		if(this.board==null){
+			this.board = new Board(this.pokerGameType);
+		}
+		this.board.setCard(new Card(boardCard1), 0, false);
+
+		return this;
+	}
+
+	
 }

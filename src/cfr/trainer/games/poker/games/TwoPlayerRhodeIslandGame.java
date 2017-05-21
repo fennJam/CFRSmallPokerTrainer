@@ -30,48 +30,58 @@ public class TwoPlayerRhodeIslandGame extends BaseTwoPlayerPokerGame {
 	}
 
 	@Override
-	public List<Game> getListOfGamesWithAllPossibleChanceNodes() {
-		int player0 = 0;
-		int player1 = 1;
+	public List<List<Integer>> getListOfValidChanceCombinations() {
+		List<List<Integer>> validCardCombinationLists = new ArrayList<List<Integer>>();
 
-		List<Game> games = new ArrayList<Game>();
-
-		for (int player1Card = 0; player1Card < 52; player1Card++) {
-			Hand hand0 = new HandSingleCard(new Card(player1Card));
-			for (int player2Card = 0; player2Card < 52; player2Card++) {
-				if (player1Card == player2Card) {
+		for (int card0 = 0; card0 < 52; card0++) {
+			for (int card1 = 0; card1 < 52; card1++) {
+				if (card0 == card1) {
 					continue;
 				}
-
-				Hand hand1 = new HandSingleCard(new Card(player2Card));
-
 				for (int boardCard1 = 0; boardCard1 < 52; boardCard1++) {
-					if (boardCard1 == player2Card || boardCard1 == player1Card) {
+					if (boardCard1 == card1 || boardCard1 == card0) {
 						continue;
 					}
 					for (int boardCard2 = 0; boardCard2 < 52; boardCard2++) {
-						if (boardCard2 == boardCard1 || boardCard2 == player2Card || boardCard2 == player1Card) {
+						if (boardCard2 == card1 || boardCard2 == card0 || boardCard2 == boardCard1) {
 							continue;
 						}
-
-						TwoPlayerRhodeIslandGame game = new TwoPlayerRhodeIslandGame(bettingLimit, raisesPerBettingRound);
-						game.startGame();
-						Map<Integer, Hand> newHands = new HashMap<Integer, Hand>();
-						newHands.put(player0, hand0);
-						newHands.put(player1, hand1);
-
-						Board board = game.getBoard();
-						board.setPokerGameType(PokerGameType.RHODE_ISLAND);
-						board.setCard(new Card(boardCard1), 0, false);
-						board.setCard(new Card(boardCard2), 1, false);
-
-						game.setHands(newHands);
-						games.add(game);
+						List<Integer> validCardComination = new ArrayList<Integer>();
+						validCardComination.add(card0);
+						validCardComination.add(card1);
+						validCardComination.add(boardCard1);
+						validCardComination.add(boardCard2);
+						validCardCombinationLists.add(validCardComination);
 					}
 				}
 			}
 		}
-		return games;
+
+		return validCardCombinationLists;
+	}
+
+	@Override
+	public Game setValidChanceCombinations(List<Integer> listOfChanceCombinations) {
+
+		Integer card0 = listOfChanceCombinations.get(0);
+		Integer card1 = listOfChanceCombinations.get(1);
+		Integer boardCard1 = listOfChanceCombinations.get(2);
+		Integer boardCard2 = listOfChanceCombinations.get(3);
+
+		Hand hand0 = new HandSingleCard(new Card(card0));
+		Hand hand1 = new HandSingleCard(new Card(card1));
+
+		Map<Integer, Hand> newHands = new HashMap<Integer, Hand>();
+		newHands.put(0, hand0);
+		newHands.put(1, hand1);
+		this.setHands(newHands);
+		if(this.board==null){
+			this.board = new Board(this.pokerGameType);
+		}
+		this.board.setCard(new Card(boardCard1), 0, false);
+		this.board.setCard(new Card(boardCard2), 1, false);
+
+		return this;
 	}
 
 }

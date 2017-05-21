@@ -298,13 +298,14 @@ public class TwoPlayerTwoCardGameTest {
 
 	@Test
 	public void getListOfGamesWithAllPossibleChanceNodesTest(){
+		
 		TwoPlayerTwoCardGame game = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
-		List<Game> gameList = game.getListOfGamesWithAllPossibleChanceNodes();
+		List<List<Integer>> chanceComboList = game.getListOfValidChanceCombinations();
 		
-		assertEquals(132600,gameList.size());
+		assertEquals(132600,chanceComboList.size());
 		
-		Game game0 = gameList.get(0);
-		Game game132599 = gameList.get(132599);
+		Game game0 = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3).setValidChanceCombinations(chanceComboList.get(0));
+		Game game132599 = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3).setValidChanceCombinations(chanceComboList.get(132599));
 		
 		assertTrue(game0 instanceof TwoPlayerTwoCardGame);
 		assertTrue(game132599 instanceof TwoPlayerTwoCardGame);

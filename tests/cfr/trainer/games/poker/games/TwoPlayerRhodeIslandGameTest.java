@@ -293,16 +293,15 @@ public class TwoPlayerRhodeIslandGameTest {
 		assertEquals(1, TwoPlayerRhodeIslandGame.getPlayerToAct());
 	}
 
-	@Ignore
 	@Test
 	public void getListOfGamesWithAllPossibleChanceNodesTest() {
 		TwoPlayerRhodeIslandGame game = new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT, 3);
-		List<Game> gameList = game.getListOfGamesWithAllPossibleChanceNodes();
+		List<List<Integer>> chanceComboList = game.getListOfValidChanceCombinations();
 
-		assertEquals(6497400, gameList.size());
+		assertEquals(6497400, chanceComboList.size());
 
-		Game game0 = gameList.get(0);
-		Game game6497399 = gameList.get(6497399);
+		Game game0 = new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT, 3).setValidChanceCombinations(chanceComboList.get(0));
+		Game game6497399 = new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT, 3).setValidChanceCombinations(chanceComboList.get(6497399));
 
 		assertTrue(game0 instanceof TwoPlayerRhodeIslandGame);
 		assertTrue(game6497399 instanceof TwoPlayerRhodeIslandGame);
@@ -313,38 +312,22 @@ public class TwoPlayerRhodeIslandGameTest {
 		assertEquals(CardHeight.DEUCE, TwoPlayerRhodeIslandGame0.getHands().get(0).getCard(0).getHeight());
 		assertEquals(CardHeight.THREE, TwoPlayerRhodeIslandGame0.getHands().get(1).getCard(0).getHeight());
 		assertEquals(CardHeight.FOUR, TwoPlayerRhodeIslandGame0.getBoard().getCard(0).getHeight());
+		assertEquals(CardHeight.FIVE, TwoPlayerRhodeIslandGame0.getBoard().getCard(1).getHeight());
 
 		assertEquals(CardHeight.ACE, TwoPlayerRhodeIslandGame6497399.getHands().get(0).getCard(0).getHeight());
 		assertEquals(CardHeight.KING, TwoPlayerRhodeIslandGame6497399.getHands().get(1).getCard(0).getHeight());
 		assertEquals(CardHeight.QUEEN, TwoPlayerRhodeIslandGame6497399.getBoard().getCard(0).getHeight());
+		assertEquals(CardHeight.JACK, TwoPlayerRhodeIslandGame6497399.getBoard().getCard(1).getHeight());
 
 		assertEquals(CardSuit.SPADES, TwoPlayerRhodeIslandGame0.getHands().get(0).getCard(0).getSuit());
 		assertEquals(CardSuit.SPADES, TwoPlayerRhodeIslandGame0.getHands().get(1).getCard(0).getSuit());
 		assertEquals(CardSuit.SPADES, TwoPlayerRhodeIslandGame0.getBoard().getCard(0).getSuit());
+		assertEquals(CardSuit.SPADES, TwoPlayerRhodeIslandGame0.getBoard().getCard(1).getSuit());
 
 		assertEquals(CardSuit.DIAMONDS, TwoPlayerRhodeIslandGame6497399.getHands().get(0).getCard(0).getSuit());
 		assertEquals(CardSuit.DIAMONDS, TwoPlayerRhodeIslandGame6497399.getHands().get(1).getCard(0).getSuit());
 		assertEquals(CardSuit.DIAMONDS, TwoPlayerRhodeIslandGame6497399.getBoard().getCard(0).getSuit());
-	}
-	
-	@Test
-	public void testForJames() {
-		List<List<Integer>> cardLists= new ArrayList<List<Integer>>();
-		for(Integer card1=0;card1<52;card1++){
-			for(Integer card2=0;card2<52;card2++){
-				for(Integer card3=0;card3<52;card3++){
-					for(Integer card4=0;card4<52;card4++){
-						List<Integer> cardList = new ArrayList<Integer>();
-						cardList.add(card1);
-						cardList.add(card2);
-						cardList.add(card3);
-						cardList.add(card4);
-						cardLists.add(cardList);
-					}
-				}
-			}
-			
-		}
+		assertEquals(CardSuit.DIAMONDS, TwoPlayerRhodeIslandGame6497399.getBoard().getCard(1).getSuit());
 	}
 
 }

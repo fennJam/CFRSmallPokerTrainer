@@ -3,6 +3,7 @@ package cfr.trainer.games.poker.games;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -16,7 +17,16 @@ public class KuhnPokerTest {
 	@Test
 	public void getListOfGamesWithAllPossibleChanceNodesTest(){
 		Game game = new KuhnPoker();
-		List<Game> gameList = game.getListOfGamesWithAllPossibleChanceNodes();
+		
+		
+		List<List<Integer>> chanceComboList = game.getListOfValidChanceCombinations();
+		List<Game>gameList = new ArrayList<Game>();
+		
+		for (List<Integer> chanceCombo:chanceComboList){
+			game.setValidChanceCombinations(chanceCombo);
+			gameList.add(game);
+		}
+		
 		
 		assertEquals(6,gameList.size());
 		

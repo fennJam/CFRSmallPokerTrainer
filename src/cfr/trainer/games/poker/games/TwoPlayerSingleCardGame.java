@@ -30,36 +30,42 @@ public class TwoPlayerSingleCardGame extends BaseTwoPlayerPokerGame {
 		return hands;
 	}
 
+
 	@Override
-	public List<Game> getListOfGamesWithAllPossibleChanceNodes() {
-		int player0 = 0;
-		int player1 = 1;
+	public List<List<Integer>> getListOfValidChanceCombinations() {
+		List<List<Integer>> validCardCombinationLists = new ArrayList<List<Integer>>();
 
-		List<Game> games = new ArrayList<Game>();
-
-		for (int i = 0; i < 52; i++) {
-			Hand hand0 = new HandSingleCard(new Card(i));
-			for (int j = 0; j < 52; j++) {
-				if (i == j) {
+		for (int card0 = 0; card0 < 52; card0++) {
+			for (int card1 = 0; card1 < 52; card1++) {
+				if (card0 == card1) {
 					continue;
 				}
-				Hand hand1 = new HandSingleCard(new Card(j));
-
-				TwoPlayerSingleCardGame game = new TwoPlayerSingleCardGame(bettingLimit,raisesPerBettingRound);
-				game.startGame();
-				Map<Integer, Hand> newHands = new HashMap<Integer, Hand>();
-				newHands.put(player0, hand0);
-				newHands.put(player1, hand1);
-				game.setHands(newHands);
-				games.add(game);
+				List<Integer> validCardComination = new ArrayList<Integer>();
+				validCardComination.add(card0);
+				validCardComination.add(card1);
+				validCardCombinationLists.add(validCardComination);
 			}
 		}
 
-		return games;
-
+		return validCardCombinationLists;
 	}
 
+	@Override
+	public Game setValidChanceCombinations(List<Integer> listOfChanceCombinations) {
+	
+		Integer card0= listOfChanceCombinations.get(0);
+		Integer card1= listOfChanceCombinations.get(1);
+		
+		
+		Hand hand0 = new HandSingleCard(new Card(card0));
+		Hand hand1 = new HandSingleCard(new Card(card1));
 
+		Map<Integer, Hand> newHands = new HashMap<Integer, Hand>();
+		newHands.put(0, hand0);
+		newHands.put(1, hand1);
+		this.setHands(newHands);
 
+		return this;
+	}
 
 }

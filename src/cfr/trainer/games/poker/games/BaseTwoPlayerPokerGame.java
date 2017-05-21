@@ -70,15 +70,15 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 
 	@Override
 	public Map<Integer, Integer> getPayOffs() {
-		if(actions.get(actions.size()-1).equals(FoldAction.getInstance())){
+		if (actions.get(actions.size() - 1).equals(FoldAction.getInstance())) {
 			Integer player = getPlayerToAct();
-			Integer opponent = 1-player;
+			Integer opponent = 1 - player;
 			Integer winnings = pot.getPlayersContributionToPot(opponent);
-			
+
 			Map<Integer, Integer> payOffs = new HashMap<Integer, Integer>();
 			payOffs.put(player, winnings);
-			payOffs.put(opponent, -winnings);	
-			
+			payOffs.put(opponent, -winnings);
+
 			return payOffs;
 		}
 		return PayOffCalculator.getPayOffsForTwoPlayerGame(hands, board, pot, pokerGameType);
@@ -88,7 +88,8 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	public boolean isAtTerminalNode() {
 		if (actions.contains(FoldAction.getInstance())) {
 			return true;
-		}else if (this.betRound != null && this.betRound.equals(BetRound.RIVER) && lastActionIsTerminalCallForTheBettingRound()) {
+		} else if (this.betRound != null && this.betRound.equals(BetRound.RIVER)
+				&& lastActionIsTerminalCallForTheBettingRound()) {
 			return true;
 		}
 		return false;
@@ -109,11 +110,10 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 		return hands;
 	}
 
-
 	public void setHands(Map<Integer, Hand> newHands) {
-		 hands = newHands;
+		hands = newHands;
 	}
-	
+
 	@Override
 	public int getRaisesAllowedPerBettingRound() {
 		return raisesPerBettingRound;
@@ -128,7 +128,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	public BettingLimit getBettingLimit() {
 		return this.bettingLimit;
 	}
-	
+
 	@Override
 	public int getRaiseCount() {
 		return this.raiseCount;
@@ -145,7 +145,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 		this.raisesPerBettingRound = game.getRaisesAllowedPerBettingRound();
 		this.raiseCount = game.getRaiseCount();
 		this.betRound = game.getBettingRound();
-		
+
 		if (game.getBoard() == null) {
 			this.board = null;
 		} else {
@@ -168,7 +168,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 		// get number of actions since last instance of deal action
 		int noOfActions = 0;
 		actions.lastIndexOf(DealAction.getInstance());
-		for (int action = actions.lastIndexOf(DealAction.getInstance())+1; action < actions.size(); action++) {
+		for (int action = actions.lastIndexOf(DealAction.getInstance()) + 1; action < actions.size(); action++) {
 			noOfActions++;
 		}
 		return noOfActions % 2;
@@ -181,6 +181,12 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 
 	@Override
 	public abstract Map<Integer, Hand> dealCards(Deck deck);
+
+	// For pokerGames this will return a list of valid card combinations which
+	// will be allocated, in order to players1,2 and then the board positions
+	// 1,2,3...
+	@Override
+	public abstract List<List<Integer>> getListOfValidChanceCombinations();
 
 	@Override
 	public boolean performAction(int player, Action action) {
@@ -220,18 +226,18 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	}
 
 	@Override
-	public String getNodeIdWithGameState(){
+	public String getNodeIdWithGameState() {
 		String cardHistory = new CardHistoryBuilder(hands.get(getPlayerToAct()), board).toString();
-		return cardHistory + pot.getTotalPotSize() + " raisesAllowed : "+raisesAllowed();
+		return cardHistory + pot.getTotalPotSize() + " raisesAllowed : " + raisesAllowed();
 	}
-	
+
 	@Override
 	public boolean lastActionIsTerminalCallForTheBettingRound() {
 		int dealIndex = actions.lastIndexOf(DealAction.getInstance());
 		int callIndex = actions.lastIndexOf(CallAction.getInstance());
 		// any call that is not a "check" (a call after a deal action) is a
 		// terminal call for the betting round
-		return (callIndex-dealIndex>1);
+		return (callIndex - dealIndex > 1);
 
 	}
 
@@ -242,20 +248,22 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 		}
 		return false;
 	}
-	
-	private String getActionsString(){
+
+	private String getActionsString() {
 		String actionString = "";
-		for(Action action:actions){
-			actionString +=action.toString()+" ";
+		for (Action action : actions) {
+			actionString += action.toString() + " ";
 		}
 		return actionString.trim();
 	}
 
-	public String toString(){
-		
-		return "Game - BetRound "+betRound+" PokerGameType "+pokerGameType+" actions "+actions+" actingPlayer "+getPlayerToAct()+" raisesPerBettingRound "+raisesPerBettingRound+" raiseCount "+raiseCount+" bettingLimit "+bettingLimit+"hands"+hands+" board "+board+" pot "+pot;
+	public String toString() {
+
+		return "Game - BetRound " + betRound + " PokerGameType " + pokerGameType + " actions " + actions
+				+ " actingPlayer " + getPlayerToAct() + " raisesPerBettingRound " + raisesPerBettingRound
+				+ " raiseCount " + raiseCount + " bettingLimit " + bettingLimit + "hands" + hands + " board " + board
+				+ " pot " + pot;
 	}
-	
 
 	@Override
 	public boolean isAtChanceNode() {
@@ -266,10 +274,10 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	public boolean performChanceAction() {
 		return performAction(0, DealAction.getInstance());
 	}
-	
+
 	@Override
-	public GameType getGameType(){
+	public GameType getGameType() {
 		return gameType;
 	}
-	
+
 }

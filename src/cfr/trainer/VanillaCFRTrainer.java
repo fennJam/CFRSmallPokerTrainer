@@ -15,7 +15,6 @@ public class VanillaCFRTrainer {
 
 	public Map<String, NodeImpl> nodeMap = new HashMap<String, NodeImpl>();
 	double util = 0;
-	int iterations = 0;
 	double averageGameValue = 0;
 
 	public static void main(String[] args) throws Exception {
@@ -24,15 +23,17 @@ public class VanillaCFRTrainer {
 	}
 
 	public void train(GameDescription gameType, int iterations) throws Exception {
-		this.iterations = iterations;
 		Game gameStructure = GameFactory.setUpGame(gameType,3);
-		List<Game> listGames = gameStructure.getListOfGamesWithAllPossibleChanceNodes();
+		List<List<Integer>> validChanceCombinations = gameStructure.getListOfValidChanceCombinations();
 		for (int i = 0; i < iterations; i++) {
-			for (Game game : listGames) {
+			for (List<Integer> chanceCombination : validChanceCombinations) {
+				Game game = GameFactory.setUpGame(gameType,3);
+				game.setValidChanceCombinations(chanceCombination);
+				game.startGame();
 				util += cfr(game, 1, 1);
 			}
 		}
-		averageGameValue = util / (iterations * listGames.size());
+		averageGameValue = util / (iterations * validChanceCombinations.size());
 		System.out.println("Average game value: " + averageGameValue);
 		for (Entry<String, NodeImpl> n : nodeMap.entrySet())
 			System.out.println(n.getKey() + " : " + n.getValue());
