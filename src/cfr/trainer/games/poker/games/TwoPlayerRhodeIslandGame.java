@@ -61,7 +61,7 @@ public class TwoPlayerRhodeIslandGame extends BaseTwoPlayerPokerGame {
 	}
 
 	@Override
-	public Game setValidChanceCombinations(List<Integer> listOfChanceCombinations) {
+	public TwoPlayerRhodeIslandGame setValidChanceCombinations(List<Integer> listOfChanceCombinations) {
 
 		Integer card0 = listOfChanceCombinations.get(0);
 		Integer card1 = listOfChanceCombinations.get(1);

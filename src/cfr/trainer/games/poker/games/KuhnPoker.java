@@ -64,7 +64,7 @@ public class KuhnPoker extends BaseTwoPlayerPokerGame {
 	}
 
 	@Override
-	public Game setValidChanceCombinations(List<Integer> listOfChanceCombinations) {
+	public KuhnPoker setValidChanceCombinations(List<Integer> listOfChanceCombinations) {
 	
 		Integer card0= (Integer)listOfChanceCombinations.get(0);
 		Integer card1= (Integer)listOfChanceCombinations.get(1);

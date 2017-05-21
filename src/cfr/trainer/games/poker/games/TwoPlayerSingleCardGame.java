@@ -51,7 +51,7 @@ public class TwoPlayerSingleCardGame extends BaseTwoPlayerPokerGame {
 	}
 
 	@Override
-	public Game setValidChanceCombinations(List<Integer> listOfChanceCombinations) {
+	public TwoPlayerSingleCardGame setValidChanceCombinations(List<Integer> listOfChanceCombinations) {
 	
 		Integer card0= listOfChanceCombinations.get(0);
 		Integer card1= listOfChanceCombinations.get(1);
