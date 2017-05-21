@@ -6,36 +6,29 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import cfr.trainer.games.Game;
+import cfr.trainer.games.poker.BettingLimit;
 import cfr.trainer.games.poker.CardHeight;
 import cfr.trainer.games.poker.games.KuhnPoker;
 
 public class KuhnPokerTest {
-
 	@Test
 	public void getListOfGamesWithAllPossibleChanceNodesTest(){
-		Game game = new KuhnPoker();
+		KuhnPoker gameTemplate = new KuhnPoker();
 		
+		List<List<Integer>> chanceComboList = gameTemplate.getListOfValidChanceCombinations();
+
+		assertEquals(6,chanceComboList.size());
 		
-		List<List<Integer>> chanceComboList = game.getListOfValidChanceCombinations();
-		List<Game>gameList = new ArrayList<Game>();
-		
-		for (List<Integer> chanceCombo:chanceComboList){
-			game.setValidChanceCombinations(chanceCombo);
-			gameList.add(game);
-		}
-		
-		
-		assertEquals(6,gameList.size());
-		
-		KuhnPoker game0 = (KuhnPoker)gameList.get(0);
-		KuhnPoker game1 = (KuhnPoker)gameList.get(1);
-		KuhnPoker game2 = (KuhnPoker)gameList.get(2);
-		KuhnPoker game3 = (KuhnPoker)gameList.get(3);
-		KuhnPoker game4 = (KuhnPoker)gameList.get(4);
-		KuhnPoker game5 = (KuhnPoker)gameList.get(5);
+		KuhnPoker game0 = new KuhnPoker().setValidChanceCombinations(chanceComboList.get(0));
+		KuhnPoker game1 = new KuhnPoker().setValidChanceCombinations(chanceComboList.get(1));
+		KuhnPoker game2 = new KuhnPoker().setValidChanceCombinations(chanceComboList.get(2));
+		KuhnPoker game3 = new KuhnPoker().setValidChanceCombinations(chanceComboList.get(3));
+		KuhnPoker game4 = new KuhnPoker().setValidChanceCombinations(chanceComboList.get(4));
+		KuhnPoker game5 = new KuhnPoker().setValidChanceCombinations(chanceComboList.get(5));
 		
 		
 		
