@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 import cfr.trainer.games.Game;
 import cfr.trainer.games.GameDescription;
 import cfr.trainer.games.GameFactory;
-import cfr.trainer.games.poker.nodes.PokerInfoSetFactory;
+import cfr.trainer.node.InfoSetFactory;
 import cfr.trainer.node.NodeImpl;
 
 public class MonteCarloCFRTrainer {
@@ -48,8 +48,10 @@ public class MonteCarloCFRTrainer {
 
 		NodeImpl node = nodeMap.get(nodeId);
 		if (node == null) {
-			node = PokerInfoSetFactory.buildInformationSet(nodeId, game);
+			node = InfoSetFactory.buildInformationSet(nodeId, game);
 			nodeMap.put(nodeId, node);
+			nodeCount++;
+			System.out.println("Node Count : "+nodeCount);
 		}
 
 		// recursively call cfr

@@ -55,9 +55,10 @@ public class VanillaCFRTrainer {
 
 		NodeImpl node = nodeMap.get(nodeId);
 		if (node == null) {
-			// TODO remove poker references
-			node = PokerInfoSetFactory.buildInformationSet(nodeId,game);
+			node = InfoSetFactory.buildInformationSet(nodeId,game);
 			nodeMap.put(nodeId, node);
+			nodeCount++;
+			System.out.println("Node Count : "+nodeCount);
 		}
 		// recursively call cfr
 		int player = game.getPlayerToAct();
