@@ -5,13 +5,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cfr.trainer.games.poker.*;
+import cfr.trainer.games.poker.BetRound;
+import cfr.trainer.games.poker.BettingLimit;
+import cfr.trainer.games.poker.Board;
+import cfr.trainer.games.poker.Card;
+import cfr.trainer.games.poker.Hand;
+import cfr.trainer.games.poker.HandSingleCard;
+import cfr.trainer.games.poker.PokerGameType;
 import cfr.trainer.games.poker.decks.Deck;
-import cfr.trainer.games.poker.decks.DeckStandardShuffled;
+import cfr.trainer.games.poker.decks.RoyalDeckShuffled;
 
-public class TwoPlayerRhodeIslandGame extends BaseTwoPlayerPokerGame {
-
-	public TwoPlayerRhodeIslandGame(BettingLimit bettingLimit, int raisesPerBettingRound) {
+public class TwoPlayerRoyalRhodeIslandGame extends BaseTwoPlayerPokerGame {
+	
+	
+	public TwoPlayerRoyalRhodeIslandGame(BettingLimit bettingLimit, int raisesPerBettingRound) {
 		super(bettingLimit, raisesPerBettingRound);
 		this.pokerGameType = PokerGameType.RHODE_ISLAND;
 		this.betRound = BetRound.PRETURN;
@@ -19,7 +26,7 @@ public class TwoPlayerRhodeIslandGame extends BaseTwoPlayerPokerGame {
 
 	@Override
 	public Map<Integer, Hand> dealCards() {
-		Deck deck = new DeckStandardShuffled();
+		Deck deck = new RoyalDeckShuffled();
 		int numOfPlayers = players.length;
 		hands = new HashMap<Integer, Hand>();
 		for (int player = 0; player < numOfPlayers; player++) {
@@ -33,17 +40,34 @@ public class TwoPlayerRhodeIslandGame extends BaseTwoPlayerPokerGame {
 	@Override
 	public List<List<Integer>> getListOfValidChanceCombinations() {
 		List<List<Integer>> validCardCombinationLists = new ArrayList<List<Integer>>();
+		List<Integer> cardOrder = new ArrayList<>();
 
-		for (int card0 = 0; card0 < 52; card0++) {
-			for (int card1 = 0; card1 < 52; card1++) {
+		// add 10-A spades
+		for (int card = 8; card < 13; card++) {
+			cardOrder.add(card);
+		}
+		// add 10-A hearts
+		for (int card = 21; card < 26; card++) {
+			cardOrder.add(card);
+		}
+		// add 10-A clubs
+		for (int card = 34; card < 39; card++) {
+			cardOrder.add(card);
+		}
+		// add 10-A diamonds
+		for (int card = 47; card < 52; card++) {
+			cardOrder.add(card);
+		}
+		for (int card0: cardOrder) {
+			for (int card1: cardOrder) {
 				if (card0 == card1) {
 					continue;
 				}
-				for (int boardCard1 = 0; boardCard1 < 52; boardCard1++) {
+				for (int boardCard1: cardOrder) {
 					if (boardCard1 == card1 || boardCard1 == card0) {
 						continue;
 					}
-					for (int boardCard2 = 0; boardCard2 < 52; boardCard2++) {
+					for (int boardCard2 : cardOrder) {
 						if (boardCard2 == card1 || boardCard2 == card0 || boardCard2 == boardCard1) {
 							continue;
 						}
@@ -62,7 +86,7 @@ public class TwoPlayerRhodeIslandGame extends BaseTwoPlayerPokerGame {
 	}
 
 	@Override
-	public TwoPlayerRhodeIslandGame setValidChanceCombinations(List<Integer> listOfChanceCombinations) {
+	public TwoPlayerRoyalRhodeIslandGame setValidChanceCombinations(List<Integer> listOfChanceCombinations) {
 
 		Integer card0 = listOfChanceCombinations.get(0);
 		Integer card1 = listOfChanceCombinations.get(1);

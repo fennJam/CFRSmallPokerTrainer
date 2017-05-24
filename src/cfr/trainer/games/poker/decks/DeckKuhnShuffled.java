@@ -7,22 +7,7 @@ import cfr.trainer.games.poker.Card;
 
 public class DeckKuhnShuffled implements Deck {
 
-	// Copyright 2014 theaigames.com (developers@theaigames.com)
-
-	// Licensed under the Apache License, Version 2.0 (the "License");
-	// you may not use this file except in compliance with the License.
-	// You may obtain a copy of the License at
-
-	// http://www.apache.org/licenses/LICENSE-2.0
-
-	// Unless required by applicable law or agreed to in writing, software
-	// distributed under the License is distributed on an "AS IS" BASIS,
-	// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	// See the License for the specific language governing permissions and
-	// limitations under the License.
-	//
-	// For the full copyright and license information, please view the LICENSE
-	// file that was distributed with this source code.
+	//jFennell 2017
 
 	/**
 	 * Class representing a single deck of cards, which is shuffled in random
@@ -52,30 +37,13 @@ public class DeckKuhnShuffled implements Deck {
 	@Override
 	public void resetDeck() {
 		cardOrder = new ArrayList<Integer>();
-		for (int i = 0; i < 52; i++)
-			cardOrder.add(i);
+
+		cardOrder.add(9);
+		cardOrder.add(10);
+		cardOrder.add(11);
 
 		Collections.shuffle(cardOrder);
 	}
-
-//	/**
-//	 * Set a save point for the deck status, can be used for trying multiple
-//	 * random draws from a non-complete deck.
-//	 */
-//	@Override
-//	public void setSavePoint() {
-//		cardOrderSavePoint = (ArrayList<Integer>) cardOrder.clone();
-//	}
-//
-//	/**
-//	 * Set the deck back to the status of the last restore point, reshuffling
-//	 * the remaining cards.
-//	 */
-//	@Override
-//	public void restoreToSavePoint() {
-//		cardOrder = (ArrayList<Integer>) cardOrderSavePoint.clone();
-//		Collections.shuffle(cardOrder);
-//	}
 
 	/**
 	 * Pushes and returns the next card from the deck.
@@ -97,4 +65,15 @@ public class DeckKuhnShuffled implements Deck {
 		return new Card(cardOrder.get(cardOrder.size() - 1));
 	}
 
+	@Override
+	public Deck unShuffleDeck() {
+		cardOrder = new ArrayList<Integer>();
+
+		cardOrder.add(9);
+		cardOrder.add(10);
+		cardOrder.add(11);
+		
+		return this;
+	}
+	
 }

@@ -10,8 +10,6 @@ import cfr.trainer.games.Game;
 import cfr.trainer.games.GameType;
 import cfr.trainer.games.poker.*;
 import cfr.trainer.games.poker.actions.*;
-import cfr.trainer.games.poker.decks.Deck;
-import cfr.trainer.games.poker.decks.DeckStandardShuffled;
 import cfr.trainer.games.poker.nodes.CardHistoryBuilder;
 
 public abstract class BaseTwoPlayerPokerGame implements PokerGame {
@@ -40,7 +38,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 
 	@Override
 	public Game startGame() {
-		dealCards(new DeckStandardShuffled());
+		dealCards();
 		actions.add(DealAction.getInstance());
 		postBlinds();
 		return this;

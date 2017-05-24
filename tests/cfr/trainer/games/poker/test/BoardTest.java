@@ -9,7 +9,6 @@ import cfr.trainer.games.poker.Card;
 import cfr.trainer.games.poker.PokerGameType;
 import cfr.trainer.games.poker.decks.Deck;
 import cfr.trainer.games.poker.decks.DeckStandardShuffled;
-import cfr.trainer.games.poker.decks.DeckStandardUnShuffled;
 
 public class BoardTest {
 
@@ -71,7 +70,7 @@ public class BoardTest {
 	
 	@Test
 	public void RhodeIslandConstructorTest() {
-		Deck deck = new DeckStandardUnShuffled();
+		Deck deck = new DeckStandardShuffled().unShuffleDeck();
 		Card expectedCard = deck.peekAtNextCard();
 		Board board = new Board(PokerGameType.RHODE_ISLAND,deck);
 		
@@ -98,7 +97,7 @@ public class BoardTest {
 
 	@Test
 	public void TurnNextCardTest() {
-		Deck deck = new DeckStandardUnShuffled();
+		Deck deck = new DeckStandardShuffled().unShuffleDeck();
 		Card expectedCard = deck.peekAtNextCard();
 		Board board = new Board(PokerGameType.RHODE_ISLAND,deck);
 		

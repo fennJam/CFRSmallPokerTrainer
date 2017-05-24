@@ -17,6 +17,8 @@
 
 package cfr.trainer.games.poker.decks;
 
+import java.util.ArrayList;
+
 import cfr.trainer.games.poker.Card;
 
 /**
@@ -48,4 +50,6 @@ public interface Deck {
 	public Card nextCard();
 
 	public Card peekAtNextCard();
+	
+	public  Deck unShuffleDeck();
 }

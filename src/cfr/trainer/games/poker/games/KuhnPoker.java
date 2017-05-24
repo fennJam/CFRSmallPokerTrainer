@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cfr.trainer.games.Game;
 import cfr.trainer.games.poker.BetRound;
 import cfr.trainer.games.poker.BettingLimit;
 import cfr.trainer.games.poker.Board;
@@ -25,8 +24,8 @@ public class KuhnPoker extends BaseTwoPlayerPokerGame {
 	}
 
 	@Override
-	public Map<Integer, Hand> dealCards(Deck deck) {
-		deck = new DeckKuhnShuffled();
+	public Map<Integer, Hand> dealCards() {
+		Deck deck = new DeckKuhnShuffled();
 		int numOfPlayers = players.length;
 		this.hands = new HashMap<Integer, Hand>();
 		for (int player = 0; player < numOfPlayers; player++) {

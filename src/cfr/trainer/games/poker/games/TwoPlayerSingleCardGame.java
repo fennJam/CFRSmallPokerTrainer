@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cfr.trainer.games.Game;
 import cfr.trainer.games.poker.*;
 import cfr.trainer.games.poker.decks.Deck;
+import cfr.trainer.games.poker.decks.DeckStandardShuffled;
 
 public class TwoPlayerSingleCardGame extends BaseTwoPlayerPokerGame {
 
@@ -18,7 +18,8 @@ public class TwoPlayerSingleCardGame extends BaseTwoPlayerPokerGame {
 	
 	
 	@Override
-	public Map<Integer, Hand> dealCards(Deck deck) {
+	public Map<Integer, Hand> dealCards() {
+		Deck deck = new DeckStandardShuffled();
 		int numOfPlayers = players.length;
 		this.hands = new HashMap<Integer, Hand>();
 		for (int player = 0; player < numOfPlayers; player++) {
