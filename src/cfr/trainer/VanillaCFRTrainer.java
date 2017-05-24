@@ -9,6 +9,7 @@ import cfr.trainer.games.Game;
 import cfr.trainer.games.GameDescription;
 import cfr.trainer.games.GameFactory;
 import cfr.trainer.games.poker.nodes.PokerInfoSetFactory;
+import cfr.trainer.node.InfoSetFactory;
 import cfr.trainer.node.NodeImpl;
 
 public class VanillaCFRTrainer {
@@ -57,8 +58,8 @@ public class VanillaCFRTrainer {
 		if (node == null) {
 			node = InfoSetFactory.buildInformationSet(nodeId,game);
 			nodeMap.put(nodeId, node);
-			nodeCount++;
-			System.out.println("Node Count : "+nodeCount);
+//			nodeCount++;
+//			System.out.println("Node Count : "+nodeCount);
 		}
 		// recursively call cfr
 		int player = game.getPlayerToAct();

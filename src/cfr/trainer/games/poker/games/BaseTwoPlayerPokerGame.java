@@ -178,7 +178,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	}
 
 	@Override
-	public abstract Map<Integer, Hand> dealCards(Deck deck);
+	public abstract Map<Integer, Hand> dealCards();
 
 	// For pokerGames this will return a list of valid card combinations which
 	// will be allocated, in order to players1,2 and then the board positions

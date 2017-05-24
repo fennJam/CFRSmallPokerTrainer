@@ -50,8 +50,8 @@ public class MonteCarloCFRTrainer {
 		if (node == null) {
 			node = InfoSetFactory.buildInformationSet(nodeId, game);
 			nodeMap.put(nodeId, node);
-			nodeCount++;
-			System.out.println("Node Count : "+nodeCount);
+//			nodeCount++;
+//			System.out.println("Node Count : "+nodeCount);
 		}
 
 		// recursively call cfr
