@@ -3,18 +3,15 @@ package cfr.trainer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-
 import cfr.trainer.games.Game;
 import cfr.trainer.games.GameDescription;
 import cfr.trainer.games.GameFactory;
-import cfr.trainer.games.poker.nodes.PokerInfoSetFactory;
 import cfr.trainer.node.InfoSetFactory;
-import cfr.trainer.node.NodeImpl;
+import cfr.trainer.node.Node;
 
 public class VanillaCFRTrainer {
 
-	public Map<String, NodeImpl> nodeMap = new HashMap<String, NodeImpl>();
+	public Map<String, Node> nodeMap = new HashMap<>();
 	double util = 0;
 	double averageGameValue = 0;
 
@@ -54,7 +51,7 @@ public class VanillaCFRTrainer {
 		String nodeId = game.getNodeIdWithActionMemory();
 //		String nodeId = game.getNodeIdWithGameState();
 
-		NodeImpl node = nodeMap.get(nodeId);
+		Node node = nodeMap.get(nodeId);
 		if (node == null) {
 			node = InfoSetFactory.buildInformationSet(nodeId,game);
 			nodeMap.put(nodeId, node);
@@ -79,10 +76,10 @@ public class VanillaCFRTrainer {
 		}
 
 		// compute cfr
-
+		double[] regretSum = node.getRegretSum();
 		for (int a = 0; a < actionsAvailable; a++) {
 			double regret = util[a] - nodeUtil;
-			node.regretSum[a] += (player == 0 ? p1 : p0) * regret;
+			regretSum[a] += (player == 0 ? p1 : p0) * regret;
 		}
 
 		return nodeUtil;
@@ -92,7 +89,7 @@ public class VanillaCFRTrainer {
 		return averageGameValue;
 	}
 
-	public Map<String, NodeImpl> getNodeMap() {
+	public Map<String, Node> getNodeMap() {
 		return nodeMap;
 	}
 }

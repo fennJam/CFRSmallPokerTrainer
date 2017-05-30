@@ -136,7 +136,7 @@ public class Board {
 	}
 
 	public List<CardHeight> getTurnedCardsRanks() {
-		List<CardHeight> ranks = new ArrayList<CardHeight>();
+		List<CardHeight> ranks = new ArrayList<>();
 		List<Card> turnedCards = getTurnedCards();
 		for (int i = 0; i < turnedCards.size(); i++) {
 			ranks.add(turnedCards.get(i).getHeight());

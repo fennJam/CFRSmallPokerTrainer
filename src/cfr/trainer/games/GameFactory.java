@@ -17,8 +17,8 @@ public class GameFactory {
 			return new KuhnPoker();
 		}else if (gameDescription == GameDescription.RHODE_ISLAND_HEADSUP_LIMIT_POKER){
 			return new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT,numberOfRaisesPerBettingRound);
-//		}else if (gameDescription == GameDescription.ROYAL_RHODE_ISLAND_HEADSUP_LIMIT_POKER){
-//			return new TwoPlayerRoyalRhodeIslandGame(BettingLimit.LIMIT,numberOfRaisesPerBettingRound);
+		}else if (gameDescription == GameDescription.ROYAL_RHODE_ISLAND_HEADSUP_LIMIT_POKER){
+			return new TwoPlayerRoyalRhodeIslandGame(BettingLimit.LIMIT,numberOfRaisesPerBettingRound);
 		}else{
 			throw new Exception("The setUpGame method in the class GameFactory does not cater for the GameDescription "+gameDescription);	
 			}

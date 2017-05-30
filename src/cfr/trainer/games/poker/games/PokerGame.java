@@ -32,7 +32,7 @@ public interface PokerGame extends Game {
 
 	Map<Integer, Hand> getHands();
 
-	PokerGame importGameProperties(PokerGame game);
+	PokerGame importGameProperties(Game game);
 
 	BettingLimit getBettingLimit();
 
