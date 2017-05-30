@@ -131,7 +131,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	public int getRaiseCount() {
 		return this.raiseCount;
 	}
-
+	
 	@Override
 	public PokerGame importGameProperties(PokerGame game) {
 
@@ -219,7 +219,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 
 	@Override
 	public String getNodeIdWithActionMemory() {
-		String cardHistory = new CardHistoryBuilder(hands.get(getPlayerToAct()), board).toString();
+		String cardHistory = new CardHistoryBuilder(hands.get(getPlayerToAct()), board).build();
 		return cardHistory + getActionsString();
 	}
 

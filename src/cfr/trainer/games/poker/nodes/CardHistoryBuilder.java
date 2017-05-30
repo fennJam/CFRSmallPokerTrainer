@@ -49,6 +49,10 @@ public class CardHistoryBuilder {
 		return cardRanks;
 	}
 
+	public String build(){
+		return toString();
+	}
+	
 	/**
 	 * Returns a string representation of the card history
 	 */
