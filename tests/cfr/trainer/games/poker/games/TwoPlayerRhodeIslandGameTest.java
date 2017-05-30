@@ -28,12 +28,12 @@ public class TwoPlayerRhodeIslandGameTest {
 
 		assertEquals(0, TwoPlayerRhodeIslandGame.getActions().size());
 		assertEquals(BettingLimit.LIMIT, TwoPlayerRhodeIslandGame.getBettingLimit());
-		assertEquals(BetRound.PRETURN,TwoPlayerRhodeIslandGame.getBettingRound());
+		assertEquals(BetRound.PRETURN, TwoPlayerRhodeIslandGame.getBettingRound());
 		assertNull(TwoPlayerRhodeIslandGame.getBoard());
 		assertEquals(PokerGameType.RHODE_ISLAND, TwoPlayerRhodeIslandGame.getPokerGameType());
 		assertNull(TwoPlayerRhodeIslandGame.getHands());
-		// assertNull(TwoPlayerRhodeIslandGame.getNodeId());
 		// assertNull(TwoPlayerRhodeIslandGame.getPayOffs());
+		assertEquals("", TwoPlayerRhodeIslandGame.getNodeIdWithActionMemory());
 		assertEquals(2, TwoPlayerRhodeIslandGame.getPlayers().length);
 		assertEquals(0, TwoPlayerRhodeIslandGame.getPlayers()[0]);
 		assertEquals(1, TwoPlayerRhodeIslandGame.getPlayers()[1]);

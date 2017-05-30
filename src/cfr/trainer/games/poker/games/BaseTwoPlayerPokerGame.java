@@ -219,8 +219,14 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 
 	@Override
 	public String getNodeIdWithActionMemory() {
-		String cardHistory = new CardHistoryBuilder(hands.get(getPlayerToAct()), board).build();
+		String cardHistory = "";
+		if(board!=null){
+		cardHistory = new CardHistoryBuilder(hands.get(getPlayerToAct()), board).build();
+		}else{
+			
+		}
 		return cardHistory + getActionsString();
+		
 	}
 
 	@Override
