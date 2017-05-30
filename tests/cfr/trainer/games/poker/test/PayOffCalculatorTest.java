@@ -552,6 +552,27 @@ public class PayOffCalculatorTest {
 	}
 	
 	@Test
+	public void run_vs_runto3() {
+		board.addTurnedCard(hearts3);
+		board.addTurnedCard(hearts2);
+		
+		hands.put(0, hSpadesA);
+		hands.put(1, hSpades4);
+		
+		Map<Integer, Integer> strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
+		assertTrue(strengths.get(0)<strengths.get(1));
+		
+		hands.clear();
+		
+		hands.put(0, hSpades4);
+		hands.put(1, hSpadesA);
+
+		strengths = PayOffCalculator.getHandStrengths(hands, board, PokerGameType.RHODE_ISLAND);
+		
+		assertTrue(strengths.get(0)>strengths.get(1));
+	}
+	
+	@Test
 	public void run_vs_run_tie() {
 		board.addTurnedCard(hearts4);
 		board.addTurnedCard(clubs3);

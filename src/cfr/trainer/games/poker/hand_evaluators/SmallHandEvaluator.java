@@ -64,7 +64,13 @@ private static final int   TC_STRAIGHT_FLUSH	= TC_PAIR					+ (1 << VALUE_SHIFT);
 
 		case 3: /* flush and/or straight or no pair */
 			boolean isFlush = (suits == 1);
-			boolean isStraight = isThreeCardStraight(ranks);
+			boolean isStraight = Integer.toBinaryString(ranks).startsWith("111");
+			if (ranks == 4099) {
+//				run A-2-3
+				isStraight = true;
+//				remove A high from low run
+				ranks = 3;
+			}
 			if (isFlush && isStraight) {
 				return RI_STRAIGHT_FLUSH | ranks;
 			} else if (isFlush) {
