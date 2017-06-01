@@ -18,4 +18,8 @@ public interface Node {
 
 	double[] getStrategy();
 	
+	double[] getRegretSum();
+	
+	double[] setRegretSum(double[] regretSum);
+	
 }

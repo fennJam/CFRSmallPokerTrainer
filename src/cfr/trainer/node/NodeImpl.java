@@ -93,4 +93,15 @@ public class NodeImpl implements Node {
 		return strategy;
 	}
 
+	@Override
+	public double[] getRegretSum() {
+		return regretSum;
+	}
+
+	@Override
+	public double[] setRegretSum(double[] regretSum) {
+		this.regretSum = regretSum;
+		return regretSum;
+	}
+
 }
