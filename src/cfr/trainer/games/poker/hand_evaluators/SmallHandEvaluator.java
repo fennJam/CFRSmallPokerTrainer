@@ -161,17 +161,17 @@ private static final int   TC_STRAIGHT_FLUSH	= TC_PAIR					+ (1 << VALUE_SHIFT);
 		return rank;
 	}
 
-	private static boolean isThreeCardStraight(int ranks) {
-
-		if (ranks == 4099) {// A-2-3
-			return true;
-		}
-		String BinaryStr = Integer.toBinaryString(ranks);
-		if (BinaryStr.startsWith("111")) {
-			return true;
-		}
-		return false;
-	}
+//	private static boolean isThreeCardStraight(int ranks) {
+//
+//		if (ranks == 4099) {// A-2-3
+//			return true;
+//		}
+//		String BinaryStr = Integer.toBinaryString(ranks);
+//		if (BinaryStr.startsWith("111")) {
+//			return true;
+//		}
+//		return false;
+//	}
 
 	private static boolean isTwoCardStraight(int ranks) {
 

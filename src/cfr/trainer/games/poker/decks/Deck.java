@@ -17,8 +17,6 @@
 
 package cfr.trainer.games.poker.decks;
 
-import java.util.ArrayList;
-
 import cfr.trainer.games.poker.Card;
 
 /**
