@@ -3,6 +3,8 @@ package cfr.trainer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+
 import cfr.trainer.games.Game;
 import cfr.trainer.games.GameDescription;
 import cfr.trainer.games.GameFactory;
@@ -33,7 +35,7 @@ public class VanillaCFRTrainer {
 		}
 		averageGameValue = util / (iterations * validChanceCombinations.size());
 		System.out.println("Average game value: " + averageGameValue);
-		for (Entry<String, NodeImpl> n : nodeMap.entrySet())
+		for (Entry<String, Node> n : nodeMap.entrySet())
 			System.out.println(n.getKey() + " : " + n.getValue());
 	}
 
