@@ -10,6 +10,7 @@ import cfr.trainer.games.Game;
 import cfr.trainer.games.GameType;
 import cfr.trainer.games.poker.*;
 import cfr.trainer.games.poker.actions.*;
+import cfr.trainer.games.poker.decks.Deck;
 import cfr.trainer.games.poker.nodes.CardHistoryBuilder;
 
 public abstract class BaseTwoPlayerPokerGame implements PokerGame {
@@ -26,6 +27,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	BettingLimit bettingLimit;
 	Board board;
 	Pot pot;
+	Deck deck;
 
 	BaseTwoPlayerPokerGame(BettingLimit bettingLimit, int raisesPerBettingRound) {
 		board = null;
@@ -131,7 +133,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	public int getRaiseCount() {
 		return this.raiseCount;
 	}
-	
+
 	@Override
 	public PokerGame importGameProperties(PokerGame game) {
 
@@ -220,13 +222,13 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	@Override
 	public String getNodeIdWithActionMemory() {
 		String cardHistory = "";
-		if(board!=null){
-		cardHistory = new CardHistoryBuilder(hands.get(getPlayerToAct()), board).build();
-		}else{
-			
+		if (board != null) {
+			cardHistory = new CardHistoryBuilder(hands.get(getPlayerToAct()), board).build();
+		} else {
+
 		}
 		return cardHistory + getActionsString();
-		
+
 	}
 
 	@Override
@@ -282,6 +284,16 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	@Override
 	public GameType getGameType() {
 		return gameType;
+	}
+
+	@Override
+	public Deck getDeck() {
+		return deck;
+	}
+
+	@Override
+	public void setDeck(Deck deck) {
+		this.deck = deck;
 	}
 
 }

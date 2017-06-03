@@ -19,7 +19,7 @@ public class TwoPlayerTwoCardGame extends BaseTwoPlayerPokerGame {
 
 	@Override
 	public Map<Integer, Hand> dealCards() {
-		Deck deck = new DeckStandardShuffled();
+		deck = new DeckStandardShuffled();
 		int numOfPlayers = players.length;
 		hands = new HashMap<Integer, Hand>();
 		for (int player = 0; player < numOfPlayers; player++) {

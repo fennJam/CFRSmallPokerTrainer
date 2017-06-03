@@ -26,7 +26,7 @@ public class TwoPlayerRoyalRhodeIslandGame extends BaseTwoPlayerPokerGame {
 
 	@Override
 	public Map<Integer, Hand> dealCards() {
-		Deck deck = new RoyalDeckShuffled();
+		deck = new RoyalDeckShuffled();
 		int numOfPlayers = players.length;
 		hands = new HashMap<Integer, Hand>();
 		for (int player = 0; player < numOfPlayers; player++) {

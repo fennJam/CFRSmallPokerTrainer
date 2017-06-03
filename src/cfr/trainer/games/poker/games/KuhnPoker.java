@@ -25,7 +25,7 @@ public class KuhnPoker extends BaseTwoPlayerPokerGame {
 
 	@Override
 	public Map<Integer, Hand> dealCards() {
-		Deck deck = new DeckKuhnShuffled();
+		deck = new DeckKuhnShuffled();
 		int numOfPlayers = players.length;
 		this.hands = new HashMap<Integer, Hand>();
 		for (int player = 0; player < numOfPlayers; player++) {
