@@ -15,11 +15,11 @@ public class TwoPlayerRhodeIslandGame extends BaseTwoPlayerPokerGame {
 		super(bettingLimit, raisesPerBettingRound);
 		this.pokerGameType = PokerGameType.RHODE_ISLAND;
 		this.betRound = BetRound.PRETURN;
+		deck = new DeckStandardShuffled();
 	}
 
 	@Override
 	public Map<Integer, Hand> dealCards() {
-		deck = new DeckStandardShuffled();
 		int numOfPlayers = players.length;
 		hands = new HashMap<Integer, Hand>();
 		for (int player = 0; player < numOfPlayers; player++) {

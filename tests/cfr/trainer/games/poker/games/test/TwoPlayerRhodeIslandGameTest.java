@@ -16,6 +16,7 @@ import cfr.trainer.games.poker.actions.CallAction;
 import cfr.trainer.games.poker.actions.DealAction;
 import cfr.trainer.games.poker.actions.FoldAction;
 import cfr.trainer.games.poker.actions.RaiseAction;
+import cfr.trainer.games.poker.decks.RoyalDeckShuffled;
 import cfr.trainer.games.poker.games.PokerGame;
 import cfr.trainer.games.poker.games.TwoPlayerRhodeIslandGame;
 import cfr.trainer.games.poker.games.TwoPlayerTwoCardGame;
@@ -32,7 +33,6 @@ public class TwoPlayerRhodeIslandGameTest {
 		assertNull(TwoPlayerRhodeIslandGame.getBoard());
 		assertEquals(PokerGameType.RHODE_ISLAND, TwoPlayerRhodeIslandGame.getPokerGameType());
 		assertNull(TwoPlayerRhodeIslandGame.getHands());
-		// assertNull(TwoPlayerRhodeIslandGame.getPayOffs());
 		assertEquals("", TwoPlayerRhodeIslandGame.getNodeIdWithActionMemory());
 		assertEquals(2, TwoPlayerRhodeIslandGame.getPlayers().length);
 		assertEquals(0, TwoPlayerRhodeIslandGame.getPlayers()[0]);
@@ -49,7 +49,7 @@ public class TwoPlayerRhodeIslandGameTest {
 	@Test
 	public final void startGameTest() {
 		PokerGame TwoPlayerRhodeIslandGame = new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT, 3);
-
+		TwoPlayerRhodeIslandGame.setDeck(new RoyalDeckShuffled().unShuffleDeck());
 		TwoPlayerRhodeIslandGame.startGame();
 
 		assertEquals(1, TwoPlayerRhodeIslandGame.getActions().size());
@@ -65,9 +65,8 @@ public class TwoPlayerRhodeIslandGameTest {
 		assertTrue(TwoPlayerRhodeIslandGame.getHands().get(0) instanceof Hand);
 		assertTrue(TwoPlayerRhodeIslandGame.getHands().get(1) instanceof Hand);
 
-		 assertNull(TwoPlayerRhodeIslandGame.getNodeIdWithActionMemory());
-		//// assertNull(TwoPlayerRhodeIslandGame.getPayOffs());
-
+		 assertEquals("[S, S, ACE]DEAL",TwoPlayerRhodeIslandGame.getNodeIdWithActionMemory());
+		 
 		assertEquals(2, TwoPlayerRhodeIslandGame.getPlayers().length);
 		assertEquals(0, TwoPlayerRhodeIslandGame.getPlayers()[0]);
 		assertEquals(1, TwoPlayerRhodeIslandGame.getPlayers()[1]);

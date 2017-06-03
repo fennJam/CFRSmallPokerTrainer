@@ -15,11 +15,11 @@ public class TwoPlayerTwoCardGame extends BaseTwoPlayerPokerGame {
 		super(bettingLimit, raisesPerBettingRound);
 		this.pokerGameType = PokerGameType.TWO_CARD;
 		this.betRound = BetRound.TURN;
+		deck = new DeckStandardShuffled();
 	}
 
 	@Override
 	public Map<Integer, Hand> dealCards() {
-		deck = new DeckStandardShuffled();
 		int numOfPlayers = players.length;
 		hands = new HashMap<Integer, Hand>();
 		for (int player = 0; player < numOfPlayers; player++) {

@@ -21,11 +21,11 @@ public class KuhnPoker extends BaseTwoPlayerPokerGame {
 	public KuhnPoker() {
 		super(BettingLimit.LIMIT, 1);
 		this.pokerGameType = PokerGameType.SINGLE_CARD;
+		deck = new DeckKuhnShuffled();
 	}
 
 	@Override
 	public Map<Integer, Hand> dealCards() {
-		deck = new DeckKuhnShuffled();
 		int numOfPlayers = players.length;
 		this.hands = new HashMap<Integer, Hand>();
 		for (int player = 0; player < numOfPlayers; player++) {
