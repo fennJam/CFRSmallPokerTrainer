@@ -1,4 +1,4 @@
-package cfr.trainer.games.poker.games;
+package cfr.trainer.games.poker.games.test;
 
 import static org.junit.Assert.*;
 
@@ -65,7 +65,7 @@ public class TwoPlayerRhodeIslandGameTest {
 		assertTrue(TwoPlayerRhodeIslandGame.getHands().get(0) instanceof Hand);
 		assertTrue(TwoPlayerRhodeIslandGame.getHands().get(1) instanceof Hand);
 
-		//// assertNull(TwoPlayerRhodeIslandGame.getNodeId());
+		 assertNull(TwoPlayerRhodeIslandGame.getNodeIdWithActionMemory());
 		//// assertNull(TwoPlayerRhodeIslandGame.getPayOffs());
 
 		assertEquals(2, TwoPlayerRhodeIslandGame.getPlayers().length);

@@ -1,4 +1,4 @@
-package cfr.trainer.games.poker.games;
+package cfr.trainer.games.poker.games.test;
 
 import static org.junit.Assert.*;
 
@@ -15,8 +15,8 @@ import cfr.trainer.games.poker.actions.DealAction;
 import cfr.trainer.games.poker.actions.FoldAction;
 import cfr.trainer.games.poker.actions.RaiseAction;
 import cfr.trainer.games.poker.games.PokerGame;
-import cfr.trainer.games.poker.games.TwoPlayerTwoCardGameTest;
 import cfr.trainer.games.poker.games.TwoPlayerTwoCardGame;
+import cfr.trainer.games.poker.games.test.TwoPlayerTwoCardGameTest;
 
 public class TwoPlayerTwoCardGameTest {
 
