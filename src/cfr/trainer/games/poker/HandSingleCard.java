@@ -38,5 +38,8 @@ public class HandSingleCard extends Hand
 		return handType;
 	}
 
+	public String toString(){
+		return card.toString();
+	}
 	
 }
