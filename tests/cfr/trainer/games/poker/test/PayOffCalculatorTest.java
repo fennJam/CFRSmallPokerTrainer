@@ -6,10 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-import org.mockito.Mockito;
-
 import cfr.trainer.games.poker.*;
 
 public class PayOffCalculatorTest {

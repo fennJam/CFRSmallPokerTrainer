@@ -12,7 +12,7 @@ import cfr.trainer.games.poker.Card;
 import cfr.trainer.games.poker.Hand;
 import cfr.trainer.games.poker.HandSingleCard;
 import cfr.trainer.games.poker.PokerGameType;
-import cfr.trainer.games.poker.decks.Deck;
+import cfr.trainer.games.poker.PokerPlayer;
 import cfr.trainer.games.poker.decks.RoyalDeckShuffled;
 
 public class TwoPlayerRoyalRhodeIslandGame extends BaseTwoPlayerPokerGame {
@@ -26,15 +26,15 @@ public class TwoPlayerRoyalRhodeIslandGame extends BaseTwoPlayerPokerGame {
 	}
 
 	@Override
-	public Map<Integer, Hand> dealCards() {
-		int numOfPlayers = players.length;
-		hands = new HashMap<Integer, Hand>();
+	public Map<Integer, PokerPlayer> dealCards() {
+		int numOfPlayers = players.size();
 		for (int player = 0; player < numOfPlayers; player++) {
-			hands.put(player, new HandSingleCard(deck.nextCard()));
+			HandSingleCard hand = new HandSingleCard(deck.nextCard());
+			players.get(player).setHand(hand);
 		}
 		board = new Board(pokerGameType, deck);
 		this.betRound = BetRound.PRETURN;
-		return hands;
+		return players;
 	}
 
 	@Override

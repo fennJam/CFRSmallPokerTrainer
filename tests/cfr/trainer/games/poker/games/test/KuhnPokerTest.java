@@ -3,14 +3,10 @@ package cfr.trainer.games.poker.games.test;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
-import cfr.trainer.games.Game;
-import cfr.trainer.games.poker.BettingLimit;
 import cfr.trainer.games.poker.CardHeight;
 import cfr.trainer.games.poker.games.KuhnPoker;
 

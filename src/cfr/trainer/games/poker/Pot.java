@@ -38,13 +38,13 @@ public class Pot {
 	 * Creates a Pot object, used for keeping track of the pot for a specific
 	 * hand.
 	 * 
-	 * @param players
+	 * @param integers
 	 *            : integer array of player IDs that play in the current hand
 	 */
-	public Pot(int[] players) {
+	public Pot(Integer[] integers) {
 		playerBetSizes = new HashMap<Integer, Integer>();
-		for (int player = 0; player < players.length; player++)
-			playerBetSizes.put(players[player], 0);
+		for (int player = 0; player < integers.length; player++)
+			playerBetSizes.put(integers[player], 0);
 
 		totalPot = 0;
 	}

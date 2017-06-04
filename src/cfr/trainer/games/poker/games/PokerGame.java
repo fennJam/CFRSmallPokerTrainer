@@ -11,9 +11,9 @@ import cfr.trainer.games.poker.decks.Deck;
 public interface PokerGame extends Game {
 
 
-	int[] getPlayers();
+	Integer[] getPlayers();
 	
-	Map<Integer, Hand> dealCards();
+	Map<Integer, PokerPlayer> dealCards();
 
 	Pot postBlinds();
 

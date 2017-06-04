@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import cfr.trainer.action.Action;
 import cfr.trainer.games.Game;
@@ -20,8 +21,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	PokerGameType pokerGameType;
 
 	List<PokerAction> actions;
-	static int[] players = { 0, 1 };
-	Map<Integer, Hand> hands;
+	Map<Integer, PokerPlayer> players = new HashMap<>();
 	int raisesPerBettingRound;
 	int raiseCount;
 	BettingLimit bettingLimit;
@@ -30,9 +30,10 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	Deck deck;
 
 	BaseTwoPlayerPokerGame(BettingLimit bettingLimit, int raisesPerBettingRound) {
+		players.put(0, new PokerPlayer("0", 20, null));
+		players.put(1, new PokerPlayer("0", 20, null));
 		board = null;
-		hands = null;
-		pot = new Pot(players);
+		pot = new Pot(players.keySet().toArray(new Integer[2]));
 		this.bettingLimit = bettingLimit;
 		this.raisesPerBettingRound = raisesPerBettingRound;
 		actions = new ArrayList<PokerAction>();
@@ -81,7 +82,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 
 			return payOffs;
 		}
-		return PayOffCalculator.getPayOffsForTwoPlayerGame(hands, board, pot, pokerGameType);
+		return PayOffCalculator.getPayOffsForTwoPlayerGame(getHands(), board, pot, pokerGameType);
 	}
 
 	@Override
@@ -101,17 +102,23 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	}
 
 	@Override
-	public int[] getPlayers() {
-		return players;
+	public Integer[] getPlayers() {
+		return players.keySet().toArray(new Integer[players.size()]);
 	}
 
 	@Override
 	public Map<Integer, Hand> getHands() {
+		Map<Integer, Hand> hands = new HashMap<>();
+		for(Entry<Integer,PokerPlayer> player:players.entrySet()){
+			hands.put(player.getKey(), player.getValue().getHand());
+		}
 		return hands;
 	}
 
 	public void setHands(Map<Integer, Hand> newHands) {
-		hands = newHands;
+		for(Entry<Integer,Hand> hand:newHands.entrySet()){
+			players.get(hand.getKey()).setHand(hand.getValue());
+		}
 	}
 
 	@Override
@@ -141,7 +148,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 			throw new Error("Different game type or number of betting rounds in game you are trying to copy!!");
 		}
 		this.bettingLimit = game.getBettingLimit();
-		this.hands = game.getHands();
+		setHands(game.getHands());
 		this.raisesPerBettingRound = game.getRaisesAllowedPerBettingRound();
 		this.raiseCount = game.getRaiseCount();
 		this.betRound = game.getBettingRound();
@@ -156,7 +163,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 			this.pot = null;
 
 		} else {
-			this.pot = new Pot(players).importPotProperties(game.getPot());
+			this.pot = new Pot(getPlayers()).importPotProperties(game.getPot());
 		}
 		this.actions.addAll(game.getActions());
 
@@ -180,7 +187,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	}
 
 	@Override
-	public abstract Map<Integer, Hand> dealCards();
+	public abstract Map<Integer, PokerPlayer> dealCards();
 
 	// For pokerGames this will return a list of valid card combinations which
 	// will be allocated, in order to players1,2 and then the board positions
@@ -223,7 +230,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	public String getNodeIdWithActionMemory() {
 		String cardHistory = "";
 		if (board != null) {
-			cardHistory = new CardHistoryBuilder(hands.get(getPlayerToAct()), board).build();
+			cardHistory = new CardHistoryBuilder(players.get(getPlayerToAct()).getHand(), board).build();
 		} else {
 
 		}
@@ -233,7 +240,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 
 	@Override
 	public String getNodeIdWithGameState() {
-		String cardHistory = new CardHistoryBuilder(hands.get(getPlayerToAct()), board).toString();
+		String cardHistory = new CardHistoryBuilder(players.get(getPlayerToAct()).getHand(), board).toString();
 		return cardHistory + pot.getTotalPotSize() + " raisesAllowed : " + raisesAllowed();
 	}
 
@@ -267,7 +274,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 
 		return "Game - BetRound " + betRound + " PokerGameType " + pokerGameType + " actions " + actions
 				+ " actingPlayer " + getPlayerToAct() + " raisesPerBettingRound " + raisesPerBettingRound
-				+ " raiseCount " + raiseCount + " bettingLimit " + bettingLimit + "hands" + hands + " board " + board
+				+ " raiseCount " + raiseCount + " bettingLimit " + bettingLimit + "hands" + getHands() + " board " + board
 				+ " pot " + pot;
 	}
 

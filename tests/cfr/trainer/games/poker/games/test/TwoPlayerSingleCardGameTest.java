@@ -29,12 +29,13 @@ public class TwoPlayerSingleCardGameTest {
 		assertNull(twoPlayerSingleCardGame.getBettingRound());
 		assertNull(twoPlayerSingleCardGame.getBoard());
 		assertEquals(PokerGameType.SINGLE_CARD, twoPlayerSingleCardGame.getPokerGameType());
-		assertNull(twoPlayerSingleCardGame.getHands());
+		assertNull(twoPlayerSingleCardGame.getHands().get(0));
+		assertNull(twoPlayerSingleCardGame.getHands().get(1));
 		// assertNull(twoPlayerSingleCardGame.getNodeId());
 		// assertNull(twoPlayerSingleCardGame.getPayOffs());
 		assertEquals(2, twoPlayerSingleCardGame.getPlayers().length);
-		assertEquals(0, twoPlayerSingleCardGame.getPlayers()[0]);
-		assertEquals(1, twoPlayerSingleCardGame.getPlayers()[1]);
+		assertEquals(Integer.valueOf(0), twoPlayerSingleCardGame.getPlayers()[0]);
+		assertEquals(Integer.valueOf(1), twoPlayerSingleCardGame.getPlayers()[1]);
 		assertTrue(twoPlayerSingleCardGame.getPot() instanceof Pot);
 		assertEquals(0, twoPlayerSingleCardGame.getRaiseCount());
 		assertEquals(3, twoPlayerSingleCardGame.getRaisesAllowedPerBettingRound());
@@ -67,8 +68,8 @@ public class TwoPlayerSingleCardGameTest {
 		//// assertNull(twoPlayerSingleCardGame.getPayOffs());
 
 		assertEquals(2, twoPlayerSingleCardGame.getPlayers().length);
-		assertEquals(0, twoPlayerSingleCardGame.getPlayers()[0]);
-		assertEquals(1, twoPlayerSingleCardGame.getPlayers()[1]);
+		assertEquals(Integer.valueOf(0), twoPlayerSingleCardGame.getPlayers()[0]);
+		assertEquals(Integer.valueOf(1), twoPlayerSingleCardGame.getPlayers()[1]);
 
 		assertTrue(twoPlayerSingleCardGame.getPot() instanceof Pot);
 		assertEquals(3, twoPlayerSingleCardGame.getPot().getTotalPotSize());
@@ -108,8 +109,8 @@ public class TwoPlayerSingleCardGameTest {
 		//// assertNull(twoPlayerSingleCardGame.getPayOffs());
 
 		assertEquals(2, twoPlayerSingleCardGame.getPlayers().length);
-		assertEquals(0, twoPlayerSingleCardGame.getPlayers()[0]);
-		assertEquals(1, twoPlayerSingleCardGame.getPlayers()[1]);
+		assertEquals(Integer.valueOf(0), twoPlayerSingleCardGame.getPlayers()[0]);
+		assertEquals(Integer.valueOf(1), twoPlayerSingleCardGame.getPlayers()[1]);
 
 		assertTrue(twoPlayerSingleCardGame.getPot() instanceof Pot);
 		assertEquals(3, twoPlayerSingleCardGame.getPot().getTotalPotSize());
@@ -143,8 +144,8 @@ public class TwoPlayerSingleCardGameTest {
 		//// assertNull(twoPlayerSingleCardGameToBeCopied.getPayOffs());
 
 		assertEquals(2, twoPlayerSingleCardGameToBeCopied.getPlayers().length);
-		assertEquals(0, twoPlayerSingleCardGameToBeCopied.getPlayers()[0]);
-		assertEquals(1, twoPlayerSingleCardGameToBeCopied.getPlayers()[1]);
+		assertEquals(Integer.valueOf(0), twoPlayerSingleCardGame.getPlayers()[0]);
+		assertEquals(Integer.valueOf(1), twoPlayerSingleCardGame.getPlayers()[1]);
 
 		assertTrue(twoPlayerSingleCardGameToBeCopied.getPot() instanceof Pot);
 		assertEquals(3, twoPlayerSingleCardGameToBeCopied.getPot().getTotalPotSize());

@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import cfr.trainer.games.poker.*;
-import cfr.trainer.games.poker.decks.Deck;
 import cfr.trainer.games.poker.decks.DeckStandardShuffled;
 
 public class TwoPlayerSingleCardGame extends BaseTwoPlayerPokerGame {
@@ -19,16 +18,15 @@ public class TwoPlayerSingleCardGame extends BaseTwoPlayerPokerGame {
 	
 	
 	@Override
-	public Map<Integer, Hand> dealCards() {
-		int numOfPlayers = players.length;
-		this.hands = new HashMap<Integer, Hand>();
+	public Map<Integer, PokerPlayer> dealCards() {
+		int numOfPlayers = players.size();
 		for (int player = 0; player < numOfPlayers; player++) {
 			HandSingleCard hand = new HandSingleCard(deck.nextCard());
-			this.hands.put(player, hand);
+			players.get(player).setHand(hand);
 		}
 		board = new Board(pokerGameType, deck);
 		this.betRound = BetRound.RIVER;
-		return hands;
+		return players;
 	}
 
 

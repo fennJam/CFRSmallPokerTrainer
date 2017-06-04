@@ -22,208 +22,209 @@ public class TwoPlayerTwoCardGameTest {
 
 	@Test
 	public final void testConstructor() {
-		PokerGame TwoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
+		PokerGame twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
 
-		assertEquals(0, TwoPlayerTwoCardGameTest.getActions().size());
-		assertEquals(BettingLimit.LIMIT, TwoPlayerTwoCardGameTest.getBettingLimit());
-		assertEquals(BetRound.TURN,TwoPlayerTwoCardGameTest.getBettingRound());
-		assertNull(TwoPlayerTwoCardGameTest.getBoard());
-		assertEquals(PokerGameType.TWO_CARD, TwoPlayerTwoCardGameTest.getPokerGameType());
-		assertNull(TwoPlayerTwoCardGameTest.getHands());
+		assertEquals(0, twoPlayerTwoCardGameTest.getActions().size());
+		assertEquals(BettingLimit.LIMIT, twoPlayerTwoCardGameTest.getBettingLimit());
+		assertEquals(BetRound.TURN,twoPlayerTwoCardGameTest.getBettingRound());
+		assertNull(twoPlayerTwoCardGameTest.getBoard());
+		assertEquals(PokerGameType.TWO_CARD, twoPlayerTwoCardGameTest.getPokerGameType());
+		assertNull(twoPlayerTwoCardGameTest.getHands().get(0));
+		assertNull(twoPlayerTwoCardGameTest.getHands().get(1));
 		// assertNull(TwoPlayerTwoCardGameTest.getNodeId());
 		// assertNull(TwoPlayerTwoCardGameTest.getPayOffs());
-		assertEquals(2, TwoPlayerTwoCardGameTest.getPlayers().length);
-		assertEquals(0, TwoPlayerTwoCardGameTest.getPlayers()[0]);
-		assertEquals(1, TwoPlayerTwoCardGameTest.getPlayers()[1]);
-		assertTrue(TwoPlayerTwoCardGameTest.getPot() instanceof Pot);
-		assertEquals(0, TwoPlayerTwoCardGameTest.getRaiseCount());
-		assertEquals(3, TwoPlayerTwoCardGameTest.getRaisesAllowedPerBettingRound());
-		assertTrue(TwoPlayerTwoCardGameTest.raisesAllowed());
+		assertEquals(2, twoPlayerTwoCardGameTest.getPlayers().length);
+		assertEquals(Integer.valueOf(0), twoPlayerTwoCardGameTest.getPlayers()[0]);
+		assertEquals(Integer.valueOf(1), twoPlayerTwoCardGameTest.getPlayers()[1]);
+		assertTrue(twoPlayerTwoCardGameTest.getPot() instanceof Pot);
+		assertEquals(0, twoPlayerTwoCardGameTest.getRaiseCount());
+		assertEquals(3, twoPlayerTwoCardGameTest.getRaisesAllowedPerBettingRound());
+		assertTrue(twoPlayerTwoCardGameTest.raisesAllowed());
 
-		assertFalse(TwoPlayerTwoCardGameTest.isAtTerminalNode());
+		assertFalse(twoPlayerTwoCardGameTest.isAtTerminalNode());
 
 	}
 
 	@Test
 	public final void startGameTest() {
-		PokerGame TwoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
+		PokerGame twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
 
-		TwoPlayerTwoCardGameTest.startGame();
+		twoPlayerTwoCardGameTest.startGame();
 
-		assertEquals(1, TwoPlayerTwoCardGameTest.getActions().size());
-		assertTrue(TwoPlayerTwoCardGameTest.getActions().contains(DealAction.getInstance()));
+		assertEquals(1, twoPlayerTwoCardGameTest.getActions().size());
+		assertTrue(twoPlayerTwoCardGameTest.getActions().contains(DealAction.getInstance()));
 
-		assertEquals(BettingLimit.LIMIT, TwoPlayerTwoCardGameTest.getBettingLimit());
+		assertEquals(BettingLimit.LIMIT, twoPlayerTwoCardGameTest.getBettingLimit());
 
-		assertEquals(BetRound.TURN, TwoPlayerTwoCardGameTest.getBettingRound());
-		assertEquals("No cards turned", TwoPlayerTwoCardGameTest.getBoard().toString());
-		assertEquals(PokerGameType.TWO_CARD, TwoPlayerTwoCardGameTest.getPokerGameType());
+		assertEquals(BetRound.TURN, twoPlayerTwoCardGameTest.getBettingRound());
+		assertEquals("No cards turned", twoPlayerTwoCardGameTest.getBoard().toString());
+		assertEquals(PokerGameType.TWO_CARD, twoPlayerTwoCardGameTest.getPokerGameType());
 
-		assertEquals(2, TwoPlayerTwoCardGameTest.getHands().size());
-		assertTrue(TwoPlayerTwoCardGameTest.getHands().get(0) instanceof Hand);
-		assertTrue(TwoPlayerTwoCardGameTest.getHands().get(1) instanceof Hand);
+		assertEquals(2, twoPlayerTwoCardGameTest.getHands().size());
+		assertTrue(twoPlayerTwoCardGameTest.getHands().get(0) instanceof Hand);
+		assertTrue(twoPlayerTwoCardGameTest.getHands().get(1) instanceof Hand);
 
 		//// assertNull(TwoPlayerTwoCardGameTest.getNodeId());
 		//// assertNull(TwoPlayerTwoCardGameTest.getPayOffs());
 
-		assertEquals(2, TwoPlayerTwoCardGameTest.getPlayers().length);
-		assertEquals(0, TwoPlayerTwoCardGameTest.getPlayers()[0]);
-		assertEquals(1, TwoPlayerTwoCardGameTest.getPlayers()[1]);
+		assertEquals(2, twoPlayerTwoCardGameTest.getPlayers().length);
+		assertEquals(Integer.valueOf(0), twoPlayerTwoCardGameTest.getPlayers()[0]);
+		assertEquals(Integer.valueOf(1), twoPlayerTwoCardGameTest.getPlayers()[1]);
 
-		assertTrue(TwoPlayerTwoCardGameTest.getPot() instanceof Pot);
-		assertEquals(3, TwoPlayerTwoCardGameTest.getPot().getTotalPotSize());
-		assertEquals(3, TwoPlayerTwoCardGameTest.getPot().getRoundPotSize());
-		assertEquals(1, TwoPlayerTwoCardGameTest.getPot().getPlayersContributionToPot(0));
-		assertEquals(2, TwoPlayerTwoCardGameTest.getPot().getPlayersContributionToPot(1));
+		assertTrue(twoPlayerTwoCardGameTest.getPot() instanceof Pot);
+		assertEquals(3, twoPlayerTwoCardGameTest.getPot().getTotalPotSize());
+		assertEquals(3, twoPlayerTwoCardGameTest.getPot().getRoundPotSize());
+		assertEquals(1, twoPlayerTwoCardGameTest.getPot().getPlayersContributionToPot(0));
+		assertEquals(2, twoPlayerTwoCardGameTest.getPot().getPlayersContributionToPot(1));
 
-		assertEquals(0, TwoPlayerTwoCardGameTest.getRaiseCount());
-		assertEquals(3, TwoPlayerTwoCardGameTest.getRaisesAllowedPerBettingRound());
-		assertTrue(TwoPlayerTwoCardGameTest.raisesAllowed());
+		assertEquals(0, twoPlayerTwoCardGameTest.getRaiseCount());
+		assertEquals(3, twoPlayerTwoCardGameTest.getRaisesAllowedPerBettingRound());
+		assertTrue(twoPlayerTwoCardGameTest.raisesAllowed());
 
-		assertFalse(TwoPlayerTwoCardGameTest.isAtTerminalNode());
+		assertFalse(twoPlayerTwoCardGameTest.isAtTerminalNode());
 
 	}
 
 	@Test
 	public final void importGameTest() {
-		PokerGame TwoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
-		PokerGame TwoPlayerTwoCardGameTestToBeCopied = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
-		TwoPlayerTwoCardGameTestToBeCopied.startGame();
-		TwoPlayerTwoCardGameTest.importGameProperties(TwoPlayerTwoCardGameTestToBeCopied);
+		PokerGame twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
+		PokerGame twoPlayerTwoCardGameTestToBeCopied = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
+		twoPlayerTwoCardGameTestToBeCopied.startGame();
+		twoPlayerTwoCardGameTest.importGameProperties(twoPlayerTwoCardGameTestToBeCopied);
 
-		assertEquals(1, TwoPlayerTwoCardGameTest.getActions().size());
-		assertTrue(TwoPlayerTwoCardGameTest.getActions().contains(DealAction.getInstance()));
+		assertEquals(1, twoPlayerTwoCardGameTest.getActions().size());
+		assertTrue(twoPlayerTwoCardGameTest.getActions().contains(DealAction.getInstance()));
 
-		assertEquals(BettingLimit.LIMIT, TwoPlayerTwoCardGameTest.getBettingLimit());
+		assertEquals(BettingLimit.LIMIT, twoPlayerTwoCardGameTest.getBettingLimit());
 
-		assertEquals(BetRound.TURN, TwoPlayerTwoCardGameTest.getBettingRound());
-		assertEquals("No cards turned", TwoPlayerTwoCardGameTest.getBoard().toString());
-		assertEquals(PokerGameType.TWO_CARD, TwoPlayerTwoCardGameTest.getPokerGameType());
+		assertEquals(BetRound.TURN, twoPlayerTwoCardGameTest.getBettingRound());
+		assertEquals("No cards turned", twoPlayerTwoCardGameTest.getBoard().toString());
+		assertEquals(PokerGameType.TWO_CARD, twoPlayerTwoCardGameTest.getPokerGameType());
 
-		assertEquals(2, TwoPlayerTwoCardGameTest.getHands().size());
-		assertTrue(TwoPlayerTwoCardGameTest.getHands().get(0) instanceof Hand);
-		assertTrue(TwoPlayerTwoCardGameTest.getHands().get(1) instanceof Hand);
+		assertEquals(2, twoPlayerTwoCardGameTest.getHands().size());
+		assertTrue(twoPlayerTwoCardGameTest.getHands().get(0) instanceof Hand);
+		assertTrue(twoPlayerTwoCardGameTest.getHands().get(1) instanceof Hand);
 
 		//// assertNull(TwoPlayerTwoCardGameTest.getNodeId());
 		//// assertNull(TwoPlayerTwoCardGameTest.getPayOffs());
 
-		assertEquals(2, TwoPlayerTwoCardGameTest.getPlayers().length);
-		assertEquals(0, TwoPlayerTwoCardGameTest.getPlayers()[0]);
-		assertEquals(1, TwoPlayerTwoCardGameTest.getPlayers()[1]);
+		assertEquals(2, twoPlayerTwoCardGameTest.getPlayers().length);
+		assertEquals(Integer.valueOf(0), twoPlayerTwoCardGameTest.getPlayers()[0]);
+		assertEquals(Integer.valueOf(1), twoPlayerTwoCardGameTest.getPlayers()[1]);
 
-		assertTrue(TwoPlayerTwoCardGameTest.getPot() instanceof Pot);
-		assertEquals(3, TwoPlayerTwoCardGameTest.getPot().getTotalPotSize());
-		assertEquals(3, TwoPlayerTwoCardGameTest.getPot().getRoundPotSize());
-		assertEquals(1, TwoPlayerTwoCardGameTest.getPot().getPlayersContributionToPot(0));
-		assertEquals(2, TwoPlayerTwoCardGameTest.getPot().getPlayersContributionToPot(1));
+		assertTrue(twoPlayerTwoCardGameTest.getPot() instanceof Pot);
+		assertEquals(3, twoPlayerTwoCardGameTest.getPot().getTotalPotSize());
+		assertEquals(3, twoPlayerTwoCardGameTest.getPot().getRoundPotSize());
+		assertEquals(1, twoPlayerTwoCardGameTest.getPot().getPlayersContributionToPot(0));
+		assertEquals(2, twoPlayerTwoCardGameTest.getPot().getPlayersContributionToPot(1));
 
-		assertEquals(0, TwoPlayerTwoCardGameTest.getRaiseCount());
-		assertEquals(3, TwoPlayerTwoCardGameTest.getRaisesAllowedPerBettingRound());
-		assertTrue(TwoPlayerTwoCardGameTest.raisesAllowed());
+		assertEquals(0, twoPlayerTwoCardGameTest.getRaiseCount());
+		assertEquals(3, twoPlayerTwoCardGameTest.getRaisesAllowedPerBettingRound());
+		assertTrue(twoPlayerTwoCardGameTest.raisesAllowed());
 
-		assertFalse(TwoPlayerTwoCardGameTest.isAtTerminalNode());
+		assertFalse(twoPlayerTwoCardGameTest.isAtTerminalNode());
 		
-		TwoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
+		twoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
 		
 //		Check copied game is not affected by new games action
-		assertEquals(1, TwoPlayerTwoCardGameTestToBeCopied.getActions().size());
-		assertTrue(TwoPlayerTwoCardGameTestToBeCopied.getActions().contains(DealAction.getInstance()));
+		assertEquals(1, twoPlayerTwoCardGameTestToBeCopied.getActions().size());
+		assertTrue(twoPlayerTwoCardGameTestToBeCopied.getActions().contains(DealAction.getInstance()));
 
-		assertEquals(BettingLimit.LIMIT, TwoPlayerTwoCardGameTestToBeCopied.getBettingLimit());
+		assertEquals(BettingLimit.LIMIT, twoPlayerTwoCardGameTestToBeCopied.getBettingLimit());
 
-		assertEquals(BetRound.TURN, TwoPlayerTwoCardGameTestToBeCopied.getBettingRound());
-		assertEquals("No cards turned", TwoPlayerTwoCardGameTestToBeCopied.getBoard().toString());
-		assertEquals(PokerGameType.TWO_CARD, TwoPlayerTwoCardGameTestToBeCopied.getPokerGameType());
+		assertEquals(BetRound.TURN, twoPlayerTwoCardGameTestToBeCopied.getBettingRound());
+		assertEquals("No cards turned", twoPlayerTwoCardGameTestToBeCopied.getBoard().toString());
+		assertEquals(PokerGameType.TWO_CARD, twoPlayerTwoCardGameTestToBeCopied.getPokerGameType());
 
-		assertEquals(2, TwoPlayerTwoCardGameTestToBeCopied.getHands().size());
-		assertTrue(TwoPlayerTwoCardGameTestToBeCopied.getHands().get(0) instanceof Hand);
-		assertTrue(TwoPlayerTwoCardGameTestToBeCopied.getHands().get(1) instanceof Hand);
+		assertEquals(2, twoPlayerTwoCardGameTestToBeCopied.getHands().size());
+		assertTrue(twoPlayerTwoCardGameTestToBeCopied.getHands().get(0) instanceof Hand);
+		assertTrue(twoPlayerTwoCardGameTestToBeCopied.getHands().get(1) instanceof Hand);
 
 		//// assertNull(TwoPlayerTwoCardGameTestToBeCopied.getNodeId());
 		//// assertNull(TwoPlayerTwoCardGameTestToBeCopied.getPayOffs());
 
-		assertEquals(2, TwoPlayerTwoCardGameTestToBeCopied.getPlayers().length);
-		assertEquals(0, TwoPlayerTwoCardGameTestToBeCopied.getPlayers()[0]);
-		assertEquals(1, TwoPlayerTwoCardGameTestToBeCopied.getPlayers()[1]);
+		assertEquals(2, twoPlayerTwoCardGameTestToBeCopied.getPlayers().length);
+		assertEquals(Integer.valueOf(0), twoPlayerTwoCardGameTest.getPlayers()[0]);
+		assertEquals(Integer.valueOf(1), twoPlayerTwoCardGameTest.getPlayers()[1]);
 
-		assertTrue(TwoPlayerTwoCardGameTestToBeCopied.getPot() instanceof Pot);
-		assertEquals(3, TwoPlayerTwoCardGameTestToBeCopied.getPot().getTotalPotSize());
-		assertEquals(3, TwoPlayerTwoCardGameTestToBeCopied.getPot().getRoundPotSize());
-		assertEquals(1, TwoPlayerTwoCardGameTestToBeCopied.getPot().getPlayersContributionToPot(0));
-		assertEquals(2, TwoPlayerTwoCardGameTestToBeCopied.getPot().getPlayersContributionToPot(1));
+		assertTrue(twoPlayerTwoCardGameTestToBeCopied.getPot() instanceof Pot);
+		assertEquals(3, twoPlayerTwoCardGameTestToBeCopied.getPot().getTotalPotSize());
+		assertEquals(3, twoPlayerTwoCardGameTestToBeCopied.getPot().getRoundPotSize());
+		assertEquals(1, twoPlayerTwoCardGameTestToBeCopied.getPot().getPlayersContributionToPot(0));
+		assertEquals(2, twoPlayerTwoCardGameTestToBeCopied.getPot().getPlayersContributionToPot(1));
 
-		assertEquals(0, TwoPlayerTwoCardGameTestToBeCopied.getRaiseCount());
-		assertEquals(3, TwoPlayerTwoCardGameTestToBeCopied.getRaisesAllowedPerBettingRound());
-		assertTrue(TwoPlayerTwoCardGameTestToBeCopied.raisesAllowed());
+		assertEquals(0, twoPlayerTwoCardGameTestToBeCopied.getRaiseCount());
+		assertEquals(3, twoPlayerTwoCardGameTestToBeCopied.getRaisesAllowedPerBettingRound());
+		assertTrue(twoPlayerTwoCardGameTestToBeCopied.raisesAllowed());
 		
 
 	}
 
 	@Test
 	public final void raisesAllowedTest() {
-		PokerGame TwoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
+		PokerGame twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
 
-		TwoPlayerTwoCardGameTest.startGame();
+		twoPlayerTwoCardGameTest.startGame();
 
-		assertTrue(TwoPlayerTwoCardGameTest.raisesAllowed());
-		TwoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
-		assertTrue(TwoPlayerTwoCardGameTest.raisesAllowed());
-		TwoPlayerTwoCardGameTest.performAction(1, new RaiseAction(1));
-		assertTrue(TwoPlayerTwoCardGameTest.raisesAllowed());
-		TwoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
-		assertFalse(TwoPlayerTwoCardGameTest.raisesAllowed());
+		assertTrue(twoPlayerTwoCardGameTest.raisesAllowed());
+		twoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
+		assertTrue(twoPlayerTwoCardGameTest.raisesAllowed());
+		twoPlayerTwoCardGameTest.performAction(1, new RaiseAction(1));
+		assertTrue(twoPlayerTwoCardGameTest.raisesAllowed());
+		twoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
+		assertFalse(twoPlayerTwoCardGameTest.raisesAllowed());
 
-		TwoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 2);
+		twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 2);
 
-		assertTrue(TwoPlayerTwoCardGameTest.raisesAllowed());
-		TwoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
-		assertTrue(TwoPlayerTwoCardGameTest.raisesAllowed());
-		TwoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
-		assertFalse(TwoPlayerTwoCardGameTest.raisesAllowed());
+		assertTrue(twoPlayerTwoCardGameTest.raisesAllowed());
+		twoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
+		assertTrue(twoPlayerTwoCardGameTest.raisesAllowed());
+		twoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
+		assertFalse(twoPlayerTwoCardGameTest.raisesAllowed());
 
-		TwoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 2);
+		twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 2);
 
-		assertTrue(TwoPlayerTwoCardGameTest.raisesAllowed());
-		TwoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
-		assertTrue(TwoPlayerTwoCardGameTest.raisesAllowed());
-		TwoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
-		assertFalse(TwoPlayerTwoCardGameTest.raisesAllowed());
-		TwoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
-		assertFalse(TwoPlayerTwoCardGameTest.raisesAllowed());
+		assertTrue(twoPlayerTwoCardGameTest.raisesAllowed());
+		twoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
+		assertTrue(twoPlayerTwoCardGameTest.raisesAllowed());
+		twoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
+		assertFalse(twoPlayerTwoCardGameTest.raisesAllowed());
+		twoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
+		assertFalse(twoPlayerTwoCardGameTest.raisesAllowed());
 
-		TwoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 0);
-		assertFalse(TwoPlayerTwoCardGameTest.raisesAllowed());
+		twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 0);
+		assertFalse(twoPlayerTwoCardGameTest.raisesAllowed());
 	}
 
 	@Test
 	public final void actionIsTerminalCallForTheBettingRoundTest() {
-		PokerGame TwoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
+		PokerGame twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
 
-		TwoPlayerTwoCardGameTest.startGame();
+		twoPlayerTwoCardGameTest.startGame();
 
-		TwoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
-		TwoPlayerTwoCardGameTest.performAction(1, CallAction.getInstance());
-		assertTrue(TwoPlayerTwoCardGameTest.isAtChanceNode());
+		twoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
+		twoPlayerTwoCardGameTest.performAction(1, CallAction.getInstance());
+		assertTrue(twoPlayerTwoCardGameTest.isAtChanceNode());
 		
-		TwoPlayerTwoCardGameTest.performAction(0, DealAction.getInstance());
-		TwoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
-		TwoPlayerTwoCardGameTest.performAction(1, CallAction.getInstance());
-		assertTrue(TwoPlayerTwoCardGameTest.isAtTerminalNode());
+		twoPlayerTwoCardGameTest.performAction(0, DealAction.getInstance());
+		twoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
+		twoPlayerTwoCardGameTest.performAction(1, CallAction.getInstance());
+		assertTrue(twoPlayerTwoCardGameTest.isAtTerminalNode());
 
-		TwoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
-		TwoPlayerTwoCardGameTest.startGame();
+		twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
+		twoPlayerTwoCardGameTest.startGame();
 
-		TwoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
-		TwoPlayerTwoCardGameTest.performAction(1, FoldAction.getInstance());
-		assertTrue(TwoPlayerTwoCardGameTest.isAtTerminalNode());
+		twoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
+		twoPlayerTwoCardGameTest.performAction(1, FoldAction.getInstance());
+		assertTrue(twoPlayerTwoCardGameTest.isAtTerminalNode());
 		
-		TwoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
-		TwoPlayerTwoCardGameTest.performAction(0, CallAction.getInstance());
-		assertFalse(TwoPlayerTwoCardGameTest.isAtTerminalNode());
+		twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
+		twoPlayerTwoCardGameTest.performAction(0, CallAction.getInstance());
+		assertFalse(twoPlayerTwoCardGameTest.isAtTerminalNode());
 
 		PokerGame twoPlayerTwoCardGame = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
 
-		TwoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
+		twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
 		twoPlayerTwoCardGame.startGame();
 
 		twoPlayerTwoCardGame.performAction(0, new RaiseAction(1));
@@ -235,14 +236,14 @@ public class TwoPlayerTwoCardGameTest {
 		twoPlayerTwoCardGame.performAction(0, CallAction.getInstance());
 		assertTrue(twoPlayerTwoCardGame.isAtTerminalNode());
 
-		TwoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
+		twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
 		twoPlayerTwoCardGame.startGame();
 
 		twoPlayerTwoCardGame.performAction(0, new RaiseAction(1));
 		twoPlayerTwoCardGame.performAction(1, FoldAction.getInstance());
 		assertTrue(twoPlayerTwoCardGame.isAtTerminalNode());
 
-		TwoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
+		twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
 		twoPlayerTwoCardGame.startGame();
 
 		twoPlayerTwoCardGame.performChanceAction();
@@ -252,48 +253,48 @@ public class TwoPlayerTwoCardGameTest {
 
 	@Test
 	public final void getPlayerToActTest() {
-		Game TwoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
-		PokerGame POKERGAMETwoPlayerTwoCardGameTest = (PokerGame)TwoPlayerTwoCardGameTest;
+		Game twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
+		PokerGame pOKERGAMETwoPlayerTwoCardGameTest = (PokerGame)twoPlayerTwoCardGameTest;
 
-		TwoPlayerTwoCardGameTest.startGame();
-		assertEquals(0, TwoPlayerTwoCardGameTest.getPlayerToAct());
-		TwoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
+		twoPlayerTwoCardGameTest.startGame();
+		assertEquals(0, twoPlayerTwoCardGameTest.getPlayerToAct());
+		twoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
 
-		assertEquals(1, TwoPlayerTwoCardGameTest.getPlayerToAct());
-		TwoPlayerTwoCardGameTest.performAction(1, new RaiseAction(1));
+		assertEquals(1, twoPlayerTwoCardGameTest.getPlayerToAct());
+		twoPlayerTwoCardGameTest.performAction(1, new RaiseAction(1));
 
-		assertEquals(0, TwoPlayerTwoCardGameTest.getPlayerToAct());
-		TwoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
+		assertEquals(0, twoPlayerTwoCardGameTest.getPlayerToAct());
+		twoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
 
-		assertEquals(1, TwoPlayerTwoCardGameTest.getPlayerToAct());
-		assertFalse(POKERGAMETwoPlayerTwoCardGameTest.raisesAllowed());
-		TwoPlayerTwoCardGameTest.performAction(0, CallAction.getInstance());
+		assertEquals(1, twoPlayerTwoCardGameTest.getPlayerToAct());
+		assertFalse(pOKERGAMETwoPlayerTwoCardGameTest.raisesAllowed());
+		twoPlayerTwoCardGameTest.performAction(0, CallAction.getInstance());
 		
-		assertTrue(TwoPlayerTwoCardGameTest.isAtChanceNode());
-		TwoPlayerTwoCardGameTest.performChanceAction();
+		assertTrue(twoPlayerTwoCardGameTest.isAtChanceNode());
+		twoPlayerTwoCardGameTest.performChanceAction();
 		
-		assertEquals(0, TwoPlayerTwoCardGameTest.getPlayerToAct());
+		assertEquals(0, twoPlayerTwoCardGameTest.getPlayerToAct());
 		
 		
 	}
 
 	@Test
 	public final void getNodeIdTest() {
-		TwoPlayerTwoCardGame TwoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
+		TwoPlayerTwoCardGame twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
 		Hand twoOfSpades = new HandSingleCard(new Card(0));
 		Map<Integer, Hand> testHands = new HashMap<Integer, Hand>();
 		testHands.put(0, twoOfSpades);
 		testHands.put(1, twoOfSpades);
 
-		TwoPlayerTwoCardGameTest.startGame();
-		TwoPlayerTwoCardGameTest.setHands(testHands);
-		assertEquals(0, TwoPlayerTwoCardGameTest.getPlayerToAct());
-		TwoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
+		twoPlayerTwoCardGameTest.startGame();
+		twoPlayerTwoCardGameTest.setHands(testHands);
+		assertEquals(0, twoPlayerTwoCardGameTest.getPlayerToAct());
+		twoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
 
-		assertEquals("[S, S, DEUCE]DEAL RAISE1", TwoPlayerTwoCardGameTest.getNodeIdWithActionMemory());
-		assertEquals("[S, S, DEUCE]5 raisesAllowed : true", TwoPlayerTwoCardGameTest.getNodeIdWithGameState());
+		assertEquals("[S, S, DEUCE]DEAL RAISE1", twoPlayerTwoCardGameTest.getNodeIdWithActionMemory());
+		assertEquals("[S, S, DEUCE]5 raisesAllowed : true", twoPlayerTwoCardGameTest.getNodeIdWithGameState());
 
-		assertEquals(1, TwoPlayerTwoCardGameTest.getPlayerToAct());
+		assertEquals(1, twoPlayerTwoCardGameTest.getPlayerToAct());
 	}
 
 	@Test
@@ -310,24 +311,24 @@ public class TwoPlayerTwoCardGameTest {
 		assertTrue(game0 instanceof TwoPlayerTwoCardGame);
 		assertTrue(game132599 instanceof TwoPlayerTwoCardGame);
 		
-		TwoPlayerTwoCardGame TwoPlayerTwoCardGameTest0 = (TwoPlayerTwoCardGame) game0;
-		TwoPlayerTwoCardGame TwoPlayerTwoCardGameTest132599 = (TwoPlayerTwoCardGame) game132599;
+		TwoPlayerTwoCardGame twoPlayerTwoCardGameTest0 = (TwoPlayerTwoCardGame) game0;
+		TwoPlayerTwoCardGame twoPlayerTwoCardGameTest132599 = (TwoPlayerTwoCardGame) game132599;
 		
-		assertEquals(CardHeight.DEUCE, TwoPlayerTwoCardGameTest0.getHands().get(0).getCard(0).getHeight());
-		assertEquals(CardHeight.THREE, TwoPlayerTwoCardGameTest0.getHands().get(1).getCard(0).getHeight());
-		assertEquals(CardHeight.FOUR, TwoPlayerTwoCardGameTest0.getBoard().getCard(0).getHeight());
+		assertEquals(CardHeight.DEUCE, twoPlayerTwoCardGameTest0.getHands().get(0).getCard(0).getHeight());
+		assertEquals(CardHeight.THREE, twoPlayerTwoCardGameTest0.getHands().get(1).getCard(0).getHeight());
+		assertEquals(CardHeight.FOUR, twoPlayerTwoCardGameTest0.getBoard().getCard(0).getHeight());
 		
-		assertEquals(CardHeight.ACE, TwoPlayerTwoCardGameTest132599.getHands().get(0).getCard(0).getHeight());
-		assertEquals(CardHeight.KING, TwoPlayerTwoCardGameTest132599.getHands().get(1).getCard(0).getHeight());
-		assertEquals(CardHeight.QUEEN, TwoPlayerTwoCardGameTest132599.getBoard().getCard(0).getHeight());
+		assertEquals(CardHeight.ACE, twoPlayerTwoCardGameTest132599.getHands().get(0).getCard(0).getHeight());
+		assertEquals(CardHeight.KING, twoPlayerTwoCardGameTest132599.getHands().get(1).getCard(0).getHeight());
+		assertEquals(CardHeight.QUEEN, twoPlayerTwoCardGameTest132599.getBoard().getCard(0).getHeight());
 		
-		assertEquals(CardSuit.SPADES, TwoPlayerTwoCardGameTest0.getHands().get(0).getCard(0).getSuit());
-		assertEquals(CardSuit.SPADES, TwoPlayerTwoCardGameTest0.getHands().get(1).getCard(0).getSuit());
-		assertEquals(CardSuit.SPADES, TwoPlayerTwoCardGameTest0.getBoard().getCard(0).getSuit());
+		assertEquals(CardSuit.SPADES, twoPlayerTwoCardGameTest0.getHands().get(0).getCard(0).getSuit());
+		assertEquals(CardSuit.SPADES, twoPlayerTwoCardGameTest0.getHands().get(1).getCard(0).getSuit());
+		assertEquals(CardSuit.SPADES, twoPlayerTwoCardGameTest0.getBoard().getCard(0).getSuit());
 		
-		assertEquals(CardSuit.DIAMONDS, TwoPlayerTwoCardGameTest132599.getHands().get(0).getCard(0).getSuit());
-		assertEquals(CardSuit.DIAMONDS, TwoPlayerTwoCardGameTest132599.getHands().get(1).getCard(0).getSuit());
-		assertEquals(CardSuit.DIAMONDS, TwoPlayerTwoCardGameTest132599.getBoard().getCard(0).getSuit());
+		assertEquals(CardSuit.DIAMONDS, twoPlayerTwoCardGameTest132599.getHands().get(0).getCard(0).getSuit());
+		assertEquals(CardSuit.DIAMONDS, twoPlayerTwoCardGameTest132599.getHands().get(1).getCard(0).getSuit());
+		assertEquals(CardSuit.DIAMONDS, twoPlayerTwoCardGameTest132599.getBoard().getCard(0).getSuit());
 		
 	}
 	

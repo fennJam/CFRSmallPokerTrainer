@@ -2,12 +2,10 @@ package cfr.trainer.games.poker.games.test;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import cfr.trainer.games.Game;
@@ -32,11 +30,12 @@ public class TwoPlayerRhodeIslandGameTest {
 		assertEquals(BetRound.PRETURN, TwoPlayerRhodeIslandGame.getBettingRound());
 		assertNull(TwoPlayerRhodeIslandGame.getBoard());
 		assertEquals(PokerGameType.RHODE_ISLAND, TwoPlayerRhodeIslandGame.getPokerGameType());
-		assertNull(TwoPlayerRhodeIslandGame.getHands());
+		assertNull(TwoPlayerRhodeIslandGame.getHands().get(0));
+		assertNull(TwoPlayerRhodeIslandGame.getHands().get(1));
 		assertEquals("", TwoPlayerRhodeIslandGame.getNodeIdWithActionMemory());
 		assertEquals(2, TwoPlayerRhodeIslandGame.getPlayers().length);
-		assertEquals(0, TwoPlayerRhodeIslandGame.getPlayers()[0]);
-		assertEquals(1, TwoPlayerRhodeIslandGame.getPlayers()[1]);
+		assertEquals(Integer.valueOf(0), TwoPlayerRhodeIslandGame.getPlayers()[0]);
+		assertEquals(Integer.valueOf(1), TwoPlayerRhodeIslandGame.getPlayers()[1]);
 		assertTrue(TwoPlayerRhodeIslandGame.getPot() instanceof Pot);
 		assertEquals(0, TwoPlayerRhodeIslandGame.getRaiseCount());
 		assertEquals(3, TwoPlayerRhodeIslandGame.getRaisesAllowedPerBettingRound());
@@ -68,8 +67,8 @@ public class TwoPlayerRhodeIslandGameTest {
 		 assertEquals("[S, S, ACE]DEAL",TwoPlayerRhodeIslandGame.getNodeIdWithActionMemory());
 		 
 		assertEquals(2, TwoPlayerRhodeIslandGame.getPlayers().length);
-		assertEquals(0, TwoPlayerRhodeIslandGame.getPlayers()[0]);
-		assertEquals(1, TwoPlayerRhodeIslandGame.getPlayers()[1]);
+		assertEquals(Integer.valueOf(0), TwoPlayerRhodeIslandGame.getPlayers()[0]);
+		assertEquals(Integer.valueOf(1), TwoPlayerRhodeIslandGame.getPlayers()[1]);
 
 		assertTrue(TwoPlayerRhodeIslandGame.getPot() instanceof Pot);
 		assertEquals(3, TwoPlayerRhodeIslandGame.getPot().getTotalPotSize());
@@ -109,8 +108,8 @@ public class TwoPlayerRhodeIslandGameTest {
 		//// assertNull(TwoPlayerRhodeIslandGame.getPayOffs());
 
 		assertEquals(2, TwoPlayerRhodeIslandGame.getPlayers().length);
-		assertEquals(0, TwoPlayerRhodeIslandGame.getPlayers()[0]);
-		assertEquals(1, TwoPlayerRhodeIslandGame.getPlayers()[1]);
+		assertEquals(Integer.valueOf(0), TwoPlayerRhodeIslandGame.getPlayers()[0]);
+		assertEquals(Integer.valueOf(1), TwoPlayerRhodeIslandGame.getPlayers()[1]);
 
 		assertTrue(TwoPlayerRhodeIslandGame.getPot() instanceof Pot);
 		assertEquals(3, TwoPlayerRhodeIslandGame.getPot().getTotalPotSize());
@@ -144,8 +143,8 @@ public class TwoPlayerRhodeIslandGameTest {
 		//// assertNull(TwoPlayerRhodeIslandGameToBeCopied.getPayOffs());
 
 		assertEquals(2, TwoPlayerRhodeIslandGameToBeCopied.getPlayers().length);
-		assertEquals(0, TwoPlayerRhodeIslandGameToBeCopied.getPlayers()[0]);
-		assertEquals(1, TwoPlayerRhodeIslandGameToBeCopied.getPlayers()[1]);
+		assertEquals(Integer.valueOf(0), TwoPlayerRhodeIslandGame.getPlayers()[0]);
+		assertEquals(Integer.valueOf(1), TwoPlayerRhodeIslandGame.getPlayers()[1]);
 
 		assertTrue(TwoPlayerRhodeIslandGameToBeCopied.getPot() instanceof Pot);
 		assertEquals(3, TwoPlayerRhodeIslandGameToBeCopied.getPot().getTotalPotSize());
