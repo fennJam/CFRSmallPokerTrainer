@@ -2,6 +2,7 @@ package cfr.trainer.games;
 
 import cfr.trainer.games.poker.BettingLimit;
 import cfr.trainer.games.poker.PokerGameType;
+import cfr.trainer.games.poker.decks.RoyalDeckShuffled;
 import cfr.trainer.games.poker.games.*;
 
 public class GameFactory {
@@ -18,7 +19,9 @@ public class GameFactory {
 		}else if (gameDescription == GameDescription.RHODE_ISLAND_HEADSUP_LIMIT_POKER){
 			return new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT,numberOfRaisesPerBettingRound);
 		}else if (gameDescription == GameDescription.ROYAL_RHODE_ISLAND_HEADSUP_LIMIT_POKER){
-			return new TwoPlayerRoyalRhodeIslandGame(BettingLimit.LIMIT,numberOfRaisesPerBettingRound);
+			PokerGame game = new TwoPlayerRoyalRhodeIslandGame(BettingLimit.LIMIT,numberOfRaisesPerBettingRound);
+			game.setDeck(new RoyalDeckShuffled().unShuffleDeck());
+			return game;
 		}else{
 			throw new Exception("The setUpGame method in the class GameFactory does not cater for the GameDescription "+gameDescription);	
 			}
