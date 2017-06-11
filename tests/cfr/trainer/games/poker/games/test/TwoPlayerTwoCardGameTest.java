@@ -24,7 +24,7 @@ public class TwoPlayerTwoCardGameTest {
 	public final void testConstructor() {
 		PokerGame twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
 
-		assertEquals(0, twoPlayerTwoCardGameTest.getActions().size());
+		assertEquals(0, twoPlayerTwoCardGameTest.getActionsTaken().size());
 		assertEquals(BettingLimit.LIMIT, twoPlayerTwoCardGameTest.getBettingLimit());
 		assertEquals(BetRound.TURN,twoPlayerTwoCardGameTest.getBettingRound());
 		assertNull(twoPlayerTwoCardGameTest.getBoard());
@@ -51,8 +51,8 @@ public class TwoPlayerTwoCardGameTest {
 
 		twoPlayerTwoCardGameTest.startGame();
 
-		assertEquals(1, twoPlayerTwoCardGameTest.getActions().size());
-		assertTrue(twoPlayerTwoCardGameTest.getActions().contains(DealAction.getInstance()));
+		assertEquals(1, twoPlayerTwoCardGameTest.getActionsTaken().size());
+		assertTrue(twoPlayerTwoCardGameTest.getActionsTaken().contains(DealAction.getInstance()));
 
 		assertEquals(BettingLimit.LIMIT, twoPlayerTwoCardGameTest.getBettingLimit());
 
@@ -92,8 +92,8 @@ public class TwoPlayerTwoCardGameTest {
 		twoPlayerTwoCardGameTestToBeCopied.startGame();
 		twoPlayerTwoCardGameTest.importGameProperties(twoPlayerTwoCardGameTestToBeCopied);
 
-		assertEquals(1, twoPlayerTwoCardGameTest.getActions().size());
-		assertTrue(twoPlayerTwoCardGameTest.getActions().contains(DealAction.getInstance()));
+		assertEquals(1, twoPlayerTwoCardGameTest.getActionsTaken().size());
+		assertTrue(twoPlayerTwoCardGameTest.getActionsTaken().contains(DealAction.getInstance()));
 
 		assertEquals(BettingLimit.LIMIT, twoPlayerTwoCardGameTest.getBettingLimit());
 
@@ -127,8 +127,8 @@ public class TwoPlayerTwoCardGameTest {
 		twoPlayerTwoCardGameTest.performAction(0, new RaiseAction(1));
 		
 //		Check copied game is not affected by new games action
-		assertEquals(1, twoPlayerTwoCardGameTestToBeCopied.getActions().size());
-		assertTrue(twoPlayerTwoCardGameTestToBeCopied.getActions().contains(DealAction.getInstance()));
+		assertEquals(1, twoPlayerTwoCardGameTestToBeCopied.getActionsTaken().size());
+		assertTrue(twoPlayerTwoCardGameTestToBeCopied.getActionsTaken().contains(DealAction.getInstance()));
 
 		assertEquals(BettingLimit.LIMIT, twoPlayerTwoCardGameTestToBeCopied.getBettingLimit());
 

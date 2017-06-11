@@ -26,10 +26,10 @@ public class GameFactoryTest {
 		assertEquals(GameType.POKER, kuhnGame.getGameType());
 		assertTrue(kuhnGame instanceof KuhnPoker);
 		BaseTwoPlayerPokerGame twoPlayerPokerGame = (BaseTwoPlayerPokerGame) kuhnGame;
-		assertEquals(0, twoPlayerPokerGame.getActions().size());
+		assertEquals(0, twoPlayerPokerGame.getActionsTaken().size());
 		kuhnGame.startGame();
-		assertEquals(1, twoPlayerPokerGame.getActions().size());
-		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActions().get(0));
+		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
+		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));
 
 		Game copiedKuhnGame = new KuhnPoker();
 
@@ -43,8 +43,8 @@ public class GameFactoryTest {
 		// kuhn game is treated the same as any other two player single card
 		// game once it has started
 		assertTrue(copiedKuhnGame instanceof TwoPlayerSingleCardGame);
-		assertEquals(1, twoPlayerPokerGame.getActions().size());
-		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActions().get(0));
+		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
+		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));
 
 	}
 
@@ -55,12 +55,12 @@ public class GameFactoryTest {
 		assertEquals(GameType.POKER, game.getGameType());
 		assertTrue(game instanceof TwoPlayerSingleCardGame);
 		BaseTwoPlayerPokerGame twoPlayerPokerGame = (BaseTwoPlayerPokerGame) game;
-		assertEquals(0, twoPlayerPokerGame.getActions().size());
+		assertEquals(0, twoPlayerPokerGame.getActionsTaken().size());
 		assertEquals(BettingLimit.LIMIT, twoPlayerPokerGame.getBettingLimit());
 		assertEquals(3, twoPlayerPokerGame.getRaisesAllowedPerBettingRound());
 		game.startGame();
-		assertEquals(1, twoPlayerPokerGame.getActions().size());
-		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActions().get(0));
+		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
+		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));
 
 		Game copiedGame = new TwoPlayerSingleCardGame(BettingLimit.NO_LIMIT, 1);
 
@@ -72,8 +72,8 @@ public class GameFactoryTest {
 
 		assertEquals(GameType.POKER, copiedGame.getGameType());
 		assertTrue(copiedGame instanceof TwoPlayerSingleCardGame);
-		assertEquals(1, twoPlayerPokerGame.getActions().size());
-		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActions().get(0));
+		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
+		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));
 		assertEquals(BettingLimit.LIMIT, twoPlayerPokerGame.getBettingLimit());
 		assertEquals(3, twoPlayerPokerGame.getRaisesAllowedPerBettingRound());
 	}
@@ -86,12 +86,12 @@ public class GameFactoryTest {
 		assertEquals(GameType.POKER, game.getGameType());
 		assertTrue(game instanceof TwoPlayerSingleCardGame);
 		BaseTwoPlayerPokerGame twoPlayerPokerGame = (BaseTwoPlayerPokerGame) game;
-		assertEquals(0, twoPlayerPokerGame.getActions().size());
+		assertEquals(0, twoPlayerPokerGame.getActionsTaken().size());
 		assertEquals(BettingLimit.POT_LIMIT, twoPlayerPokerGame.getBettingLimit());
 		assertEquals(3, twoPlayerPokerGame.getRaisesAllowedPerBettingRound());
 		game.startGame();
-		assertEquals(1, twoPlayerPokerGame.getActions().size());
-		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActions().get(0));
+		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
+		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));
 
 		Game copiedGame = new TwoPlayerSingleCardGame(BettingLimit.NO_LIMIT, 1);
 
@@ -103,8 +103,8 @@ public class GameFactoryTest {
 
 		assertEquals(GameType.POKER, copiedGame.getGameType());
 		assertTrue(copiedGame instanceof TwoPlayerSingleCardGame);
-		assertEquals(1, twoPlayerPokerGame.getActions().size());
-		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActions().get(0));
+		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
+		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));
 		assertEquals(BettingLimit.POT_LIMIT, twoPlayerPokerGame.getBettingLimit());
 		assertEquals(3, twoPlayerPokerGame.getRaisesAllowedPerBettingRound());
 	}
@@ -115,12 +115,12 @@ public class GameFactoryTest {
 		assertEquals(GameType.POKER, game.getGameType());
 		assertTrue(game instanceof TwoPlayerTwoCardGame);
 		BaseTwoPlayerPokerGame twoPlayerPokerGame = (BaseTwoPlayerPokerGame) game;
-		assertEquals(0, twoPlayerPokerGame.getActions().size());
+		assertEquals(0, twoPlayerPokerGame.getActionsTaken().size());
 		assertEquals(BettingLimit.LIMIT, twoPlayerPokerGame.getBettingLimit());
 		assertEquals(3, twoPlayerPokerGame.getRaisesAllowedPerBettingRound());
 		game.startGame();
-		assertEquals(1, twoPlayerPokerGame.getActions().size());
-		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActions().get(0));
+		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
+		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));
 
 		Game copiedGame = new TwoPlayerSingleCardGame(BettingLimit.NO_LIMIT, 1);
 
@@ -132,8 +132,8 @@ public class GameFactoryTest {
 
 		assertEquals(GameType.POKER, copiedGame.getGameType());
 		assertTrue(copiedGame instanceof TwoPlayerTwoCardGame);
-		assertEquals(1, twoPlayerPokerGame.getActions().size());
-		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActions().get(0));
+		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
+		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));
 		assertEquals(BettingLimit.LIMIT, twoPlayerPokerGame.getBettingLimit());
 		assertEquals(3, twoPlayerPokerGame.getRaisesAllowedPerBettingRound());
 	}
@@ -145,12 +145,12 @@ public class GameFactoryTest {
 		assertEquals(GameType.POKER, game.getGameType());
 		assertTrue(game instanceof TwoPlayerTwoCardGame);
 		BaseTwoPlayerPokerGame twoPlayerPokerGame = (BaseTwoPlayerPokerGame) game;
-		assertEquals(0, twoPlayerPokerGame.getActions().size());
+		assertEquals(0, twoPlayerPokerGame.getActionsTaken().size());
 		assertEquals(BettingLimit.POT_LIMIT, twoPlayerPokerGame.getBettingLimit());
 		assertEquals(3, twoPlayerPokerGame.getRaisesAllowedPerBettingRound());
 		game.startGame();
-		assertEquals(1, twoPlayerPokerGame.getActions().size());
-		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActions().get(0));
+		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
+		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));
 
 		Game copiedGame = new TwoPlayerSingleCardGame(BettingLimit.NO_LIMIT, 1);
 
@@ -162,8 +162,8 @@ public class GameFactoryTest {
 
 		assertEquals(GameType.POKER, copiedGame.getGameType());
 		assertTrue(copiedGame instanceof TwoPlayerTwoCardGame);
-		assertEquals(1, twoPlayerPokerGame.getActions().size());
-		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActions().get(0));
+		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
+		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));
 		assertEquals(BettingLimit.POT_LIMIT, twoPlayerPokerGame.getBettingLimit());
 		assertEquals(3, twoPlayerPokerGame.getRaisesAllowedPerBettingRound());
 	}
@@ -175,12 +175,12 @@ public class GameFactoryTest {
 		assertEquals(GameType.POKER, game.getGameType());
 		assertTrue(game instanceof TwoPlayerRhodeIslandGame);
 		BaseTwoPlayerPokerGame twoPlayerPokerGame = (BaseTwoPlayerPokerGame) game;
-		assertEquals(0, twoPlayerPokerGame.getActions().size());
+		assertEquals(0, twoPlayerPokerGame.getActionsTaken().size());
 		assertEquals(BettingLimit.LIMIT, twoPlayerPokerGame.getBettingLimit());
 		assertEquals(3, twoPlayerPokerGame.getRaisesAllowedPerBettingRound());
 		game.startGame();
-		assertEquals(1, twoPlayerPokerGame.getActions().size());
-		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActions().get(0));
+		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
+		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));
 
 		Game copiedGame = new TwoPlayerSingleCardGame(BettingLimit.NO_LIMIT, 1);
 
@@ -192,8 +192,8 @@ public class GameFactoryTest {
 
 		assertEquals(GameType.POKER, copiedGame.getGameType());
 		assertTrue(copiedGame instanceof TwoPlayerRhodeIslandGame);
-		assertEquals(1, twoPlayerPokerGame.getActions().size());
-		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActions().get(0));
+		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
+		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));
 		assertEquals(BettingLimit.LIMIT, twoPlayerPokerGame.getBettingLimit());
 		assertEquals(3, twoPlayerPokerGame.getRaisesAllowedPerBettingRound());
 	}
@@ -205,12 +205,12 @@ public class GameFactoryTest {
 		assertEquals(GameType.POKER, game.getGameType());
 		assertTrue(game instanceof TwoPlayerRhodeIslandGame);
 		BaseTwoPlayerPokerGame twoPlayerPokerGame = (BaseTwoPlayerPokerGame) game;
-		assertEquals(0, twoPlayerPokerGame.getActions().size());
+		assertEquals(0, twoPlayerPokerGame.getActionsTaken().size());
 		assertEquals(BettingLimit.POT_LIMIT, twoPlayerPokerGame.getBettingLimit());
 		assertEquals(3, twoPlayerPokerGame.getRaisesAllowedPerBettingRound());
 		game.startGame();
-		assertEquals(1, twoPlayerPokerGame.getActions().size());
-		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActions().get(0));
+		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
+		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));
 
 		Game copiedGame = new TwoPlayerSingleCardGame(BettingLimit.NO_LIMIT, 1);
 
@@ -222,8 +222,8 @@ public class GameFactoryTest {
 
 		assertEquals(GameType.POKER, copiedGame.getGameType());
 		assertTrue(copiedGame instanceof TwoPlayerRhodeIslandGame);
-		assertEquals(1, twoPlayerPokerGame.getActions().size());
-		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActions().get(0));
+		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
+		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));
 		assertEquals(BettingLimit.POT_LIMIT, twoPlayerPokerGame.getBettingLimit());
 		assertEquals(3, twoPlayerPokerGame.getRaisesAllowedPerBettingRound());
 	}
