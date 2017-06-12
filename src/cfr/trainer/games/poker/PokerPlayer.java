@@ -3,10 +3,10 @@ package cfr.trainer.games.poker;
 public class PokerPlayer {
 
 	String id;
-	double stack;
+	int stack;
 	Hand hand;
 
-	public PokerPlayer(String id, double stack, Hand hand) {
+	public PokerPlayer(String id, int stack, Hand hand) {
 		this.id = id;
 		this.stack = stack;
 		this.hand = hand;
@@ -20,19 +20,20 @@ public class PokerPlayer {
 		this.id = id;
 	}
 
-	public double getStack() {
+	public int getStack() {
 		return stack;
 	}
 
-	public void setStack(double stack) {
+	public void setStack(int stack) {
 		this.stack = stack;
 	}
 
-	public void addToStack(double chips) {
+	public int addToStack(int chips) {
 		this.stack = this.stack + chips;
+		return stack;
 	}
 	
-	public void takeFromStack(double chips) {
+	public void takeFromStack(int chips) {
 		if(stack<chips){
 			throw new Error("Cannot take "+chips+" chips away than the only player has "+stack+".");
 		}

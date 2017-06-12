@@ -3,6 +3,7 @@ package cfr.trainer.games.poker.games;
 import java.util.List;
 import java.util.Map;
 
+import cfr.trainer.action.Action;
 import cfr.trainer.games.Game;
 import cfr.trainer.games.poker.*;
 import cfr.trainer.games.poker.actions.PokerAction;
@@ -37,7 +38,7 @@ public interface PokerGame extends Game {
 
 	BettingLimit getBettingLimit();
 
-	List<PokerAction> getActions();
+	List<Action> getActionsTaken();
 	
 	int getRaiseCount();
 
@@ -46,6 +47,8 @@ public interface PokerGame extends Game {
 	Deck getDeck();
 
 	void setDeck(Deck deck);
+
+	PokerPlayer getPlayer(Integer player);
 
 
 }

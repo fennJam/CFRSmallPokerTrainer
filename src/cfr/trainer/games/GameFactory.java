@@ -22,6 +22,8 @@ public class GameFactory {
 			PokerGame game = new TwoPlayerRoyalRhodeIslandGame(BettingLimit.LIMIT,numberOfRaisesPerBettingRound);
 			game.setDeck(new RoyalDeckShuffled().unShuffleDeck());
 			return game;
+		}else if (gameDescription == GameDescription.ROYAL_RHODE_ISLAND_HEADSUP_NO_LIMIT_POKER){
+			return new TwoPlayerRoyalRhodeIslandGame(BettingLimit.NO_LIMIT,numberOfRaisesPerBettingRound);
 		}else{
 			throw new Exception("The setUpGame method in the class GameFactory does not cater for the GameDescription "+gameDescription);	
 			}

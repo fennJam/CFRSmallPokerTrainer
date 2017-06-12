@@ -109,6 +109,16 @@ public class Board {
 		}
 		return false;
 	}
+	
+	/**
+	 * Turn the next unturned card
+	 */
+	public Board turnAllCards() {
+		for (int i = 0; i < isVisible.length; i++) {
+				isVisible[i] = true;
+			}
+		return this;
+	}
 
 	/**
 	 * Returns true if the board is of size 0,1 or all the cards are suited
