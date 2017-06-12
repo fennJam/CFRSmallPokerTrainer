@@ -63,13 +63,13 @@ public class CFRPlusTrainer {
 		int player = game.getPlayerToAct();
 
 		double[] strategy = node.recalculateStrategy(player == 0 ? p0 : p1);
-		int actionsAvailable = node.getActions().length;
+		int actionsAvailable = node.numOfActions();
 		double[] util = new double[actionsAvailable];
 		double nodeUtil = 0;
 
 		for (int action = 0; action < actionsAvailable; action++) {
 			Game copyOfGame = GameFactory.copyGame(game);
-			copyOfGame.performAction(player, node.getActions()[action]);
+			copyOfGame.performAction(player, game.getPossibleActions().get(action));
 
 			util[action] = player == 0 ? -cfrPlus(copyOfGame, p0 * strategy[action], p1, playerToTrain)
 					: -cfrPlus(copyOfGame, p0, p1 * strategy[action], playerToTrain);

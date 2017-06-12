@@ -30,6 +30,8 @@ public interface Game {
 	boolean performChanceAction();
 	
 	GameType getGameType();
+
+	List<Action> getPossibleActions();
 	
 	
 }

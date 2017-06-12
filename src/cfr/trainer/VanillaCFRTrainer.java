@@ -16,10 +16,11 @@ public class VanillaCFRTrainer {
 	public Map<String, Node> nodeMap = new HashMap<>();
 	double util = 0;
 	double averageGameValue = 0;
-
+	int nodeCount =0;
+	
 	public static void main(String[] args) throws Exception {
-		int iterations = 200000;
-		new VanillaCFRTrainer().train(GameDescription.KUHN_POKER, iterations);
+		int iterations = 1;
+		new VanillaCFRTrainer().train(GameDescription.ROYAL_RHODE_ISLAND_HEADSUP_NO_LIMIT_POKER, iterations);
 	}
 
 	public void train(GameDescription gameType, int iterations) throws Exception {
@@ -57,19 +58,19 @@ public class VanillaCFRTrainer {
 		if (node == null) {
 			node = InfoSetFactory.buildInformationSet(nodeId,game);
 			nodeMap.put(nodeId, node);
-//			nodeCount++;
-//			System.out.println("Node Count : "+nodeCount);
+			nodeCount++;
+			System.out.println("Node Count : "+nodeCount);
 		}
 		// recursively call cfr
 		int player = game.getPlayerToAct();
 		double[] strategy = node.recalculateStrategy(player == 0 ? p0 : p1);
-		int actionsAvailable = node.getActions().length;
+		int actionsAvailable = node.numOfActions();
 		double[] util = new double[actionsAvailable];
 		double nodeUtil = 0;
 
 		for (int action = 0; action < actionsAvailable; action++) {
 			Game copyOfGame = GameFactory.copyGame(game);
-			copyOfGame.performAction(player, node.getActions()[action]);
+			copyOfGame.performAction(player, game.getPossibleActions().get(action));
 
 			util[action] = player == 0 ? -cfr(copyOfGame, p0 * strategy[action], p1)
 					: -cfr(copyOfGame, p0, p1 * strategy[action]);

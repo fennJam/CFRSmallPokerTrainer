@@ -4,14 +4,12 @@ import cfr.trainer.action.Action;
 
 public class NodeImpl implements Node {
 
-	protected String nodeIdentifier;
-	private Action[] actions;
+//	protected String nodeIdentifier;
 	private double[] strategy;
 	public double[] regretSum;
 	private double[] strategySum;
 
 	protected NodeImpl(Action[] actions) {
-		this.actions = actions;
 		int actionsLength = actions.length;
 		this.strategy = new double[actionsLength];
 		this.regretSum = new double[actionsLength];
@@ -21,7 +19,7 @@ public class NodeImpl implements Node {
 	@Override
 	public double[] recalculateStrategy(double realizationWeight) {
 		double normalizingSum = 0;
-		int numOfActions = actions.length;
+		int numOfActions = strategy.length;
 		for (int a = 0; a < numOfActions; a++) {
 			// only taking positive regrets
 			strategy[a] = regretSum[a] > 0 ? regretSum[a] : 0;
@@ -39,7 +37,7 @@ public class NodeImpl implements Node {
 
 	@Override
 	public double[] getAverageStrategy() {
-		int numOfActions = actions.length;
+		int numOfActions = strategy.length;
 		double[] avgStrategy = new double[numOfActions];
 		double normalizingSum = 0;
 		for (int a = 0; a < numOfActions; a++)
@@ -56,36 +54,20 @@ public class NodeImpl implements Node {
 	public String toString() {
 		String strategiesString = "";
 		double[] avgStrategy = getAverageStrategy();
-		for (int i = 0; i < actions.length; i++) {
-			strategiesString += actions[i].toString() +": "+avgStrategy[i]+"    ";
+		for (int i = 0; i < strategy.length; i++) {
+			strategiesString +=": "+avgStrategy[i]+"    ";
 		}
 		return strategiesString;
 	}
 
-	@Override
-	public String getNodeIdentifier() {
-		return nodeIdentifier;
-	}
-
-	@Override
-	public Action getAction(int a) {
-		return actions[a];
-	}
-
-	@Override
-	public Action[] getActions() {
-		return actions;
-	}
-	
-
-	protected Action[] setActions(Action[] newActions) {
-		actions = newActions;
-		return actions;
-	}
+//	@Override
+//	public String getNodeIdentifier() {
+//		return nodeIdentifier;
+//	}
 
 	@Override
 	public int numOfActions() {
-		return actions.length;
+		return strategy.length;
 	}
 
 	@Override

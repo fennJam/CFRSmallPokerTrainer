@@ -16,7 +16,11 @@ public class PotLimitPokerInfoSet extends NodeImpl {
 
 	PotLimitPokerInfoSet(String nodeId, Pot pot) {
 		super(constructActionArray(pot));
-		nodeIdentifier = nodeId;
+//		nodeIdentifier = nodeId;
+	}
+	
+	PotLimitPokerInfoSet(Pot pot) {
+		super(constructActionArray(pot));
 	}
 
 	private static PokerAction[] constructActionArray(Pot pot){

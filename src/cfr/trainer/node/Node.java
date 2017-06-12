@@ -3,14 +3,10 @@ package cfr.trainer.node;
 import cfr.trainer.action.Action;
 
 public interface Node {
-
-	Action getAction(int i);
-	
-	Action [] getActions();
 	
 	double[] getAverageStrategy();
 	
-	String getNodeIdentifier();
+//	String getNodeIdentifier();
 	
 	int numOfActions();
 	

@@ -12,11 +12,13 @@ public class PokerInfoSetFactory {
 		if (game.getGameType() == GameType.POKER) {
 			PokerGame pokerGame = (PokerGame) game;
 			if (!pokerGame.raisesAllowed()) {
-				return new TerminalInfoSet(nodeId);
+				return new TerminalInfoSet();
 			} else if (pokerGame.getBettingLimit() == BettingLimit.LIMIT) {
-				return new LimitPokerInfoSet(nodeId);
+				return new LimitPokerInfoSet();
 			} else if (pokerGame.getBettingLimit() == BettingLimit.POT_LIMIT) {
-				return new PotLimitPokerInfoSet(nodeId, pokerGame.getPot());
+				return new PotLimitPokerInfoSet(pokerGame.getPot());
+			} else if (pokerGame.getBettingLimit() == BettingLimit.NO_LIMIT) {
+				return new NoLimitPokerInfoSet(pokerGame);
 			}
 		}
 		return null;

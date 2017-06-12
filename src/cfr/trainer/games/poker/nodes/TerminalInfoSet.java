@@ -11,6 +11,10 @@ public class TerminalInfoSet extends NodeImpl {
 
 	TerminalInfoSet(String nodeId){
 		super(actions);
-		nodeIdentifier = nodeId;
+//		nodeIdentifier = nodeId;
+	}
+	
+	TerminalInfoSet(){
+		super(actions);
 	}
 }

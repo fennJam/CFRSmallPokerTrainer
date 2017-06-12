@@ -8,7 +8,11 @@ public class LimitPokerInfoSet extends NodeImpl {
 
 	LimitPokerInfoSet(String nodeId) {
 		super(singleRaiseoption);
-		nodeIdentifier = nodeId;
+//		nodeIdentifier = nodeId;
+	}
+	
+	LimitPokerInfoSet() {
+		super(singleRaiseoption);
 	}
 
 }
