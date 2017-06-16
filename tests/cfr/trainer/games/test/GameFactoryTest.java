@@ -42,7 +42,7 @@ public class GameFactoryTest {
 		assertEquals(GameType.POKER, copiedKuhnGame.getGameType());
 		// kuhn game is treated the same as any other two player single card
 		// game once it has started
-		assertTrue(copiedKuhnGame instanceof TwoPlayerSingleCardGame);
+		assertTrue(copiedKuhnGame instanceof KuhnPoker);
 		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
 		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));
 

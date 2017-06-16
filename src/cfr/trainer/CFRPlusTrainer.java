@@ -1,9 +1,15 @@
 package cfr.trainer;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cfr.trainer.games.Game;
 import cfr.trainer.games.GameDescription;
@@ -20,15 +26,18 @@ public class CFRPlusTrainer {
 
 	public static void main(String[] args) throws Exception {
 		int iterations = 1;
-		new CFRPlusTrainer().train(GameDescription.ROYAL_RHODE_ISLAND_HEADSUP_LIMIT_POKER, iterations);
+		new CFRPlusTrainer().train(GameDescription.ROYAL_RHODE_ISLAND_HEADSUP_NO_LIMIT_POKER, iterations);
 	}
 
 	public void train(GameDescription gameDescription, int iterations) throws Exception {
 		utilCount = 0;
-		Game gameStructure = GameFactory.setUpGame(gameDescription,3);
+		Game gameStructure = GameFactory.setUpGame(gameDescription,2);
 		List<List<Integer>> validChanceCombinations = gameStructure.getListOfValidChanceCombinations();
 		for (int i = 0; i < iterations; i++) {
+			int combo =0;
 			for (List<Integer> validCombo : validChanceCombinations) {
+				combo++;
+				System.out.println("Combination :"+combo );
 				Game game = GameFactory.setUpGame(gameDescription,3);
 				game.startGame();
 				game.setValidChanceCombinations(validCombo);
@@ -38,10 +47,8 @@ public class CFRPlusTrainer {
 			}
 		}
 		averageGameValue = util / (iterations * validChanceCombinations.size()*2);
-		System.out.println("Average game value: " + averageGameValue);
-		for (Entry<String, NodeImpl> n : nodeMap.entrySet())
-			if(n.getKey().contains("Q"))
-			System.out.println(n.getKey() + " : " + n.getValue());
+		System.out.println("Average game value: " + util / iterations + "\n Nodes: " + nodeMap.size());
+		writeStrategyMapToJSONFile(nodeMap);
 	}
 
 	private double cfrPlus(Game game, double p0, double p1, int playerToTrain) throws Exception {
@@ -94,5 +101,12 @@ public class CFRPlusTrainer {
 
 	public Map<String, NodeImpl> getNodeMap() {
 		return nodeMap;
+	}
+	
+	private void writeStrategyMapToJSONFile(Map nodeMap)
+			throws JsonGenerationException, JsonMappingException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.writerWithDefaultPrettyPrinter()
+				.writeValue(new File("C:\\Users\\James\\Desktop\\StrategyMaps\\user.json"), nodeMap);
 	}
 }

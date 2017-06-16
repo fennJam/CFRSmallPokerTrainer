@@ -365,6 +365,77 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		RaiseAction raiseAction = (RaiseAction) twoPlayerRoyalRhodeIslandGame.getPossibleActions().get(action);
 		assertEquals(action-1,raiseAction.getRaiseAmount());
 		}
+		
+		TwoPlayerRoyalRhodeIslandGame twoPlayerRoyalRhodeIslandGameImport = new TwoPlayerRoyalRhodeIslandGame(BettingLimit.NO_LIMIT, 3);
+		twoPlayerRoyalRhodeIslandGameImport.importGameProperties(twoPlayerRoyalRhodeIslandGame);
+		
+		
+		assertEquals(22,twoPlayerRoyalRhodeIslandGameImport.getPossibleActions().size());
+		assertEquals(expectedPlayers,twoPlayerRoyalRhodeIslandGameImport.getPlayers());
+		assertEquals(0,twoPlayerRoyalRhodeIslandGameImport.getPlayerToAct());
+
+		assertEquals(3,twoPlayerRoyalRhodeIslandGameImport.getActionsTaken().size());
+		assertEquals(DealAction.getInstance(),twoPlayerRoyalRhodeIslandGameImport.getActionsTaken().get(0));
+		assertTrue(twoPlayerRoyalRhodeIslandGameImport.getActionsTaken().get(1) instanceof RaiseAction);
+		assertEquals(5,raiseActionTaken.getRaiseAmount());
+		assertTrue(twoPlayerRoyalRhodeIslandGameImport.getActionsTaken().get(2) instanceof RaiseAction);
+
+		assertEquals(3,raiseActionTaken2.getRaiseAmount());
+		
+		
+		assertEquals(BettingLimit.NO_LIMIT,twoPlayerRoyalRhodeIslandGameImport.getBettingLimit());
+		assertEquals(BetRound.PRETURN,twoPlayerRoyalRhodeIslandGameImport.getBettingRound());
+//		Board
+		assertTrue(twoPlayerRoyalRhodeIslandGameImport.getBoard() instanceof Board);
+		assertEquals(0,twoPlayerRoyalRhodeIslandGameImport.getBoard().getTurnedCards().size());
+		assertEquals(2,twoPlayerRoyalRhodeIslandGameImport.getBoard().getCards().length);
+		
+		
+		assertTrue(twoPlayerRoyalRhodeIslandGameImport.getDeck() instanceof RoyalDeckShuffled);
+		assertEquals(GameType.POKER ,twoPlayerRoyalRhodeIslandGameImport.getGameType());
+//		Hands
+		assertEquals(2,twoPlayerRoyalRhodeIslandGameImport.getHands().size());
+		assertTrue(twoPlayerRoyalRhodeIslandGameImport.getHands().get(0) instanceof HandSingleCard);
+		assertTrue(twoPlayerRoyalRhodeIslandGameImport.getHands().get(1) instanceof HandSingleCard);
+		assertEquals(CardHeight.ACE,twoPlayerRoyalRhodeIslandGameImport.getHands().get(0).getCard(0).getHeight());
+		assertEquals(CardSuit.DIAMONDS,twoPlayerRoyalRhodeIslandGameImport.getHands().get(0).getCard(0).getSuit());
+		assertEquals(CardHeight.KING,twoPlayerRoyalRhodeIslandGameImport.getHands().get(1).getCard(0).getHeight());
+		assertEquals(CardSuit.DIAMONDS,twoPlayerRoyalRhodeIslandGameImport.getHands().get(1).getCard(0).getSuit());
+		
+		assertEquals(PokerGameType.RHODE_ISLAND,twoPlayerRoyalRhodeIslandGameImport.getPokerGameType());
+		assertEquals(116280,twoPlayerRoyalRhodeIslandGameImport.getListOfValidChanceCombinations().size());
+		
+		assertEquals("[S, S, ACE]DEAL RAISE5 RAISE3",twoPlayerRoyalRhodeIslandGameImport.getNodeIdWithActionMemory());
+		
+//		TODO handle null pointer thrown here
+//		assertEquals("",twoPlayerRoyalRhodeIslandGameImport.getNodeIdWithGameState());
+//		assertEquals(0,twoPlayerRoyalRhodeIslandGameImport.getPayOffs().size());
+////	TODO handle null pointer thrown here
+//		assertEquals(Integer.valueOf(0),twoPlayerRoyalRhodeIslandGameImport.getPayOffs().get(0));
+//		assertEquals(Integer.valueOf(0),twoPlayerRoyalRhodeIslandGameImport.getPayOffs().get(1));
+		assertEquals(7,twoPlayerRoyalRhodeIslandGameImport.getPot().getPlayersContributionToPot(0));
+		assertEquals(10,twoPlayerRoyalRhodeIslandGameImport.getPot().getPlayersContributionToPot(1));
+		assertEquals(2,twoPlayerRoyalRhodeIslandGameImport.getRaiseCount());
+		assertEquals(3,twoPlayerRoyalRhodeIslandGameImport.getRaisesAllowedPerBettingRound());
+		assertFalse(twoPlayerRoyalRhodeIslandGameImport.lastActionIsTerminalCallForTheBettingRound());
+		assertTrue(twoPlayerRoyalRhodeIslandGameImport.raisesAllowed());
+		
+//		Actions available
+		assertEquals(12,node.getStrategy().length);
+		assertEquals(FoldAction.getInstance(),twoPlayerRoyalRhodeIslandGameImport.getPossibleActions().get(0));
+		assertEquals(CallAction.getInstance(),twoPlayerRoyalRhodeIslandGameImport.getPossibleActions().get(1));
+		
+		for (int action = 2; action <node.getStrategy().length; action++) {
+		assertTrue(twoPlayerRoyalRhodeIslandGameImport.getPossibleActions().get(action) instanceof RaiseAction);
+		RaiseAction raiseAction = (RaiseAction) twoPlayerRoyalRhodeIslandGameImport.getPossibleActions().get(action);
+		assertEquals(action-1,raiseAction.getRaiseAmount());
+		}
+		
+//		stacks
+		
+		assertEquals(13,twoPlayerRoyalRhodeIslandGameImport.getPlayer(0).getStack());
+		assertEquals(10,twoPlayerRoyalRhodeIslandGameImport.getPlayer(1).getStack());
+
 	}
 	
 	@Test

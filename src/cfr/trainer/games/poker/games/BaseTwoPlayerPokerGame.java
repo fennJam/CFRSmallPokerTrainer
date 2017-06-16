@@ -94,6 +94,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 			Integer winnings = pot.getPlayersContributionToPot(opponent);
 
 			Map<Integer, Integer> payOffs = new HashMap<Integer, Integer>();
+//			System.out.println("winnings:"+winnings);
 			payOffs.put(player, winnings);
 			payOffs.put(opponent, -winnings);
 
@@ -169,7 +170,8 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 			throw new Error("Different game type or number of betting rounds in game you are trying to copy!!");
 		}
 		this.bettingLimit = game.getBettingLimit();
-		setHands(game.getHands());
+		players.put(0, new PokerPlayer(game.getPlayer(0)));
+		players.put(1, new PokerPlayer(game.getPlayer(1)));
 		this.raisesPerBettingRound = game.getRaisesAllowedPerBettingRound();
 		this.raiseCount = game.getRaiseCount();
 		this.betRound = game.getBettingRound();

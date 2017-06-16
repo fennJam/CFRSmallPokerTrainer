@@ -16,17 +16,18 @@ public class GameFactory {
 
 		} else if (gameDescription == GameDescription.KUHN_POKER) {
 			return new KuhnPoker();
-		}else if (gameDescription == GameDescription.RHODE_ISLAND_HEADSUP_LIMIT_POKER){
-			return new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT,numberOfRaisesPerBettingRound);
-		}else if (gameDescription == GameDescription.ROYAL_RHODE_ISLAND_HEADSUP_LIMIT_POKER){
-			PokerGame game = new TwoPlayerRoyalRhodeIslandGame(BettingLimit.LIMIT,numberOfRaisesPerBettingRound);
+		} else if (gameDescription == GameDescription.RHODE_ISLAND_HEADSUP_LIMIT_POKER) {
+			return new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT, numberOfRaisesPerBettingRound);
+		} else if (gameDescription == GameDescription.ROYAL_RHODE_ISLAND_HEADSUP_LIMIT_POKER) {
+			PokerGame game = new TwoPlayerRoyalRhodeIslandGame(BettingLimit.LIMIT, numberOfRaisesPerBettingRound);
 			game.setDeck(new RoyalDeckShuffled().unShuffleDeck());
 			return game;
-		}else if (gameDescription == GameDescription.ROYAL_RHODE_ISLAND_HEADSUP_NO_LIMIT_POKER){
-			return new TwoPlayerRoyalRhodeIslandGame(BettingLimit.NO_LIMIT,numberOfRaisesPerBettingRound);
-		}else{
-			throw new Exception("The setUpGame method in the class GameFactory does not cater for the GameDescription "+gameDescription);	
-			}
+		} else if (gameDescription == GameDescription.ROYAL_RHODE_ISLAND_HEADSUP_NO_LIMIT_POKER) {
+			return new TwoPlayerRoyalRhodeIslandGame(BettingLimit.NO_LIMIT, numberOfRaisesPerBettingRound);
+		} else {
+			throw new Exception("The setUpGame method in the class GameFactory does not cater for the GameDescription "
+					+ gameDescription);
+		}
 
 	}
 
@@ -35,21 +36,29 @@ public class GameFactory {
 		if (gameType == GameType.POKER) {
 
 			PokerGame pokerGame = (PokerGame) game;
-			if (pokerGame.getPokerGameType() == PokerGameType.SINGLE_CARD) {
+			if (pokerGame instanceof TwoPlayerSingleCardGame) {
 				PokerGame copiedGame = new TwoPlayerSingleCardGame(pokerGame.getBettingLimit(),
 						pokerGame.getRaisesAllowedPerBettingRound());
 				return copiedGame.importGameProperties(pokerGame);
-			} else if (pokerGame.getPokerGameType() == PokerGameType.TWO_CARD) {
+			} else if (pokerGame instanceof TwoPlayerTwoCardGame) {
 				PokerGame copiedGame = new TwoPlayerTwoCardGame(pokerGame.getBettingLimit(),
 						pokerGame.getRaisesAllowedPerBettingRound());
 				return copiedGame.importGameProperties(pokerGame);
-			} else if (pokerGame.getPokerGameType() == PokerGameType.RHODE_ISLAND) {
+			} else if (pokerGame instanceof TwoPlayerRhodeIslandGame) {
 				PokerGame copiedGame = new TwoPlayerRhodeIslandGame(pokerGame.getBettingLimit(),
 						pokerGame.getRaisesAllowedPerBettingRound());
 				return copiedGame.importGameProperties(pokerGame);
+			} else if (pokerGame instanceof TwoPlayerRoyalRhodeIslandGame) {
+				PokerGame copiedGame = new TwoPlayerRoyalRhodeIslandGame(pokerGame.getBettingLimit(),
+						pokerGame.getRaisesAllowedPerBettingRound());
+				return copiedGame.importGameProperties(pokerGame);
+			}else if (pokerGame instanceof KuhnPoker) {
+				PokerGame copiedGame = new KuhnPoker();
+				return copiedGame.importGameProperties(pokerGame);
 			}
-		}else{
-		throw new Exception("The copyGame method in the class GameFactory does not cater for the GameType "+gameType);	
+		} else {
+			throw new Exception(
+					"The copyGame method in the class GameFactory does not cater for the GameType " + gameType);
 		}
 
 		return null;

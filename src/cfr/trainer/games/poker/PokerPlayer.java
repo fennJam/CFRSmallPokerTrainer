@@ -12,6 +12,10 @@ public class PokerPlayer {
 		this.hand = hand;
 	}
 
+	public PokerPlayer(PokerPlayer player) {
+		importPlayerProperties(player);
+	}
+	
 	public String getId() {
 		return id;
 	}
@@ -32,10 +36,10 @@ public class PokerPlayer {
 		this.stack = this.stack + chips;
 		return stack;
 	}
-	
+
 	public void takeFromStack(int chips) {
-		if(stack<chips){
-			throw new Error("Cannot take "+chips+" chips away than the only player has "+stack+".");
+		if (stack < chips) {
+			throw new Error("Cannot take " + chips + " chips away than the only player has " + stack + ".");
 		}
 		this.stack = this.stack - chips;
 	}
@@ -46,6 +50,12 @@ public class PokerPlayer {
 
 	public void setHand(Hand hand) {
 		this.hand = hand;
+	}
+
+	public void importPlayerProperties(PokerPlayer player) {
+		this.id = player.getId();
+		this.stack = player.getStack();
+		this.hand = player.getHand();
 	}
 
 }
