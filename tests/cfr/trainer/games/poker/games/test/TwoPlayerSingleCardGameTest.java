@@ -276,8 +276,8 @@ public class TwoPlayerSingleCardGameTest {
 		assertEquals(0, twoPlayerSingleCardGame.getPlayerToAct());
 		twoPlayerSingleCardGame.performAction(0, new RaiseAction(1));
 
-		assertEquals("[S, S, DEUCE]DEAL RAISE1", twoPlayerSingleCardGame.getNodeIdWithActionMemory());
-		assertEquals("[S, S, DEUCE]5 raisesAllowed : true", twoPlayerSingleCardGame.getNodeIdWithGameState());
+		assertEquals("[S, S, 2]D,1", twoPlayerSingleCardGame.getNodeIdWithActionMemory());
+		assertEquals("[S, S, 2]5 raisesAllowed : true", twoPlayerSingleCardGame.getNodeIdWithGameState());
 
 		assertEquals(1, twoPlayerSingleCardGame.getPlayerToAct());
 	}

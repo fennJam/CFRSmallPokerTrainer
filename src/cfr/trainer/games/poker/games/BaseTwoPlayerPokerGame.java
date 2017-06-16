@@ -290,9 +290,12 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	private String getActionsTakenString() {
 		String actionString = "";
 		for (Action action : actionsTaken) {
-			actionString += action.toString() + " ";
+			actionString += action.toString() + ",";
 		}
-		return actionString.trim();
+	    if (actionString != null && actionString.length() > 0 && actionString.charAt(actionString.length() - 1) == ',') {
+	    	actionString = actionString.substring(0, actionString.length() - 1);
+	    }
+		return actionString;
 	}
 
 	public String toString() {

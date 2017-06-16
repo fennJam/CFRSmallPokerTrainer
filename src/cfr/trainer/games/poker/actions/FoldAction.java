@@ -12,4 +12,7 @@ public final class FoldAction extends BasePokerAction {
 		super(PokerActionType.FOLD);
 	}
 
+	public String toString(){
+		return "F";
+	}
 }

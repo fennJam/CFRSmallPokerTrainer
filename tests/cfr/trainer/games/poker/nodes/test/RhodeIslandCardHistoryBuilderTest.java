@@ -69,7 +69,7 @@ public class RhodeIslandCardHistoryBuilderTest {
 		assertTrue(hand2OfSpadesHistoryBuilder.isRiverSuitedWithTurn());
 		assertEquals(1, hand2OfSpadesHistoryBuilder.getCardRanks().size());
 		assertEquals(CardHeight.DEUCE, hand2OfSpadesHistoryBuilder.getCardRanks().get(0));
-		assertEquals("[S, S, DEUCE]", hand2OfSpadesHistoryBuilder.toString());
+		assertEquals("[S, S, 2]", hand2OfSpadesHistoryBuilder.toString());
 	}
 
 	@Test
@@ -81,7 +81,7 @@ public class RhodeIslandCardHistoryBuilderTest {
 		assertEquals(2, hand2OfSpadesHistoryBuilder.getCardRanks().size());
 		assertEquals(CardHeight.DEUCE, hand2OfSpadesHistoryBuilder.getCardRanks().get(0));
 		assertEquals(CardHeight.THREE, hand2OfSpadesHistoryBuilder.getCardRanks().get(1));
-		assertEquals("[S, S, DEUCE,THREE]", hand2OfSpadesHistoryBuilder.toString());
+		assertEquals("[S, S, 2,3]", hand2OfSpadesHistoryBuilder.toString());
 	}
 
 	@Test
@@ -93,7 +93,7 @@ public class RhodeIslandCardHistoryBuilderTest {
 		assertEquals(2, cardHistoryBuilder.getCardRanks().size());
 		assertEquals(CardHeight.DEUCE, cardHistoryBuilder.getCardRanks().get(0));
 		assertEquals(CardHeight.THREE, cardHistoryBuilder.getCardRanks().get(1));
-		assertEquals("[O, S, DEUCE,THREE]", cardHistoryBuilder.toString());
+		assertEquals("[O, S, 2,3]", cardHistoryBuilder.toString());
 	}
 
 	@Test
@@ -106,7 +106,7 @@ public class RhodeIslandCardHistoryBuilderTest {
 		assertEquals(CardHeight.DEUCE, cardHistoryBuilder.getCardRanks().get(0));
 		assertEquals(CardHeight.THREE, cardHistoryBuilder.getCardRanks().get(1));
 		assertEquals(CardHeight.FOUR, cardHistoryBuilder.getCardRanks().get(2));
-		assertEquals("[S, S, DEUCE,THREE,FOUR]", cardHistoryBuilder.toString());
+		assertEquals("[S, S, 2,3,4]", cardHistoryBuilder.toString());
 	}
 
 	@Test
@@ -119,7 +119,7 @@ public class RhodeIslandCardHistoryBuilderTest {
 		assertEquals(CardHeight.DEUCE, cardHistoryBuilder.getCardRanks().get(0));
 		assertEquals(CardHeight.THREE, cardHistoryBuilder.getCardRanks().get(1));
 		assertEquals(CardHeight.FOUR, cardHistoryBuilder.getCardRanks().get(2));
-		assertEquals("[O, S, DEUCE,THREE,FOUR]", cardHistoryBuilder.toString());
+		assertEquals("[O, S, 2,3,4]", cardHistoryBuilder.toString());
 	}
 
 	@Test
@@ -132,7 +132,7 @@ public class RhodeIslandCardHistoryBuilderTest {
 		assertEquals(CardHeight.DEUCE, cardHistoryBuilder.getCardRanks().get(0));
 		assertEquals(CardHeight.THREE, cardHistoryBuilder.getCardRanks().get(1));
 		assertEquals(CardHeight.FOUR, cardHistoryBuilder.getCardRanks().get(2));
-		assertEquals("[S, O, DEUCE,THREE,FOUR]", cardHistoryBuilder.toString());
+		assertEquals("[S, O, 2,3,4]", cardHistoryBuilder.toString());
 	}
 
 	@Test
@@ -145,6 +145,6 @@ public class RhodeIslandCardHistoryBuilderTest {
 		assertEquals(CardHeight.DEUCE, cardHistoryBuilder.getCardRanks().get(0));
 		assertEquals(CardHeight.FOUR, cardHistoryBuilder.getCardRanks().get(1));
 		assertEquals(CardHeight.THREE, cardHistoryBuilder.getCardRanks().get(2));
-		assertEquals("[O, O, DEUCE,FOUR,THREE]", cardHistoryBuilder.toString());
+		assertEquals("[O, O, 2,4,3]", cardHistoryBuilder.toString());
 	}
 }

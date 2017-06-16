@@ -12,4 +12,7 @@ public class CallAction extends BasePokerAction {
 		super(PokerActionType.CALL);
 	}
 
+	public String toString(){
+		return "C";
+	}
 }

@@ -12,4 +12,7 @@ public final class DealAction extends BasePokerAction {
 		super(PokerActionType.DEAL);
 	}
 
+	public String toString(){
+		return "D";
+	}
 }

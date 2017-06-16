@@ -64,7 +64,7 @@ public class TwoPlayerRhodeIslandGameTest {
 		assertTrue(TwoPlayerRhodeIslandGame.getHands().get(0) instanceof Hand);
 		assertTrue(TwoPlayerRhodeIslandGame.getHands().get(1) instanceof Hand);
 
-		 assertEquals("[S, S, ACE]DEAL",TwoPlayerRhodeIslandGame.getNodeIdWithActionMemory());
+		 assertEquals("[S, S, A]D",TwoPlayerRhodeIslandGame.getNodeIdWithActionMemory());
 		 
 		assertEquals(2, TwoPlayerRhodeIslandGame.getPlayers().length);
 		assertEquals(Integer.valueOf(0), TwoPlayerRhodeIslandGame.getPlayers()[0]);
@@ -285,8 +285,8 @@ public class TwoPlayerRhodeIslandGameTest {
 		assertEquals(0, TwoPlayerRhodeIslandGame.getPlayerToAct());
 		TwoPlayerRhodeIslandGame.performAction(0, new RaiseAction(1));
 
-		assertEquals("[S, S, DEUCE]DEAL RAISE1", TwoPlayerRhodeIslandGame.getNodeIdWithActionMemory());
-		assertEquals("[S, S, DEUCE]5 raisesAllowed : true", TwoPlayerRhodeIslandGame.getNodeIdWithGameState());
+		assertEquals("[S, S, 2]D,1", TwoPlayerRhodeIslandGame.getNodeIdWithActionMemory());
+		assertEquals("[S, S, 2]5 raisesAllowed : true", TwoPlayerRhodeIslandGame.getNodeIdWithGameState());
 
 		assertEquals(1, TwoPlayerRhodeIslandGame.getPlayerToAct());
 	}

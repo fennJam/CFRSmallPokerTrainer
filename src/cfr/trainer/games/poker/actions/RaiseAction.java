@@ -13,7 +13,7 @@ public class RaiseAction extends BasePokerAction {
 	}
 	
 	public String toString() {
-		return actionType.toString() + raise;
+		return String.valueOf(raise);
 	}
 
 }
