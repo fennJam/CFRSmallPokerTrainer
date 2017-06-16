@@ -38,7 +38,7 @@ public class CFRPlusTrainer {
 			for (List<Integer> validCombo : validChanceCombinations) {
 				combo++;
 				System.out.println("Combination :"+combo );
-				Game game = GameFactory.setUpGame(gameDescription,3);
+				Game game = GameFactory.setUpGame(gameDescription,2);
 				game.startGame();
 				game.setValidChanceCombinations(validCombo);
 				util += cfrPlus(game, 1, 1, 0);
@@ -55,6 +55,9 @@ public class CFRPlusTrainer {
 
 		if (game.isAtTerminalNode()) {
 			return game.getPayOffs().get(game.getPlayerToAct());
+		}
+		if (game.isAtChanceNode()) {
+			game.performChanceAction();
 		}
 
 		// Get Node
