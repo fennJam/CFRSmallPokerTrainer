@@ -57,7 +57,7 @@ public class CardHistoryBuilder {
 	 * Returns a string representation of the card history
 	 */
 	public String toString() {
-		String str = "[" + (playerSuitedWithTurn ? "S" : "O") + ", " + (riverSuitedWithTurn ? "S" : "O") + ", ";
+		String str = "[" + (playerSuitedWithTurn ? "S" : "O") + "," + (riverSuitedWithTurn ? "S" : "O") + ",";
 		for (int i = 0; i < cardRanks.size() - 1; i++)
 			str += cardRanks.get(i).toString() + ",";
 
