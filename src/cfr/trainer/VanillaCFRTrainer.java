@@ -34,7 +34,7 @@ public class VanillaCFRTrainer {
 			int chanceCombo = 0;
 			for (List<Integer> chanceCombination : validChanceCombinations) {
 				chanceCombo++;
-				System.out.println("Chance Combo:"+chanceCombo);
+//				System.out.println("Chance Combo:"+chanceCombo);
 				Game game = GameFactory.setUpGame(gameType, 2);
 				game.setValidChanceCombinations(chanceCombination);
 				game.startGame();
