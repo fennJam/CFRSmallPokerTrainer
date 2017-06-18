@@ -35,10 +35,7 @@ public class CFRPlusTrainer {
 		Game gameStructure = GameFactory.setUpGame(gameDescription, 2);
 		List<List<Integer>> validChanceCombinations = gameStructure.getListOfValidChanceCombinations();
 		for (int i = 0; i < iterations; i++) {
-			int combo = 0;
 			for (List<Integer> validCombo : validChanceCombinations) {
-				combo++;
-				// System.out.println("Combination :" + combo);
 				Game game = GameFactory.setUpGame(gameDescription, 2);
 				game.startGame();
 				game.setValidChanceCombinations(validCombo);
@@ -48,11 +45,10 @@ public class CFRPlusTrainer {
 		}
 		averageGameValue = util / (iterations * validChanceCombinations.size() * 2);
 		System.out.println("Average game value: " +averageGameValue+ "\n Nodes: " + regretMap.size());
-		writeStrategyMapToJSONFile(regretMap);
+		writeStrategyMapToJSONFile(getStrategyMap(),gameDescription);
 	}
 
 	private double cfrPlus(Game game, double p0, double p1,int playerToTrain, int iteration) throws Exception {
-		System.out.println("training player:" + playerToTrain);
 		if (game.isAtTerminalNode()) {
 			return game.getPayOffs().get(game.getPlayerToAct());
 		}
@@ -62,7 +58,6 @@ public class CFRPlusTrainer {
 
 		// Get Node
 		String nodeId = game.getNodeIdWithActionMemory();
-		// String nodeId = game.getNodeIdWithGameState();
 
 		double[] regretSums = regretMap.get(nodeId);
 		if (regretSums == null) {
@@ -92,8 +87,6 @@ public class CFRPlusTrainer {
 		if (playerToTrain == player) {
 			for (int a = 0; a < actionsAvailable; a++) {
 				double regret = util[a] - nodeUtil;
-//				double regretSum = regretSums[a] + (player == 0 ? p1 : p0) * regret;
-//				node.regretSum[a] = Math.max(regretSum, 0);
 				double weightedRegret = regret* iteration;
 				double regretSum = (regretSums[a] + (player == 0 ? p1 : p0) * weightedRegret);
 				regretSums[a] = Math.max(regretSum, 0);
@@ -110,11 +103,11 @@ public class CFRPlusTrainer {
 		return regretMap;
 	}
 
-	private void writeStrategyMapToJSONFile(Map nodeMap)
+	private void writeStrategyMapToJSONFile(Map nodeMap,GameDescription gameDescription)
 			throws JsonGenerationException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writerWithDefaultPrettyPrinter()
-				.writeValue(new File("C:\\Users\\James\\Desktop\\StrategyMaps\\user.json"), nodeMap);
+				.writeValue(new File("C:\\Users\\James\\Desktop\\StrategyMaps\\CFRPlus+"+gameDescription+".json"), nodeMap);
 	}
 
 	private double[] calculateStrategy(double[] regretSum) {
