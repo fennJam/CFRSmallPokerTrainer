@@ -1,9 +1,8 @@
 package cfr.trainer;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
+import org.eclipse.collections.impl.map.mutable.UnifiedMap;
 
 import java.io.IOException;
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -18,7 +17,7 @@ import cfr.trainer.node.NodeImpl;
 
 public class MonteCarloCFRTrainer {
 
-	public Map<String, NodeImpl> nodeMap = new HashMap<String, NodeImpl>();
+	public Map<String, NodeImpl> nodeMap = new UnifiedMap<String, NodeImpl>();
 	double util = 0;
 	int iterations = 0;
 	int nodeCount = 0;
@@ -96,7 +95,7 @@ public class MonteCarloCFRTrainer {
 		return nodeMap;
 	}
 
-	private void writeStrategyMapToJSONFile(Map nodeMap)
+	private void writeStrategyMapToJSONFile(Map<String, NodeImpl> nodeMap)
 			throws JsonGenerationException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writerWithDefaultPrettyPrinter()

@@ -6,7 +6,6 @@ import java.util.Map;
 import cfr.trainer.action.Action;
 import cfr.trainer.games.Game;
 import cfr.trainer.games.poker.*;
-import cfr.trainer.games.poker.actions.PokerAction;
 import cfr.trainer.games.poker.decks.Deck;
 
 public interface PokerGame extends Game {

@@ -31,7 +31,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	Deck deck;
 
 	BaseTwoPlayerPokerGame(BettingLimit bettingLimit, int raisesPerBettingRound) {
-		int stack = 20;
+		int stack = 10;
 		players.put(0, new PokerPlayer("0", stack, null));
 		players.put(1, new PokerPlayer("0", stack, null));
 		board = null;

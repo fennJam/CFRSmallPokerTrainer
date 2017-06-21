@@ -1,7 +1,6 @@
 package cfr.trainer.games;
 
 import cfr.trainer.games.poker.BettingLimit;
-import cfr.trainer.games.poker.PokerGameType;
 import cfr.trainer.games.poker.decks.RoyalDeckShuffled;
 import cfr.trainer.games.poker.games.*;
 

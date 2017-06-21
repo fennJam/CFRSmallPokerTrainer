@@ -31,9 +31,9 @@ public class VanillaCFRTrainer {
 		Game gameStructure = GameFactory.setUpGame(gameType, 3);
 		List<List<Integer>> validChanceCombinations = gameStructure.getListOfValidChanceCombinations();
 		for (int i = 0; i < iterations; i++) {
-			int chanceCombo = 0;
+//			int chanceCombo = 0;
 			for (List<Integer> chanceCombination : validChanceCombinations) {
-				chanceCombo++;
+//				chanceCombo++;
 //				System.out.println("Chance Combo:"+chanceCombo);
 				Game game = GameFactory.setUpGame(gameType, 2);
 				game.setValidChanceCombinations(chanceCombination);
@@ -102,7 +102,7 @@ public class VanillaCFRTrainer {
 		return nodeMap;
 	}
 
-	private void writeStrategyMapToJSONFile(Map nodeMap)
+	private void writeStrategyMapToJSONFile(Map<String, Node> nodeMap)
 			throws JsonGenerationException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writerWithDefaultPrettyPrinter()

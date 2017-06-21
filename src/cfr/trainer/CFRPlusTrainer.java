@@ -2,10 +2,12 @@ package cfr.trainer;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -16,7 +18,6 @@ import cfr.trainer.games.GameDescription;
 import cfr.trainer.games.GameFactory;
 import cfr.trainer.node.InfoSetFactory;
 import cfr.trainer.node.Node;
-import cfr.trainer.node.NodeImpl;
 
 public class CFRPlusTrainer {
 
@@ -32,15 +33,20 @@ public class CFRPlusTrainer {
 
 	public void train(GameDescription gameDescription, int iterations) throws Exception {
 
-		Game gameStructure = GameFactory.setUpGame(gameDescription, 2);
+		Game gameStructure = GameFactory.setUpGame(gameDescription, 3);
 		List<List<Integer>> validChanceCombinations = gameStructure.getListOfValidChanceCombinations();
+		long startTime = System.currentTimeMillis();
 		for (int i = 0; i < iterations; i++) {
+			int comboSize = validChanceCombinations.size();
+			int combo=0;
 			for (List<Integer> validCombo : validChanceCombinations) {
+				combo++;
+				printProgress(startTime, comboSize, combo);
 				Game game = GameFactory.setUpGame(gameDescription, 2);
 				game.startGame();
 				game.setValidChanceCombinations(validCombo);
-				util += cfrPlus(game, 1, 1,0, i);
-				util += cfrPlus(game, 1, 1,1, i);
+				util += cfrPlus(game, 1, 1, i);
+//				util += cfrPlus(game, 1, 1,1, i);
 			}
 		}
 		averageGameValue = util / (iterations * validChanceCombinations.size() * 2);
@@ -48,7 +54,7 @@ public class CFRPlusTrainer {
 		writeStrategyMapToJSONFile(getStrategyMap(),gameDescription);
 	}
 
-	private double cfrPlus(Game game, double p0, double p1,int playerToTrain, int iteration) throws Exception {
+	private double cfrPlus(Game game, double p0, double p1, int iteration) throws Exception {
 		if (game.isAtTerminalNode()) {
 			return game.getPayOffs().get(game.getPlayerToAct());
 		}
@@ -77,21 +83,21 @@ public class CFRPlusTrainer {
 			Game copyOfGame = GameFactory.copyGame(game);
 			copyOfGame.performAction(player, game.getPossibleActions().get(action));
 
-			util[action] = player == 0 ? -cfrPlus(copyOfGame, p0 * strategy[action], p1,playerToTrain, iteration)
-					: -cfrPlus(copyOfGame, p0, p1 * strategy[action],playerToTrain, iteration);
+			util[action] = player == 0 ? -cfrPlus(copyOfGame, p0 * strategy[action], p1, iteration)
+					: -cfrPlus(copyOfGame, p0, p1 * strategy[action], iteration);
 
 			nodeUtil += strategy[action] * util[action];
 		}
 
 		// compute cfr
-		if (playerToTrain == player) {
+//		if (playerToTrain == player) {
 			for (int a = 0; a < actionsAvailable; a++) {
 				double regret = util[a] - nodeUtil;
 				double weightedRegret = regret* iteration;
 				double regretSum = (regretSums[a] + (player == 0 ? p1 : p0) * weightedRegret);
 				regretSums[a] = Math.max(regretSum, 0);
 			}
-		}
+//		}
 		return nodeUtil;
 	}
 
@@ -103,11 +109,11 @@ public class CFRPlusTrainer {
 		return regretMap;
 	}
 
-	private void writeStrategyMapToJSONFile(Map nodeMap,GameDescription gameDescription)
+	private void writeStrategyMapToJSONFile(Map<String, double[]> regretMap,GameDescription gameDescription)
 			throws JsonGenerationException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writerWithDefaultPrettyPrinter()
-				.writeValue(new File("C:\\Users\\James\\Desktop\\StrategyMaps\\CFRPlus+"+gameDescription+".json"), nodeMap);
+				.writeValue(new File("C:\\Users\\James\\Desktop\\StrategyMaps\\CFRPlus+"+gameDescription+".json"), regretMap);
 	}
 
 	private double[] calculateStrategy(double[] regretSum) {
@@ -134,5 +140,31 @@ public class CFRPlusTrainer {
 			strategyMap.put(entry.getKey(), calculateStrategy(entry.getValue()));
 		}
 		return strategyMap;
+	}
+	
+	
+	private static void printProgress(long startTime, long total, long current) {
+	    long eta = current == 0 ? 0 : 
+	        (total - current) * (System.currentTimeMillis() - startTime) / current;
+
+	    String etaHms = current == 0 ? "N/A" : 
+	            String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(eta),
+	                    TimeUnit.MILLISECONDS.toMinutes(eta) % TimeUnit.HOURS.toMinutes(1),
+	                    TimeUnit.MILLISECONDS.toSeconds(eta) % TimeUnit.MINUTES.toSeconds(1));
+
+	    StringBuilder string = new StringBuilder(140);   
+	    int percent = (int) (current * 100 / total);
+	    string
+	        .append('\r')
+	        .append(String.join("", Collections.nCopies(percent == 0 ? 2 : 2 - (int) (Math.log10(percent)), " ")))
+	        .append(String.format(" %d%% [", percent))
+	        .append(String.join("", Collections.nCopies(percent, "=")))
+	        .append('>')
+	        .append(String.join("", Collections.nCopies(100 - percent, " ")))
+	        .append(']')
+	        .append(String.join("", Collections.nCopies((int) (Math.log10(total)) - (int) (Math.log10(current)), " ")))
+	        .append(String.format(" %d/%d, ETA: %s", current, total, etaHms));
+
+	    System.out.print(string);
 	}
 }

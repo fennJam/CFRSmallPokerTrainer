@@ -3,8 +3,6 @@ package cfr.trainer.tests;
 import static org.junit.Assert.*;
 
 import java.util.Map;
-
-import org.junit.Ignore;
 import org.junit.Test;
 
 import cfr.trainer.CFRPlusTrainer;
@@ -17,11 +15,11 @@ import cfr.trainer.node.NodeImpl;
 
 public class PokerTrainerTest {
 	
-	
+	static final int ITERATIONS = 1000000;
 	@Test
 	public void monteCarloCFRTrainer_test() throws Exception {
 		MonteCarloCFRTrainer monteCarloCFRTrainer = new MonteCarloCFRTrainer();
-		monteCarloCFRTrainer.train(GameDescription.KUHN_POKER,1000000);
+		monteCarloCFRTrainer.train(GameDescription.KUHN_POKER,ITERATIONS*6);
 
 		// Comments taken from wikipdeia page on Kuhn Poker
 		// https://en.wikipedia.org/wiki/Kuhn_poker
@@ -98,7 +96,7 @@ public class PokerTrainerTest {
 	@Test
 	public void vannillaCFRTrainer_test() throws Exception {
 		VanillaCFRTrainer vanillaCFRTrainer = new VanillaCFRTrainer();
-		vanillaCFRTrainer.train(GameDescription.KUHN_POKER,1000000);
+		vanillaCFRTrainer.train(GameDescription.KUHN_POKER,ITERATIONS);
 
 		// Comments taken from wikipdeia page on Kuhn Poker
 		// https://en.wikipedia.org/wiki/Kuhn_poker
@@ -175,7 +173,7 @@ public class PokerTrainerTest {
 	@Test
 	public void CFRPlusTrainer_test() throws Exception {
 		CFRPlusTrainer cfrPlusTrainer = new CFRPlusTrainer();							
-		cfrPlusTrainer.train(GameDescription.KUHN_POKER,100000);
+		cfrPlusTrainer.train(GameDescription.KUHN_POKER,ITERATIONS);
 
 		// Comments taken from wikipdeia page on Kuhn Poker
 		// https://en.wikipedia.org/wiki/Kuhn_poker
