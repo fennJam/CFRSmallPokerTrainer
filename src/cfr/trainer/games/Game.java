@@ -32,6 +32,8 @@ public interface Game {
 	GameType getGameType();
 
 	List<Action> getPossibleActions();
+
+	Action[] constructActionArray() throws Exception;
 	
 	
 }

@@ -17,11 +17,14 @@ import cfr.trainer.node.NodeImpl;
 
 public class PokerTrainerTest {
 	
+	static final int ITERATIONS = 		1000000;
+	static final int PLUS_ITERATIONS = 	1000000;
+	
 	
 	@Test
 	public void monteCarloCFRTrainer_test() throws Exception {
 		MonteCarloCFRTrainer monteCarloCFRTrainer = new MonteCarloCFRTrainer();
-		monteCarloCFRTrainer.train(GameDescription.KUHN_POKER,1000000);
+		monteCarloCFRTrainer.train(GameDescription.KUHN_POKER,ITERATIONS);
 
 		// Comments taken from wikipdeia page on Kuhn Poker
 		// https://en.wikipedia.org/wiki/Kuhn_poker
@@ -64,8 +67,10 @@ public class PokerTrainerTest {
 		// a Jack.
 		double alpha = jackDeal.getAverageStrategy()[RAISE_INDEX];
 
+		System.out.println("Alpha ; "+alpha);
+		
 		assertTrue(alpha > 0);
-		assertTrue(alpha < 3.35);
+		assertTrue(alpha < 0.335);
 		// Then,when having a King,he should bet with the probability of
 		// 3*alpha
 		assertEquals(alpha * 3,kingDeal.getAverageStrategy()[RAISE_INDEX],0.01);
@@ -98,7 +103,7 @@ public class PokerTrainerTest {
 	@Test
 	public void vannillaCFRTrainer_test() throws Exception {
 		VanillaCFRTrainer vanillaCFRTrainer = new VanillaCFRTrainer();
-		vanillaCFRTrainer.train(GameDescription.KUHN_POKER,1000000);
+		vanillaCFRTrainer.train(GameDescription.KUHN_POKER,ITERATIONS);
 
 		// Comments taken from wikipdeia page on Kuhn Poker
 		// https://en.wikipedia.org/wiki/Kuhn_poker
@@ -141,8 +146,10 @@ public class PokerTrainerTest {
 		// a Jack.
 		double alpha = jackDeal.getAverageStrategy()[RAISE_INDEX];
 
+		System.out.println("Alpha ; "+alpha);
+		
 		assertTrue(alpha > 0);
-		assertTrue(alpha < 3.35);
+		assertTrue(alpha < .335);
 		// Then,when having a King,he should bet with the probability of
 		// 3*alpha
 		assertEquals(alpha * 3,kingDeal.getAverageStrategy()[RAISE_INDEX],0.01);
@@ -175,7 +182,7 @@ public class PokerTrainerTest {
 	@Test
 	public void CFRPlusTrainer_test() throws Exception {
 		CFRPlusTrainer cfrPlusTrainer = new CFRPlusTrainer();							
-		cfrPlusTrainer.train(GameDescription.KUHN_POKER,100000);
+		cfrPlusTrainer.train(GameDescription.KUHN_POKER,PLUS_ITERATIONS);
 
 		// Comments taken from wikipdeia page on Kuhn Poker
 		// https://en.wikipedia.org/wiki/Kuhn_poker
@@ -188,6 +195,7 @@ public class PokerTrainerTest {
 		// pure-strategy equilibrium.
 
 		double avgGameValue = cfrPlusTrainer.getAverageGameValue();
+//		System.out.println("expected GameValue = "+cfrPlusTrainer.getCurrentExpectedValue());
 		assertEquals(-0.05555,avgGameValue,0.003);
 
 		Map<String, double[]> strategyMap = cfrPlusTrainer.getStrategyMap();
@@ -219,10 +227,13 @@ public class PokerTrainerTest {
 		// a Jack.
 		double alpha = jackDeal[RAISE_INDEX];
 
+		System.out.println("Alpha ; "+alpha);
+		
 		assertTrue(alpha > 0);
-		assertTrue(alpha < 3.35);
+		assertTrue(alpha < 0.335);
 		// Then,when having a King,he should bet with the probability of
 		// 3*alpha
+
 		assertEquals(alpha * 3,kingDeal[RAISE_INDEX],0.01);
 		// he should always check when having a Queen,
 		assertEquals(.99,queenDeal[CALL_INDEX],0.01);

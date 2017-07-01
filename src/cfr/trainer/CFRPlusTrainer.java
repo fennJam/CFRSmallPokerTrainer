@@ -11,6 +11,7 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import cfr.trainer.action.Action;
 import cfr.trainer.games.Game;
 import cfr.trainer.games.GameDescription;
 import cfr.trainer.games.GameFactory;
@@ -52,7 +53,7 @@ public class CFRPlusTrainer {
 	}
 
 	private double cfrPlus(Game game, double p0, double p1,int playerToTrain, int iteration) throws Exception {
-		System.out.println("training player:" + playerToTrain);
+//		System.out.println("training player:" + playerToTrain);
 		if (game.isAtTerminalNode()) {
 			return game.getPayOffs().get(game.getPlayerToAct());
 		}
@@ -66,8 +67,7 @@ public class CFRPlusTrainer {
 
 		double[] regretSums = regretMap.get(nodeId);
 		if (regretSums == null) {
-			Node node = InfoSetFactory.buildInformationSet(nodeId, game);
-			regretSums = new double[node.numOfActions()];
+			regretSums = new double[game.constructActionArray().length];
 			regretMap.put(nodeId, regretSums);
 		}
 		// recursively call cfr
@@ -78,9 +78,10 @@ public class CFRPlusTrainer {
 		double[] util = new double[actionsAvailable];
 		double nodeUtil = 0;
 
+		Action[] actionArray = game.constructActionArray();
 		for (int action = 0; action < actionsAvailable; action++) {
 			Game copyOfGame = GameFactory.copyGame(game);
-			copyOfGame.performAction(player, game.getPossibleActions().get(action));
+			copyOfGame.performAction(player, actionArray[action]);
 
 			util[action] = player == 0 ? -cfrPlus(copyOfGame, p0 * strategy[action], p1,playerToTrain, iteration)
 					: -cfrPlus(copyOfGame, p0, p1 * strategy[action],playerToTrain, iteration);

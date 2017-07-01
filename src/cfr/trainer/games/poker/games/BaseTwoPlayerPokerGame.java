@@ -13,6 +13,7 @@ import cfr.trainer.games.poker.*;
 import cfr.trainer.games.poker.actions.*;
 import cfr.trainer.games.poker.decks.Deck;
 import cfr.trainer.games.poker.nodes.CardHistoryBuilder;
+import cfr.trainer.games.poker.nodes.TerminalInfoSet;
 
 public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 
@@ -94,7 +95,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 			Integer winnings = pot.getPlayersContributionToPot(opponent);
 
 			Map<Integer, Integer> payOffs = new HashMap<Integer, Integer>();
-//			System.out.println("winnings:"+winnings);
+			// System.out.println("winnings:"+winnings);
 			payOffs.put(player, winnings);
 			payOffs.put(opponent, -winnings);
 
@@ -110,8 +111,8 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 		} else if (this.betRound != null && this.betRound.equals(BetRound.RIVER)
 				&& lastActionIsTerminalCallForTheBettingRound()) {
 			return true;
-		}else if(players.get(0).getStack()==0 &&players.get(1).getStack()==0){
-//			both players all in
+		} else if (players.get(0).getStack() == 0 && players.get(1).getStack() == 0) {
+			// both players all in
 			board.turnAllCards();
 			return true;
 		}
@@ -287,14 +288,51 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 		return false;
 	}
 
+	@Override
+	public Action[] constructActionArray() throws Exception {
+
+		if (!raisesAllowed()) {
+			Action[] terminalActions = { FoldAction.getInstance(), CallAction.getInstance() };
+			return terminalActions;
+		} else if (bettingLimit.equals(BettingLimit.NO_LIMIT)) {
+
+			List<Action> infoSetActionsList = new ArrayList<Action>();
+
+			int player = getPlayerToAct();
+			int opponent = player == 1 ? 0 : 1;
+			int playersPotContribution = getPot().getPlayersContributionToPot(player);
+			int opponentsPotContribution = getPot().getPlayersContributionToPot(opponent);
+
+			if (playersPotContribution < 0 || opponentsPotContribution < 0) {
+				throw new Error("Players contribution cannot be less than zero!");
+			}
+
+			int betToMatch = opponentsPotContribution - playersPotContribution;
+
+			if (getPlayer(player).getStack() > betToMatch) {
+				infoSetActionsList = getPossibleActions().subList(0, (getPlayer(player).getStack() - betToMatch) + 2);
+			} else {
+				infoSetActionsList = getPossibleActions().subList(0, 2);
+			}
+
+			PokerAction[] infoSetActionsArray = infoSetActionsList.toArray(new PokerAction[infoSetActionsList.size()]);
+			return infoSetActionsArray;
+		} else if (bettingLimit.equals(BettingLimit.LIMIT)) {
+			return possibleActions.toArray(new PokerAction[possibleActions.size()]);
+		} else {
+			throw new Exception("Betting limit : " + bettingLimit + " not recognised");
+		}
+	}
+
 	private String getActionsTakenString() {
 		String actionString = "";
 		for (Action action : actionsTaken) {
 			actionString += action.toString() + ",";
 		}
-	    if (actionString != null && actionString.length() > 0 && actionString.charAt(actionString.length() - 1) == ',') {
-	    	actionString = actionString.substring(0, actionString.length() - 1);
-	    }
+		if (actionString != null && actionString.length() > 0
+				&& actionString.charAt(actionString.length() - 1) == ',') {
+			actionString = actionString.substring(0, actionString.length() - 1);
+		}
 		return actionString;
 	}
 
