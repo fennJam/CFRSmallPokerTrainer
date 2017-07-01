@@ -286,7 +286,7 @@ public class TwoPlayerRhodeIslandGameTest {
 		TwoPlayerRhodeIslandGame.performAction(0, new RaiseAction(1));
 
 		assertEquals("[S, S, 2]D,1", TwoPlayerRhodeIslandGame.getNodeIdWithActionMemory());
-		assertEquals("[S, S, 2]5 raisesAllowed : true", TwoPlayerRhodeIslandGame.getNodeIdWithGameState());
+		assertEquals("[S, S, 2]5 raisesAllowed : true", TwoPlayerRhodeIslandGame.getNodeIdWithSummaryState());
 
 		assertEquals(1, TwoPlayerRhodeIslandGame.getPlayerToAct());
 	}

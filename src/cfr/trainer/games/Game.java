@@ -9,7 +9,7 @@ public interface Game {
 
 	String getNodeIdWithActionMemory();
 	
-	String getNodeIdWithGameState();
+	String getNodeIdWithSummaryState();
 
 	boolean isAtTerminalNode();
 

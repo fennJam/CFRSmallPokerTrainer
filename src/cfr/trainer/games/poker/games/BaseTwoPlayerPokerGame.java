@@ -264,7 +264,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	}
 
 	@Override
-	public String getNodeIdWithGameState() {
+	public String getNodeIdWithSummaryState() {
 		String cardHistory = new CardHistoryBuilder(players.get(getPlayerToAct()).getHand(), board).toString();
 		return cardHistory + pot.getTotalPotSize() + " raisesAllowed : " + raisesAllowed();
 	}
