@@ -14,6 +14,7 @@ import cfr.trainer.games.poker.actions.CallAction;
 import cfr.trainer.games.poker.actions.DealAction;
 import cfr.trainer.games.poker.games.BaseTwoPlayerPokerGame;
 import cfr.trainer.games.poker.games.KuhnPoker;
+import cfr.trainer.games.poker.games.PokerGame;
 import cfr.trainer.games.poker.games.TwoPlayerRhodeIslandGame;
 import cfr.trainer.games.poker.games.TwoPlayerSingleCardGame;
 import cfr.trainer.games.poker.games.TwoPlayerTwoCardGame;
@@ -23,7 +24,7 @@ public class GameFactoryTest {
 	@Test
 	public final void KUHN_POKERTest() throws Exception {
 		Game kuhnGame = GameFactory.setUpGame(GameDescription.KUHN_POKER,3);
-		assertEquals(GameType.POKER, kuhnGame.getGameType());
+		assertTrue(kuhnGame instanceof PokerGame);
 		assertTrue(kuhnGame instanceof KuhnPoker);
 		BaseTwoPlayerPokerGame twoPlayerPokerGame = (BaseTwoPlayerPokerGame) kuhnGame;
 		assertEquals(0, twoPlayerPokerGame.getActionsTaken().size());
@@ -39,7 +40,7 @@ public class GameFactoryTest {
 			fail("copy action threw the error : " + e.toString());
 		}
 
-		assertEquals(GameType.POKER, copiedKuhnGame.getGameType());
+		assertTrue(copiedKuhnGame instanceof PokerGame);
 		// kuhn game is treated the same as any other two player single card
 		// game once it has started
 		assertTrue(copiedKuhnGame instanceof KuhnPoker);
@@ -52,7 +53,7 @@ public class GameFactoryTest {
 	public final void SINGLECARD_HEADSUP_LIMIT_POKERTest() throws Exception {
 
 		Game game = GameFactory.setUpGame(GameDescription.SINGLECARD_HEADSUP_LIMIT_POKER,3);
-		assertEquals(GameType.POKER, game.getGameType());
+		assertTrue(game instanceof PokerGame);
 		assertTrue(game instanceof TwoPlayerSingleCardGame);
 		BaseTwoPlayerPokerGame twoPlayerPokerGame = (BaseTwoPlayerPokerGame) game;
 		assertEquals(0, twoPlayerPokerGame.getActionsTaken().size());
@@ -70,7 +71,7 @@ public class GameFactoryTest {
 			fail("copy action threw the error : " + e.toString());
 		}
 
-		assertEquals(GameType.POKER, copiedGame.getGameType());
+		assertTrue(copiedGame instanceof PokerGame);
 		assertTrue(copiedGame instanceof TwoPlayerSingleCardGame);
 		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
 		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));
@@ -83,7 +84,7 @@ public class GameFactoryTest {
 	public final void SINGLECARD_HEADSUP_POT_LIMIT_POKERTest() throws Exception {
 
 		Game game = GameFactory.setUpGame(GameDescription.SINGLECARD_HEADSUP_POT_LIMIT_POKER,3);
-		assertEquals(GameType.POKER, game.getGameType());
+		assertTrue(game instanceof PokerGame);
 		assertTrue(game instanceof TwoPlayerSingleCardGame);
 		BaseTwoPlayerPokerGame twoPlayerPokerGame = (BaseTwoPlayerPokerGame) game;
 		assertEquals(0, twoPlayerPokerGame.getActionsTaken().size());
@@ -101,7 +102,7 @@ public class GameFactoryTest {
 			fail("copy action threw the error : " + e.toString());
 		}
 
-		assertEquals(GameType.POKER, copiedGame.getGameType());
+		assertTrue(copiedGame instanceof PokerGame);
 		assertTrue(copiedGame instanceof TwoPlayerSingleCardGame);
 		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
 		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));
@@ -112,7 +113,7 @@ public class GameFactoryTest {
 	@Test
 	public final void TWOCARD_HEADSUP_LIMIT_POKERTest() throws Exception {
 		Game game = GameFactory.setUpGame(GameDescription.TWOCARD_HEADSUP_LIMIT_POKER,3);
-		assertEquals(GameType.POKER, game.getGameType());
+		assertTrue(game instanceof PokerGame);
 		assertTrue(game instanceof TwoPlayerTwoCardGame);
 		BaseTwoPlayerPokerGame twoPlayerPokerGame = (BaseTwoPlayerPokerGame) game;
 		assertEquals(0, twoPlayerPokerGame.getActionsTaken().size());
@@ -130,7 +131,7 @@ public class GameFactoryTest {
 			fail("copy action threw the error : " + e.toString());
 		}
 
-		assertEquals(GameType.POKER, copiedGame.getGameType());
+		assertTrue(copiedGame instanceof PokerGame);
 		assertTrue(copiedGame instanceof TwoPlayerTwoCardGame);
 		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
 		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));
@@ -142,7 +143,7 @@ public class GameFactoryTest {
 	@Test
 	public final void TWOCARD_HEADSUP_POT_LIMIT_POKERTest() throws Exception {
 		Game game = GameFactory.setUpGame(GameDescription.TWOCARD_HEADSUP_POT_LIMIT_POKER,3);
-		assertEquals(GameType.POKER, game.getGameType());
+		assertTrue(game instanceof PokerGame);
 		assertTrue(game instanceof TwoPlayerTwoCardGame);
 		BaseTwoPlayerPokerGame twoPlayerPokerGame = (BaseTwoPlayerPokerGame) game;
 		assertEquals(0, twoPlayerPokerGame.getActionsTaken().size());
@@ -160,7 +161,7 @@ public class GameFactoryTest {
 			fail("copy action threw the error : " + e.toString());
 		}
 
-		assertEquals(GameType.POKER, copiedGame.getGameType());
+		assertTrue(copiedGame instanceof PokerGame);
 		assertTrue(copiedGame instanceof TwoPlayerTwoCardGame);
 		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
 		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));
@@ -172,7 +173,7 @@ public class GameFactoryTest {
 	public final void RHODE_ISLAND_HEADSUP_LIMIT_POKERTest() throws Exception {
 
 		Game game = GameFactory.setUpGame(GameDescription.RHODE_ISLAND_HEADSUP_LIMIT_POKER,3);
-		assertEquals(GameType.POKER, game.getGameType());
+		assertTrue(game instanceof PokerGame);
 		assertTrue(game instanceof TwoPlayerRhodeIslandGame);
 		BaseTwoPlayerPokerGame twoPlayerPokerGame = (BaseTwoPlayerPokerGame) game;
 		assertEquals(0, twoPlayerPokerGame.getActionsTaken().size());
@@ -190,7 +191,7 @@ public class GameFactoryTest {
 			fail("copy action threw the error : " + e.toString());
 		}
 
-		assertEquals(GameType.POKER, copiedGame.getGameType());
+		assertTrue(copiedGame instanceof PokerGame);
 		assertTrue(copiedGame instanceof TwoPlayerRhodeIslandGame);
 		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
 		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));
@@ -202,7 +203,7 @@ public class GameFactoryTest {
 	@Test
 	public final void RHODE_ISLAND_HEADSUP_POT_LIMIT_POKERTest() throws Exception {
 		Game game = GameFactory.setUpGame(GameDescription.RHODE_ISLAND_HEADSUP_POT_LIMIT_POKER,3);
-		assertEquals(GameType.POKER, game.getGameType());
+		assertTrue(game instanceof PokerGame);
 		assertTrue(game instanceof TwoPlayerRhodeIslandGame);
 		BaseTwoPlayerPokerGame twoPlayerPokerGame = (BaseTwoPlayerPokerGame) game;
 		assertEquals(0, twoPlayerPokerGame.getActionsTaken().size());
@@ -220,7 +221,7 @@ public class GameFactoryTest {
 			fail("copy action threw the error : " + e.toString());
 		}
 
-		assertEquals(GameType.POKER, copiedGame.getGameType());
+		assertTrue(copiedGame instanceof PokerGame);
 		assertTrue(copiedGame instanceof TwoPlayerRhodeIslandGame);
 		assertEquals(1, twoPlayerPokerGame.getActionsTaken().size());
 		assertEquals(DealAction.getInstance(), twoPlayerPokerGame.getActionsTaken().get(0));

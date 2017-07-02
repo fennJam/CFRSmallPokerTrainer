@@ -28,8 +28,6 @@ public interface Game {
 	boolean isAtChanceNode();
 	
 	boolean performChanceAction();
-	
-	GameType getGameType();
 
 	List<Action> getPossibleActions();
 

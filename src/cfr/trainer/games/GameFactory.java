@@ -32,8 +32,7 @@ public class GameFactory {
 	}
 
 	public static Game copyGame(Game game) throws Exception {
-		GameType gameType = game.getGameType();
-		if (gameType == GameType.POKER) {
+		if (game instanceof PokerGame) {
 
 			PokerGame pokerGame = (PokerGame) game;
 			if (pokerGame instanceof TwoPlayerSingleCardGame) {

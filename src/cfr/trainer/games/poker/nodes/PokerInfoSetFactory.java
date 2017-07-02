@@ -9,7 +9,7 @@ import cfr.trainer.node.NodeImpl;
 public class PokerInfoSetFactory {
 
 	public static NodeImpl buildInformationSet(String nodeId, Game game) {
-		if (game.getGameType() == GameType.POKER) {
+		if (game instanceof PokerGame) {
 			PokerGame pokerGame = (PokerGame) game;
 			if (!pokerGame.raisesAllowed()) {
 				return new TerminalInfoSet();

@@ -355,11 +355,6 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	}
 
 	@Override
-	public GameType getGameType() {
-		return gameType;
-	}
-
-	@Override
 	public Deck getDeck() {
 		return deck;
 	}

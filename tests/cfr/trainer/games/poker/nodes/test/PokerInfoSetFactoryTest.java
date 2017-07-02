@@ -35,7 +35,7 @@ public class PokerInfoSetFactoryTest {
 	@Test
 	public final void nodeFactoryReturnsTerminalNode_test() {
 		Mockito.when(mockedPokerGame.raisesAllowed()).thenReturn(false);
-		Mockito.when(mockedPokerGame.getGameType()).thenReturn(GameType.POKER);
+
 
 		Node infoSet = PokerInfoSetFactory.buildInformationSet("nodeID", mockedPokerGame);
 
@@ -47,7 +47,7 @@ public class PokerInfoSetFactoryTest {
 	public final void nodeFactoryReturnsLimitPokerInfoSet_test() {
 		Mockito.when(mockedPokerGame.raisesAllowed()).thenReturn(true);
 		Mockito.when(mockedPokerGame.getBettingLimit()).thenReturn(BettingLimit.LIMIT);
-		Mockito.when(mockedPokerGame.getGameType()).thenReturn(GameType.POKER);
+		
 
 		Node infoSet = PokerInfoSetFactory.buildInformationSet("nodeID", mockedPokerGame);
 
@@ -65,7 +65,6 @@ public class PokerInfoSetFactoryTest {
 			possibleActions.add(new RaiseAction(raise));
 		}
 		Mockito.when(mockedPokerGame.getPossibleActions()).thenReturn(possibleActions);
-		Mockito.when(mockedPokerGame.getGameType()).thenReturn(GameType.POKER);
 		Mockito.when(mockedPokerGame.raisesAllowed()).thenReturn(true);
 		Mockito.when(mockedPokerGame.getBettingLimit()).thenReturn(BettingLimit.POT_LIMIT);
 		Mockito.when(mockedPokerGame.getPot()).thenReturn(mockedPot);
@@ -90,7 +89,6 @@ public class PokerInfoSetFactoryTest {
 		}
 		Mockito.when(mockedPokerGame.getPossibleActions()).thenReturn(possibleActions);
 		
-		Mockito.when(mockedPokerGame.getGameType()).thenReturn(GameType.POKER);
 		Mockito.when(mockedPokerGame.raisesAllowed()).thenReturn(true);
 		Mockito.when(mockedPokerGame.getBettingLimit()).thenReturn(BettingLimit.NO_LIMIT);
 		Mockito.when(mockedPokerGame.getPlayerToAct()).thenReturn(one);
@@ -138,7 +136,6 @@ public class PokerInfoSetFactoryTest {
 		Mockito.when(mockedPokerGame.getPossibleActions()).thenReturn(possibleActions);
 		
 		
-		Mockito.when(mockedPokerGame.getGameType()).thenReturn(GameType.POKER);
 		Mockito.when(mockedPokerGame.raisesAllowed()).thenReturn(true);
 		Mockito.when(mockedPokerGame.getBettingLimit()).thenReturn(BettingLimit.NO_LIMIT);
 		Mockito.when(mockedPokerGame.getPlayerToAct()).thenReturn(one);
@@ -186,7 +183,6 @@ public class PokerInfoSetFactoryTest {
 		// possibleActions.add(new RaiseAction(raise));
 		// }
 
-		Mockito.when(mockedPokerGame.getGameType()).thenReturn(GameType.POKER);
 		Mockito.when(mockedPokerGame.raisesAllowed()).thenReturn(true);
 		Mockito.when(mockedPokerGame.getBettingLimit()).thenReturn(BettingLimit.NO_LIMIT);
 		Mockito.when(mockedPokerGame.getPlayerToAct()).thenReturn(one);
@@ -225,7 +221,6 @@ public class PokerInfoSetFactoryTest {
 			possibleActions.add(new RaiseAction(raise));
 		}
 
-		Mockito.when(mockedPokerGame.getGameType()).thenReturn(GameType.POKER);
 		Mockito.when(mockedPokerGame.raisesAllowed()).thenReturn(true);
 		Mockito.when(mockedPokerGame.getBettingLimit()).thenReturn(BettingLimit.NO_LIMIT);
 		Mockito.when(mockedPokerGame.getPlayerToAct()).thenReturn(one);

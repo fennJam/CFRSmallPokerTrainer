@@ -20,6 +20,7 @@ import cfr.trainer.games.poker.actions.FoldAction;
 import cfr.trainer.games.poker.actions.RaiseAction;
 import cfr.trainer.games.poker.decks.Deck;
 import cfr.trainer.games.poker.decks.RoyalDeckShuffled;
+import cfr.trainer.games.poker.games.PokerGame;
 import cfr.trainer.games.poker.games.TwoPlayerRoyalRhodeIslandGame;
 import cfr.trainer.node.InfoSetFactory;
 import cfr.trainer.node.Node;
@@ -41,7 +42,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		assertEquals(BetRound.PRETURN,twoPlayerRoyalRhodeIslandGame.getBettingRound());
 		assertNull(twoPlayerRoyalRhodeIslandGame.getBoard());
 		assertTrue(twoPlayerRoyalRhodeIslandGame.getDeck() instanceof RoyalDeckShuffled);
-		assertEquals(GameType.POKER ,twoPlayerRoyalRhodeIslandGame.getGameType());
+		assertTrue(twoPlayerRoyalRhodeIslandGame instanceof PokerGame);
 		assertEquals(2,twoPlayerRoyalRhodeIslandGame.getHands().size());
 		assertNull(twoPlayerRoyalRhodeIslandGame.getHands().get(0));
 		assertNull(twoPlayerRoyalRhodeIslandGame.getHands().get(1));
@@ -89,7 +90,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		
 		
 		assertTrue(twoPlayerRoyalRhodeIslandGame.getDeck() instanceof RoyalDeckShuffled);
-		assertEquals(GameType.POKER ,twoPlayerRoyalRhodeIslandGame.getGameType());
+		assertTrue(twoPlayerRoyalRhodeIslandGame instanceof PokerGame);
 //		Hands
 		assertEquals(2,twoPlayerRoyalRhodeIslandGame.getHands().size());
 		assertTrue(twoPlayerRoyalRhodeIslandGame.getHands().get(0) instanceof HandSingleCard);
@@ -102,7 +103,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		assertEquals(PokerGameType.RHODE_ISLAND,twoPlayerRoyalRhodeIslandGame.getPokerGameType());
 		assertEquals(116280,twoPlayerRoyalRhodeIslandGame.getListOfValidChanceCombinations().size());
 		
-		assertEquals("[S, S, A]D",twoPlayerRoyalRhodeIslandGame.getNodeIdWithActionMemory());
+		assertEquals("[S,S,A]D",twoPlayerRoyalRhodeIslandGame.getNodeIdWithActionMemory());
 		
 //		TODO handle null pointer thrown here
 //		assertEquals("",twoPlayerRoyalRhodeIslandGame.getNodeIdWithGameState());
@@ -162,7 +163,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		
 		
 		assertTrue(twoPlayerRoyalRhodeIslandGame.getDeck() instanceof RoyalDeckShuffled);
-		assertEquals(GameType.POKER ,twoPlayerRoyalRhodeIslandGame.getGameType());
+		assertTrue(twoPlayerRoyalRhodeIslandGame instanceof PokerGame);
 //		Hands
 		assertEquals(2,twoPlayerRoyalRhodeIslandGame.getHands().size());
 		assertTrue(twoPlayerRoyalRhodeIslandGame.getHands().get(0) instanceof HandSingleCard);
@@ -175,7 +176,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		assertEquals(PokerGameType.RHODE_ISLAND,twoPlayerRoyalRhodeIslandGame.getPokerGameType());
 		assertEquals(116280,twoPlayerRoyalRhodeIslandGame.getListOfValidChanceCombinations().size());
 		
-		assertEquals("[S, S, K]D,5",twoPlayerRoyalRhodeIslandGame.getNodeIdWithActionMemory());
+		assertEquals("[S,S,K]D,5",twoPlayerRoyalRhodeIslandGame.getNodeIdWithActionMemory());
 		
 //		TODO handle null pointer thrown here
 //		assertEquals("",twoPlayerRoyalRhodeIslandGame.getNodeIdWithGameState());
@@ -239,7 +240,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		
 		
 		assertTrue(twoPlayerRoyalRhodeIslandGame.getDeck() instanceof RoyalDeckShuffled);
-		assertEquals(GameType.POKER ,twoPlayerRoyalRhodeIslandGame.getGameType());
+		assertTrue(twoPlayerRoyalRhodeIslandGame instanceof PokerGame);
 //		Hands
 		assertEquals(2,twoPlayerRoyalRhodeIslandGame.getHands().size());
 		assertTrue(twoPlayerRoyalRhodeIslandGame.getHands().get(0) instanceof HandSingleCard);
@@ -252,7 +253,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		assertEquals(PokerGameType.RHODE_ISLAND,twoPlayerRoyalRhodeIslandGame.getPokerGameType());
 		assertEquals(116280,twoPlayerRoyalRhodeIslandGame.getListOfValidChanceCombinations().size());
 		
-		assertEquals("[S, S, A]D,5,13",twoPlayerRoyalRhodeIslandGame.getNodeIdWithActionMemory());
+		assertEquals("[S,S,A]D,5,13",twoPlayerRoyalRhodeIslandGame.getNodeIdWithActionMemory());
 		
 //		TODO handle null pointer thrown here
 //		assertEquals("",twoPlayerRoyalRhodeIslandGame.getNodeIdWithGameState());
@@ -326,7 +327,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		
 		
 		assertTrue(twoPlayerRoyalRhodeIslandGame.getDeck() instanceof RoyalDeckShuffled);
-		assertEquals(GameType.POKER ,twoPlayerRoyalRhodeIslandGame.getGameType());
+		assertTrue(twoPlayerRoyalRhodeIslandGame instanceof PokerGame);
 //		Hands
 		assertEquals(2,twoPlayerRoyalRhodeIslandGame.getHands().size());
 		assertTrue(twoPlayerRoyalRhodeIslandGame.getHands().get(0) instanceof HandSingleCard);
@@ -339,7 +340,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		assertEquals(PokerGameType.RHODE_ISLAND,twoPlayerRoyalRhodeIslandGame.getPokerGameType());
 		assertEquals(116280,twoPlayerRoyalRhodeIslandGame.getListOfValidChanceCombinations().size());
 		
-		assertEquals("[S, S, A]D,5,3",twoPlayerRoyalRhodeIslandGame.getNodeIdWithActionMemory());
+		assertEquals("[S,S,A]D,5,3",twoPlayerRoyalRhodeIslandGame.getNodeIdWithActionMemory());
 		
 //		TODO handle null pointer thrown here
 //		assertEquals("",twoPlayerRoyalRhodeIslandGame.getNodeIdWithGameState());
@@ -392,7 +393,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		
 		
 		assertTrue(twoPlayerRoyalRhodeIslandGameImport.getDeck() instanceof RoyalDeckShuffled);
-		assertEquals(GameType.POKER ,twoPlayerRoyalRhodeIslandGameImport.getGameType());
+		assertTrue(twoPlayerRoyalRhodeIslandGame instanceof PokerGame);
 //		Hands
 		assertEquals(2,twoPlayerRoyalRhodeIslandGameImport.getHands().size());
 		assertTrue(twoPlayerRoyalRhodeIslandGameImport.getHands().get(0) instanceof HandSingleCard);
@@ -405,7 +406,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		assertEquals(PokerGameType.RHODE_ISLAND,twoPlayerRoyalRhodeIslandGameImport.getPokerGameType());
 		assertEquals(116280,twoPlayerRoyalRhodeIslandGameImport.getListOfValidChanceCombinations().size());
 		
-		assertEquals("[S, S, A]D,5,3",twoPlayerRoyalRhodeIslandGameImport.getNodeIdWithActionMemory());
+		assertEquals("[S,S,A]D,5,3",twoPlayerRoyalRhodeIslandGameImport.getNodeIdWithActionMemory());
 		
 //		TODO handle null pointer thrown here
 //		assertEquals("",twoPlayerRoyalRhodeIslandGameImport.getNodeIdWithGameState());
@@ -478,7 +479,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		
 		
 		assertTrue(twoPlayerRoyalRhodeIslandGame.getDeck() instanceof RoyalDeckShuffled);
-		assertEquals(GameType.POKER ,twoPlayerRoyalRhodeIslandGame.getGameType());
+		assertTrue(twoPlayerRoyalRhodeIslandGame instanceof PokerGame);
 //		Hands
 		assertEquals(2,twoPlayerRoyalRhodeIslandGame.getHands().size());
 		assertTrue(twoPlayerRoyalRhodeIslandGame.getHands().get(0) instanceof HandSingleCard);
@@ -491,7 +492,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		assertEquals(PokerGameType.RHODE_ISLAND,twoPlayerRoyalRhodeIslandGame.getPokerGameType());
 		assertEquals(116280,twoPlayerRoyalRhodeIslandGame.getListOfValidChanceCombinations().size());
 		
-		assertEquals("[S, S, K]D,5,3,2",twoPlayerRoyalRhodeIslandGame.getNodeIdWithActionMemory());
+		assertEquals("[S,S,K]D,5,3,2",twoPlayerRoyalRhodeIslandGame.getNodeIdWithActionMemory());
 		
 //		TODO handle null pointer thrown here
 //		assertEquals("",twoPlayerRoyalRhodeIslandGame.getNodeIdWithGameState());
@@ -557,7 +558,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		assertEquals(2,twoPlayerRoyalRhodeIslandGame.getBoard().getCards().length);
 		
 		assertTrue(twoPlayerRoyalRhodeIslandGame.getDeck() instanceof RoyalDeckShuffled);
-		assertEquals(GameType.POKER ,twoPlayerRoyalRhodeIslandGame.getGameType());
+		assertTrue(twoPlayerRoyalRhodeIslandGame instanceof PokerGame);
 //		Hands
 		assertEquals(2,twoPlayerRoyalRhodeIslandGame.getHands().size());
 		assertTrue(twoPlayerRoyalRhodeIslandGame.getHands().get(0) instanceof HandSingleCard);
@@ -570,7 +571,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		assertEquals(PokerGameType.RHODE_ISLAND,twoPlayerRoyalRhodeIslandGame.getPokerGameType());
 		assertEquals(116280,twoPlayerRoyalRhodeIslandGame.getListOfValidChanceCombinations().size());
 		
-		assertEquals("[S, S, A,Q]D,5,3,C,D",twoPlayerRoyalRhodeIslandGame.getNodeIdWithActionMemory());
+		assertEquals("[S,S,A,Q]D,5,3,C,D",twoPlayerRoyalRhodeIslandGame.getNodeIdWithActionMemory());
 		
 //		TODO handle null pointer thrown here
 //		assertEquals("",twoPlayerRoyalRhodeIslandGame.getNodeIdWithGameState());
