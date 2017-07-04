@@ -21,7 +21,7 @@ public class KuhnPokerLite extends BaseTwoPlayerPokerLiteGame {
 	}
 
 	@Override
-	public int[] postBlinds() {
+	public int[] postBlinds() throws Exception {
 		bet(0, 1);
 		return bet(1, 1);
 	}

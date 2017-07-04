@@ -46,7 +46,7 @@ public class TwoPlayerTwoCardGameTest {
 	}
 
 	@Test
-	public final void startGameTest() {
+	public final void startGameTest() throws Exception {
 		PokerGame twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
 
 		twoPlayerTwoCardGameTest.startGame();
@@ -86,7 +86,7 @@ public class TwoPlayerTwoCardGameTest {
 	}
 
 	@Test
-	public final void importGameTest() {
+	public final void importGameTest() throws Exception {
 		PokerGame twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
 		PokerGame twoPlayerTwoCardGameTestToBeCopied = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
 		twoPlayerTwoCardGameTestToBeCopied.startGame();
@@ -161,7 +161,7 @@ public class TwoPlayerTwoCardGameTest {
 	}
 
 	@Test
-	public final void raisesAllowedTest() {
+	public final void raisesAllowedTest() throws Exception {
 		PokerGame twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
 
 		twoPlayerTwoCardGameTest.startGame();
@@ -197,7 +197,7 @@ public class TwoPlayerTwoCardGameTest {
 	}
 
 	@Test
-	public final void actionIsTerminalCallForTheBettingRoundTest() {
+	public final void actionIsTerminalCallForTheBettingRoundTest() throws Exception {
 		PokerGame twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
 
 		twoPlayerTwoCardGameTest.startGame();
@@ -252,7 +252,7 @@ public class TwoPlayerTwoCardGameTest {
 	}
 
 	@Test
-	public final void getPlayerToActTest() {
+	public final void getPlayerToActTest() throws Exception {
 		Game twoPlayerTwoCardGameTest = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
 		PokerGame pOKERGAMETwoPlayerTwoCardGameTest = (PokerGame)twoPlayerTwoCardGameTest;
 

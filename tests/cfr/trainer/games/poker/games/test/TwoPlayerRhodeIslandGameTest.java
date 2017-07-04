@@ -46,7 +46,7 @@ public class TwoPlayerRhodeIslandGameTest {
 	}
 
 	@Test
-	public final void startGameTest() {
+	public final void startGameTest() throws Exception {
 		PokerGame TwoPlayerRhodeIslandGame = new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT, 3);
 		TwoPlayerRhodeIslandGame.setDeck(new RoyalDeckShuffled().unShuffleDeck());
 		TwoPlayerRhodeIslandGame.startGame();
@@ -85,7 +85,7 @@ public class TwoPlayerRhodeIslandGameTest {
 	}
 
 	@Test
-	public final void importGameTest() {
+	public final void importGameTest() throws Exception {
 		PokerGame TwoPlayerRhodeIslandGame = new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT, 3);
 		PokerGame TwoPlayerRhodeIslandGameToBeCopied = new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT, 3);
 		TwoPlayerRhodeIslandGameToBeCopied.startGame();
@@ -159,7 +159,7 @@ public class TwoPlayerRhodeIslandGameTest {
 	}
 
 	@Test
-	public final void raisesAllowedTest() {
+	public final void raisesAllowedTest() throws Exception {
 		PokerGame TwoPlayerRhodeIslandGame = new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT, 3);
 
 		TwoPlayerRhodeIslandGame.startGame();
@@ -195,7 +195,7 @@ public class TwoPlayerRhodeIslandGameTest {
 	}
 
 	@Test
-	public final void actionIsTerminalCallForTheBettingRoundTest() {
+	public final void actionIsTerminalCallForTheBettingRoundTest() throws Exception {
 		PokerGame TwoPlayerRhodeIslandGame = new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT, 3);
 
 		TwoPlayerRhodeIslandGame.startGame();
@@ -256,7 +256,7 @@ public class TwoPlayerRhodeIslandGameTest {
 	}
 
 	@Test
-	public final void getPlayerToActTest() {
+	public final void getPlayerToActTest() throws Exception {
 		PokerGame TwoPlayerRhodeIslandGame = new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT, 3);
 
 		TwoPlayerRhodeIslandGame.startGame();

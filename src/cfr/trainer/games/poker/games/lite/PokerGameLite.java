@@ -12,9 +12,9 @@ public interface PokerGameLite extends Game {
 	
 	int[] dealCards();
 
-	int[] postBlinds();
+	int[] postBlinds() throws Exception;
 
-	int[] bet(int player, int bet);
+	int[] bet(int player, int bet) throws Exception;
 
 	int[] getPot();
 
