@@ -21,16 +21,16 @@ public class KuhnPokerLiteTest {
 	public void getListOfGamesWithAllPossibleChanceNodesTest() {
 		KuhnPokerLite gameTemplate = new KuhnPokerLite();
 
-		List<List<Integer>> chanceComboList = gameTemplate.getListOfValidChanceCombinations();
+		int[][] chanceComboList = gameTemplate.getListOfValidChanceCombinations();
 
-		assertEquals(6, chanceComboList.size());
+		assertEquals(6, chanceComboList.length);
 
-		KuhnPokerLite game0 = new KuhnPokerLite().setValidChanceCombinations(chanceComboList.get(0));
-		KuhnPokerLite game1 = new KuhnPokerLite().setValidChanceCombinations(chanceComboList.get(1));
-		KuhnPokerLite game2 = new KuhnPokerLite().setValidChanceCombinations(chanceComboList.get(2));
-		KuhnPokerLite game3 = new KuhnPokerLite().setValidChanceCombinations(chanceComboList.get(3));
-		KuhnPokerLite game4 = new KuhnPokerLite().setValidChanceCombinations(chanceComboList.get(4));
-		KuhnPokerLite game5 = new KuhnPokerLite().setValidChanceCombinations(chanceComboList.get(5));
+		KuhnPokerLite game0 = new KuhnPokerLite().setValidChanceCombinations(chanceComboList[0]);
+		KuhnPokerLite game1 = new KuhnPokerLite().setValidChanceCombinations(chanceComboList[1]);
+		KuhnPokerLite game2 = new KuhnPokerLite().setValidChanceCombinations(chanceComboList[2]);
+		KuhnPokerLite game3 = new KuhnPokerLite().setValidChanceCombinations(chanceComboList[3]);
+		KuhnPokerLite game4 = new KuhnPokerLite().setValidChanceCombinations(chanceComboList[4]);
+		KuhnPokerLite game5 = new KuhnPokerLite().setValidChanceCombinations(chanceComboList[5]);
 
 		assertEquals(9, game0.getHands()[0] % 13);
 		assertEquals(10, game0.getHands()[1] % 13);
@@ -56,15 +56,15 @@ public class KuhnPokerLiteTest {
 	public void afterDealTest() throws Exception {
 		KuhnPokerLite gameTemplate = new KuhnPokerLite();
 
-		List<List<Integer>> chanceComboList = gameTemplate.getListOfValidChanceCombinations();
+		int[][] chanceComboList = gameTemplate.getListOfValidChanceCombinations();
 
-		assertEquals(6, chanceComboList.size());
+		assertEquals(6, chanceComboList.length);
 
 		KuhnPokerLite kuhnPokerLitegame = new KuhnPokerLite();
 
 		kuhnPokerLitegame.startGame();
 
-		kuhnPokerLitegame.setValidChanceCombinations(chanceComboList.get(0));
+		kuhnPokerLitegame.setValidChanceCombinations(chanceComboList[0]);
 
 		assertEquals(0, kuhnPokerLitegame.getPlayerToAct());
 
@@ -113,15 +113,15 @@ public class KuhnPokerLiteTest {
 	public void afterCallTest() throws Exception {
 		KuhnPokerLite gameTemplate = new KuhnPokerLite();
 
-		List<List<Integer>> chanceComboList = gameTemplate.getListOfValidChanceCombinations();
+		int[][]  chanceComboList = gameTemplate.getListOfValidChanceCombinations();
 
-		assertEquals(6, chanceComboList.size());
+		assertEquals(6, chanceComboList.length);
 
 		KuhnPokerLite kuhnPokerLitegame = new KuhnPokerLite();
 
 		kuhnPokerLitegame.startGame();
 
-		kuhnPokerLitegame.setValidChanceCombinations(chanceComboList.get(0));
+		kuhnPokerLitegame.setValidChanceCombinations(chanceComboList[0]);
 
 		assertEquals(0, kuhnPokerLitegame.getPlayerToAct());
 
@@ -172,15 +172,15 @@ public class KuhnPokerLiteTest {
 	@Test
 	public void afterCallCallTest() throws Exception {
 		KuhnPokerLite gameTemplate = new KuhnPokerLite();
-		List<List<Integer>> chanceComboList = gameTemplate.getListOfValidChanceCombinations();
+		int[][]  chanceComboList = gameTemplate.getListOfValidChanceCombinations();
 
-		assertEquals(6, chanceComboList.size());
+		assertEquals(6, chanceComboList.length);
 
 		KuhnPokerLite kuhnPokerLitegame = new KuhnPokerLite();
 
 		kuhnPokerLitegame.startGame();
 
-		kuhnPokerLitegame.setValidChanceCombinations(chanceComboList.get(0));
+		kuhnPokerLitegame.setValidChanceCombinations(chanceComboList[0]);
 
 		assertEquals(0, kuhnPokerLitegame.getPlayerToAct());
 
@@ -237,15 +237,15 @@ public class KuhnPokerLiteTest {
 	@Test
 	public void afterCallRaiseTest() throws Exception {
 		KuhnPokerLite gameTemplate = new KuhnPokerLite();
-		List<List<Integer>> chanceComboList = gameTemplate.getListOfValidChanceCombinations();
+		int[][]  chanceComboList = gameTemplate.getListOfValidChanceCombinations();
 
-		assertEquals(6, chanceComboList.size());
+		assertEquals(6, chanceComboList.length);
 
 		KuhnPokerLite kuhnPokerLitegame = new KuhnPokerLite();
 
 		kuhnPokerLitegame.startGame();
 
-		kuhnPokerLitegame.setValidChanceCombinations(chanceComboList.get(0));
+		kuhnPokerLitegame.setValidChanceCombinations(chanceComboList[0]);
 
 		assertEquals(0, kuhnPokerLitegame.getPlayerToAct());
 
@@ -305,15 +305,15 @@ public class KuhnPokerLiteTest {
 @Test
 	public void afterRaiseTest() throws Exception {
 		KuhnPokerLite gameTemplate = new KuhnPokerLite();
-		List<List<Integer>> chanceComboList = gameTemplate.getListOfValidChanceCombinations();
+		int[][]  chanceComboList = gameTemplate.getListOfValidChanceCombinations();
 
-		assertEquals(6, chanceComboList.size());
+		assertEquals(6, chanceComboList.length);
 
 		KuhnPokerLite kuhnPokerLitegame = new KuhnPokerLite();
 
 		kuhnPokerLitegame.startGame();
 
-		kuhnPokerLitegame.setValidChanceCombinations(chanceComboList.get(0));
+		kuhnPokerLitegame.setValidChanceCombinations(chanceComboList[0]);
 
 		assertEquals(0, kuhnPokerLitegame.getPlayerToAct());
 
@@ -373,15 +373,15 @@ public class KuhnPokerLiteTest {
 @Test
 public void afterCopyGameRaiseTest() throws Exception {
 	KuhnPokerLite gameTemplate = new KuhnPokerLite();
-	List<List<Integer>> chanceComboList = gameTemplate.getListOfValidChanceCombinations();
+	int[][]  chanceComboList = gameTemplate.getListOfValidChanceCombinations();
 
-	assertEquals(6, chanceComboList.size());
+	assertEquals(6, chanceComboList.length);
 
 	KuhnPokerLite kuhnPokerLitegame = new KuhnPokerLite();
 
 	kuhnPokerLitegame.startGame();
 
-	kuhnPokerLitegame.setValidChanceCombinations(chanceComboList.get(0));
+	kuhnPokerLitegame.setValidChanceCombinations(chanceComboList[0]);
 
 	assertEquals(0, kuhnPokerLitegame.getPlayerToAct());
 
@@ -446,15 +446,15 @@ public void afterCopyGameRaiseTest() throws Exception {
 @Test
 	public void afterRaiseCallTest() throws Exception {
 		KuhnPokerLite gameTemplate = new KuhnPokerLite();
-		List<List<Integer>> chanceComboList = gameTemplate.getListOfValidChanceCombinations();
+		int[][]  chanceComboList = gameTemplate.getListOfValidChanceCombinations();
 
-		assertEquals(6, chanceComboList.size());
+		assertEquals(6, chanceComboList.length);
 
 		KuhnPokerLite kuhnPokerLitegame = new KuhnPokerLite();
 
 		kuhnPokerLitegame.startGame();
 
-		kuhnPokerLitegame.setValidChanceCombinations(chanceComboList.get(0));
+		kuhnPokerLitegame.setValidChanceCombinations(chanceComboList[0]);
 
 		assertEquals(0, kuhnPokerLitegame.getPlayerToAct());
 

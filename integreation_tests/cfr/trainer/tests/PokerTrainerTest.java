@@ -18,7 +18,7 @@ import cfr.trainer.node.NodeImpl;
 public class PokerTrainerTest {
 	
 	static final int ITERATIONS = 		200000;
-	static final int PLUS_ITERATIONS = 	50000;
+	static final int PLUS_ITERATIONS = 	45000;
 	
 	
 	@Test

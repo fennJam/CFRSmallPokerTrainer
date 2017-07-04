@@ -287,12 +287,12 @@ public class TwoPlayerSingleCardGameTest {
 		
 		
 		TwoPlayerSingleCardGame game = new TwoPlayerSingleCardGame(BettingLimit.LIMIT, 3);
-		List<List<Integer>> chanceComboList = game.getListOfValidChanceCombinations();
+		int[][] chanceComboList = game.getListOfValidChanceCombinations();
 		
-		assertEquals(2652,chanceComboList.size());
+		assertEquals(2652,chanceComboList.length);
 		
-		Game game0 = new TwoPlayerSingleCardGame(BettingLimit.LIMIT, 3).setValidChanceCombinations(chanceComboList.get(0));
-		Game game2651 = new TwoPlayerSingleCardGame(BettingLimit.LIMIT, 3).setValidChanceCombinations(chanceComboList.get(2651));
+		Game game0 = new TwoPlayerSingleCardGame(BettingLimit.LIMIT, 3).setValidChanceCombinations(chanceComboList[0]);
+		Game game2651 = new TwoPlayerSingleCardGame(BettingLimit.LIMIT, 3).setValidChanceCombinations(chanceComboList[2651]);
 		
 		assertTrue(game0 instanceof TwoPlayerSingleCardGame);
 		assertTrue(game2651 instanceof TwoPlayerSingleCardGame);

@@ -47,7 +47,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		assertNull(twoPlayerRoyalRhodeIslandGame.getHands().get(0));
 		assertNull(twoPlayerRoyalRhodeIslandGame.getHands().get(1));
 		assertEquals(PokerGameType.RHODE_ISLAND,twoPlayerRoyalRhodeIslandGame.getPokerGameType());
-		assertEquals(116280,twoPlayerRoyalRhodeIslandGame.getListOfValidChanceCombinations().size());
+		assertEquals(116280,twoPlayerRoyalRhodeIslandGame.getListOfValidChanceCombinations().length);
 		assertEquals("",twoPlayerRoyalRhodeIslandGame.getNodeIdWithActionMemory());
 		
 //		TODO handle null pointer thrown here
@@ -101,7 +101,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		assertEquals(CardSuit.DIAMONDS,twoPlayerRoyalRhodeIslandGame.getHands().get(1).getCard(0).getSuit());
 		
 		assertEquals(PokerGameType.RHODE_ISLAND,twoPlayerRoyalRhodeIslandGame.getPokerGameType());
-		assertEquals(116280,twoPlayerRoyalRhodeIslandGame.getListOfValidChanceCombinations().size());
+		assertEquals(116280,twoPlayerRoyalRhodeIslandGame.getListOfValidChanceCombinations().length);
 		
 		assertEquals("[S,S,A]D",twoPlayerRoyalRhodeIslandGame.getNodeIdWithActionMemory());
 		
@@ -174,7 +174,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		assertEquals(CardSuit.DIAMONDS,twoPlayerRoyalRhodeIslandGame.getHands().get(1).getCard(0).getSuit());
 		
 		assertEquals(PokerGameType.RHODE_ISLAND,twoPlayerRoyalRhodeIslandGame.getPokerGameType());
-		assertEquals(116280,twoPlayerRoyalRhodeIslandGame.getListOfValidChanceCombinations().size());
+		assertEquals(116280,twoPlayerRoyalRhodeIslandGame.getListOfValidChanceCombinations().length);
 		
 		assertEquals("[S,S,K]D,5",twoPlayerRoyalRhodeIslandGame.getNodeIdWithActionMemory());
 		
@@ -251,7 +251,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		assertEquals(CardSuit.DIAMONDS,twoPlayerRoyalRhodeIslandGame.getHands().get(1).getCard(0).getSuit());
 		
 		assertEquals(PokerGameType.RHODE_ISLAND,twoPlayerRoyalRhodeIslandGame.getPokerGameType());
-		assertEquals(116280,twoPlayerRoyalRhodeIslandGame.getListOfValidChanceCombinations().size());
+		assertEquals(116280,twoPlayerRoyalRhodeIslandGame.getListOfValidChanceCombinations().length);
 		
 		assertEquals("[S,S,A]D,5,13",twoPlayerRoyalRhodeIslandGame.getNodeIdWithActionMemory());
 		
@@ -338,7 +338,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		assertEquals(CardSuit.DIAMONDS,twoPlayerRoyalRhodeIslandGame.getHands().get(1).getCard(0).getSuit());
 		
 		assertEquals(PokerGameType.RHODE_ISLAND,twoPlayerRoyalRhodeIslandGame.getPokerGameType());
-		assertEquals(116280,twoPlayerRoyalRhodeIslandGame.getListOfValidChanceCombinations().size());
+		assertEquals(116280,twoPlayerRoyalRhodeIslandGame.getListOfValidChanceCombinations().length);
 		
 		assertEquals("[S,S,A]D,5,3",twoPlayerRoyalRhodeIslandGame.getNodeIdWithActionMemory());
 		
@@ -404,7 +404,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		assertEquals(CardSuit.DIAMONDS,twoPlayerRoyalRhodeIslandGameImport.getHands().get(1).getCard(0).getSuit());
 		
 		assertEquals(PokerGameType.RHODE_ISLAND,twoPlayerRoyalRhodeIslandGameImport.getPokerGameType());
-		assertEquals(116280,twoPlayerRoyalRhodeIslandGameImport.getListOfValidChanceCombinations().size());
+		assertEquals(116280,twoPlayerRoyalRhodeIslandGameImport.getListOfValidChanceCombinations().length);
 		
 		assertEquals("[S,S,A]D,5,3",twoPlayerRoyalRhodeIslandGameImport.getNodeIdWithActionMemory());
 		
@@ -490,7 +490,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		assertEquals(CardSuit.DIAMONDS,twoPlayerRoyalRhodeIslandGame.getHands().get(1).getCard(0).getSuit());
 		
 		assertEquals(PokerGameType.RHODE_ISLAND,twoPlayerRoyalRhodeIslandGame.getPokerGameType());
-		assertEquals(116280,twoPlayerRoyalRhodeIslandGame.getListOfValidChanceCombinations().size());
+		assertEquals(116280,twoPlayerRoyalRhodeIslandGame.getListOfValidChanceCombinations().length);
 		
 		assertEquals("[S,S,K]D,5,3,2",twoPlayerRoyalRhodeIslandGame.getNodeIdWithActionMemory());
 		
@@ -569,7 +569,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		assertEquals(CardSuit.DIAMONDS,twoPlayerRoyalRhodeIslandGame.getHands().get(1).getCard(0).getSuit());
 		
 		assertEquals(PokerGameType.RHODE_ISLAND,twoPlayerRoyalRhodeIslandGame.getPokerGameType());
-		assertEquals(116280,twoPlayerRoyalRhodeIslandGame.getListOfValidChanceCombinations().size());
+		assertEquals(116280,twoPlayerRoyalRhodeIslandGame.getListOfValidChanceCombinations().length);
 		
 		assertEquals("[S,S,A,Q]D,5,3,C,D",twoPlayerRoyalRhodeIslandGame.getNodeIdWithActionMemory());
 		

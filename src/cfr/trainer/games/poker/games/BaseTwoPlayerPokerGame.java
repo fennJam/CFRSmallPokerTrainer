@@ -218,7 +218,7 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	// will be allocated, in order to players1,2 and then the board positions
 	// 1,2,3...
 	@Override
-	public abstract List<List<Integer>> getListOfValidChanceCombinations();
+	public abstract int[][] getListOfValidChanceCombinations();
 
 	@Override
 	public boolean performAction(int player, Action action) {

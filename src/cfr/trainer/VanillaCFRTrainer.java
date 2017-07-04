@@ -29,10 +29,10 @@ public class VanillaCFRTrainer {
 
 	public void train(GameDescription gameType, int iterations) throws Exception {
 		Game gameStructure = GameFactory.setUpGame(gameType, 3);
-		List<List<Integer>> validChanceCombinations = gameStructure.getListOfValidChanceCombinations();
+		int[][] validChanceCombinations = gameStructure.getListOfValidChanceCombinations();
 		for (int i = 0; i < iterations; i++) {
 			int chanceCombo = 0;
-			for (List<Integer> chanceCombination : validChanceCombinations) {
+			for (int[] chanceCombination : validChanceCombinations) {
 				chanceCombo++;
 //				System.out.println("Chance Combo:"+chanceCombo);
 				Game game = GameFactory.setUpGame(gameType, 2);
@@ -41,7 +41,7 @@ public class VanillaCFRTrainer {
 				util += cfr(game, 1, 1);
 			}
 		}
-		averageGameValue = util / (iterations * validChanceCombinations.size());
+		averageGameValue = util / (iterations * validChanceCombinations.length);
 		System.out.println("Average game value: " + averageGameValue);
 		writeStrategyMapToJSONFile(nodeMap);
 	}

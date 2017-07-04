@@ -30,23 +30,25 @@ public class TwoPlayerTwoCardGame extends BaseTwoPlayerPokerGame {
 	}
 
 	@Override
-	public List<List<Integer>> getListOfValidChanceCombinations() {
-		List<List<Integer>> validCardCombinationLists = new ArrayList<List<Integer>>();
+	public int[][] getListOfValidChanceCombinations() {
+		int[][] validCardCombinationLists = new int[132600][3];
 
+		int validComboCount = 0;
 		for (int card0 = 0; card0 < 52; card0++) {
 			for (int card1 = 0; card1 < 52; card1++) {
 				if (card0 == card1) {
 					continue;
 				}
 				for (int boardCard1 = 0; boardCard1 < 52; boardCard1++) {
-					if (boardCard1 == card1|| boardCard1 == card0) {
+					if (boardCard1 == card1 || boardCard1 == card0) {
 						continue;
 					}
-				List<Integer> validCardComination = new ArrayList<Integer>();
-				validCardComination.add(card0);
-				validCardComination.add(card1);
-				validCardComination.add(boardCard1);
-				validCardCombinationLists.add(validCardComination);
+					int[] validCardComination = new int[3];
+					validCardComination[0] = card0;
+					validCardComination[1] = card1;
+					validCardComination[2] = boardCard1;
+					validCardCombinationLists[validComboCount] = validCardComination;
+					validComboCount++;
 				}
 			}
 		}
@@ -55,13 +57,12 @@ public class TwoPlayerTwoCardGame extends BaseTwoPlayerPokerGame {
 	}
 
 	@Override
-	public TwoPlayerTwoCardGame setValidChanceCombinations(List<Integer> listOfChanceCombinations) {
-	
-		Integer card0= listOfChanceCombinations.get(0);
-		Integer card1= listOfChanceCombinations.get(1);
-		Integer boardCard1= listOfChanceCombinations.get(2);
-		
-		
+	public TwoPlayerTwoCardGame setValidChanceCombinations(int[] listOfChanceCombinations) {
+
+		int card0 = listOfChanceCombinations[0];
+		int card1 = listOfChanceCombinations[1];
+		int boardCard1 = listOfChanceCombinations[2];
+
 		Hand hand0 = new HandSingleCard(new Card(card0));
 		Hand hand1 = new HandSingleCard(new Card(card1));
 
@@ -69,7 +70,7 @@ public class TwoPlayerTwoCardGame extends BaseTwoPlayerPokerGame {
 		newHands.put(0, hand0);
 		newHands.put(1, hand1);
 		this.setHands(newHands);
-		if(this.board==null){
+		if (this.board == null) {
 			this.board = new Board(this.pokerGameType);
 		}
 		this.board.setCard(new Card(boardCard1), 0, false);
@@ -77,5 +78,4 @@ public class TwoPlayerTwoCardGame extends BaseTwoPlayerPokerGame {
 		return this;
 	}
 
-	
 }

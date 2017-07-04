@@ -1,11 +1,17 @@
 package cfr.trainer.games.poker.games.lite;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cfr.trainer.games.poker.BetRound;
 import cfr.trainer.games.poker.BettingLimit;
+import cfr.trainer.games.poker.Card;
+import cfr.trainer.games.poker.Hand;
+import cfr.trainer.games.poker.HandSingleCard;
 import cfr.trainer.games.poker.PokerGameType;
+import cfr.trainer.games.poker.games.KuhnPoker;
 
 public class KuhnPokerLite extends BaseTwoPlayerPokerLiteGame {
 
@@ -34,29 +40,30 @@ public class KuhnPokerLite extends BaseTwoPlayerPokerLiteGame {
 	}
 
 	@Override
-	public List<List<Integer>> getListOfValidChanceCombinations() {
-		List<List<Integer>> validCardCombinationLists = new ArrayList<List<Integer>>();
-
+	public int[][] getListOfValidChanceCombinations() {
+		int[][] validCardCombinationArrays = new int[6][2];
+		int validComboCount = 0;
 		for (int card0 = 9; card0 < 12; card0++) {
 			for (int card1 = 9; card1 < 12; card1++) {
 				if (card0 == card1) {
 					continue;
 				}
-				List<Integer> validCardComination = new ArrayList<Integer>();
-				validCardComination.add(card0);
-				validCardComination.add(card1);
-				validCardCombinationLists.add(validCardComination);
+				int[] validCardComination = new int[2];
+				validCardComination[0]=card0;
+				validCardComination[1]=card1;
+				validCardCombinationArrays[validComboCount] =validCardComination;
+				validComboCount++;
 			}
 		}
 
-		return validCardCombinationLists;
+		return validCardCombinationArrays;
 	}
 
 	@Override
-	public KuhnPokerLite setValidChanceCombinations(List<Integer> listOfChanceCombinations) {
+	public KuhnPokerLite setValidChanceCombinations(int[] listOfChanceCombinations) {
 	
-		int card0= (Integer)listOfChanceCombinations.get(0);
-		int card1= (Integer)listOfChanceCombinations.get(1);
+		int card0= (Integer)listOfChanceCombinations[0];
+		int card1= (Integer)listOfChanceCombinations[1];
 		
 		
 		playerHands[0]=card0;

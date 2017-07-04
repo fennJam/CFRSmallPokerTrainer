@@ -31,18 +31,20 @@ public class TwoPlayerSingleCardGame extends BaseTwoPlayerPokerGame {
 
 
 	@Override
-	public List<List<Integer>> getListOfValidChanceCombinations() {
-		List<List<Integer>> validCardCombinationLists = new ArrayList<List<Integer>>();
+	public int[][] getListOfValidChanceCombinations() {
+		int[][] validCardCombinationLists = new int[2652][2];
 
+		int validComboCount = 0;
 		for (int card0 = 0; card0 < 52; card0++) {
 			for (int card1 = 0; card1 < 52; card1++) {
 				if (card0 == card1) {
 					continue;
 				}
-				List<Integer> validCardComination = new ArrayList<Integer>();
-				validCardComination.add(card0);
-				validCardComination.add(card1);
-				validCardCombinationLists.add(validCardComination);
+				int[] validCardComination = new int[2];
+				validCardComination[0]=card0;
+				validCardComination[1]=card1;
+				validCardCombinationLists[validComboCount] = validCardComination;
+				validComboCount++;
 			}
 		}
 
@@ -50,10 +52,10 @@ public class TwoPlayerSingleCardGame extends BaseTwoPlayerPokerGame {
 	}
 
 	@Override
-	public TwoPlayerSingleCardGame setValidChanceCombinations(List<Integer> listOfChanceCombinations) {
+	public TwoPlayerSingleCardGame setValidChanceCombinations(int[] listOfChanceCombinations) {
 	
-		Integer card0= listOfChanceCombinations.get(0);
-		Integer card1= listOfChanceCombinations.get(1);
+		int card0= listOfChanceCombinations[0];
+		int card1= listOfChanceCombinations[1];
 		
 		
 		Hand hand0 = new HandSingleCard(new Card(card0));

@@ -294,12 +294,12 @@ public class TwoPlayerRhodeIslandGameTest {
 	@Test
 	public void getListOfGamesWithAllPossibleChanceNodesTest() {
 		TwoPlayerRhodeIslandGame game = new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT, 3);
-		List<List<Integer>> chanceComboList = game.getListOfValidChanceCombinations();
+		int[][] chanceComboList = game.getListOfValidChanceCombinations();
 
-		assertEquals(6497400, chanceComboList.size());
+		assertEquals(6497400, chanceComboList.length);
 
-		Game game0 = new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT, 3).setValidChanceCombinations(chanceComboList.get(0));
-		Game game6497399 = new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT, 3).setValidChanceCombinations(chanceComboList.get(6497399));
+		Game game0 = new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT, 3).setValidChanceCombinations(chanceComboList[0]);
+		Game game6497399 = new TwoPlayerRhodeIslandGame(BettingLimit.LIMIT, 3).setValidChanceCombinations(chanceComboList[6497399]);
 
 		assertTrue(game0 instanceof TwoPlayerRhodeIslandGame);
 		assertTrue(game6497399 instanceof TwoPlayerRhodeIslandGame);

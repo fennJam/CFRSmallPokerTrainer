@@ -48,26 +48,33 @@ public class RoyalRhodeIsland10ChipNoLimitLite extends BaseTwoPlayerPokerLiteGam
 	}
 
 	@Override
-	public List<List<Integer>> getListOfValidChanceCombinations() {
-		List<List<Integer>> validCardCombinationLists = new ArrayList<List<Integer>>();
-		List<Integer> cardOrder = new ArrayList<>();
+	public int[][] getListOfValidChanceCombinations() {
+		int[][] validCardCombinationLists = new int[116280][4];
+		int[] cardOrder = new int[20];
 
+		int cardOrderPointer =0;
 		// add 10-A spades
 		for (int card = 8; card < 13; card++) {
-			cardOrder.add(card);
+			cardOrder[cardOrderPointer] = card;
+			cardOrderPointer++;
 		}
 		// add 10-A hearts
 		for (int card = 21; card < 26; card++) {
-			cardOrder.add(card);
+			cardOrder[cardOrderPointer] = card;
+			cardOrderPointer++;
 		}
 		// add 10-A clubs
 		for (int card = 34; card < 39; card++) {
-			cardOrder.add(card);
+			cardOrder[cardOrderPointer] = card;
+			cardOrderPointer++;
 		}
 		// add 10-A diamonds
 		for (int card = 47; card < 52; card++) {
-			cardOrder.add(card);
+			cardOrder[cardOrderPointer] = card;
+			cardOrderPointer++;
 		}
+		
+		int validComboCount = 0;
 		for (int card0: cardOrder) {
 			for (int card1: cardOrder) {
 				if (card0 == card1) {
@@ -81,12 +88,13 @@ public class RoyalRhodeIsland10ChipNoLimitLite extends BaseTwoPlayerPokerLiteGam
 						if (boardCard2 == card1 || boardCard2 == card0 || boardCard2 == boardCard1) {
 							continue;
 						}
-						List<Integer> validCardComination = new ArrayList<Integer>();
-						validCardComination.add(card0);
-						validCardComination.add(card1);
-						validCardComination.add(boardCard1);
-						validCardComination.add(boardCard2);
-						validCardCombinationLists.add(validCardComination);
+						int[] validCardComination = new int[4];
+						validCardComination[0] = card0;
+						validCardComination[1] = card1;
+						validCardComination[2] =boardCard1;
+						validCardComination[3]=boardCard2;
+						validCardCombinationLists[validComboCount] = validCardComination;
+						validComboCount++;
 					}
 				}
 			}
@@ -96,13 +104,13 @@ public class RoyalRhodeIsland10ChipNoLimitLite extends BaseTwoPlayerPokerLiteGam
 	}
 	
 	@Override
-	public RoyalRhodeIsland10ChipNoLimitLite setValidChanceCombinations(List<Integer> listOfChanceCombinations) {
+	public RoyalRhodeIsland10ChipNoLimitLite setValidChanceCombinations(int[] listOfChanceCombinations) {
 
 		
-		int boardCard1 = listOfChanceCombinations.get(0);
-		int boardCard2 = listOfChanceCombinations.get(1);
-		int card0 = listOfChanceCombinations.get(2);
-		int card1 = listOfChanceCombinations.get(3);
+		int boardCard1 = listOfChanceCombinations[0];
+		int boardCard2 = listOfChanceCombinations[1];
+		int card0 = listOfChanceCombinations[2];
+		int card1 = listOfChanceCombinations[3];
 
 		playerHands[0] = card0;
 		playerHands[1] = card1;

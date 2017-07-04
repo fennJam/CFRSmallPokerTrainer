@@ -15,16 +15,16 @@ public class KuhnPokerTest {
 	public void getListOfGamesWithAllPossibleChanceNodesTest(){
 		KuhnPoker gameTemplate = new KuhnPoker();
 		
-		List<List<Integer>> chanceComboList = gameTemplate.getListOfValidChanceCombinations();
+		int[][] chanceComboList = gameTemplate.getListOfValidChanceCombinations();
 
-		assertEquals(6,chanceComboList.size());
+		assertEquals(6,chanceComboList.length);
 		
-		KuhnPoker game0 = new KuhnPoker().setValidChanceCombinations(chanceComboList.get(0));
-		KuhnPoker game1 = new KuhnPoker().setValidChanceCombinations(chanceComboList.get(1));
-		KuhnPoker game2 = new KuhnPoker().setValidChanceCombinations(chanceComboList.get(2));
-		KuhnPoker game3 = new KuhnPoker().setValidChanceCombinations(chanceComboList.get(3));
-		KuhnPoker game4 = new KuhnPoker().setValidChanceCombinations(chanceComboList.get(4));
-		KuhnPoker game5 = new KuhnPoker().setValidChanceCombinations(chanceComboList.get(5));
+		KuhnPoker game0 = new KuhnPoker().setValidChanceCombinations(chanceComboList[0]);
+		KuhnPoker game1 = new KuhnPoker().setValidChanceCombinations(chanceComboList[1]);
+		KuhnPoker game2 = new KuhnPoker().setValidChanceCombinations(chanceComboList[2]);
+		KuhnPoker game3 = new KuhnPoker().setValidChanceCombinations(chanceComboList[3]);
+		KuhnPoker game4 = new KuhnPoker().setValidChanceCombinations(chanceComboList[4]);
+		KuhnPoker game5 = new KuhnPoker().setValidChanceCombinations(chanceComboList[5]);
 		
 		
 		

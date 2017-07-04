@@ -51,7 +51,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameLiteTest {
 //		assertNull(RoyalRhodeIsland10ChipNoLimitLite.getHands().get(0));
 //		assertNull(RoyalRhodeIsland10ChipNoLimitLite.getHands().get(1));
 		assertTrue(royalRhodeIsland10ChipNoLimitLite instanceof PokerGameLite);
-		assertEquals(116280,royalRhodeIsland10ChipNoLimitLite.getListOfValidChanceCombinations().size());
+		assertEquals(116280,royalRhodeIsland10ChipNoLimitLite.getListOfValidChanceCombinations().length);
 		assertEquals("[S,S,0]",royalRhodeIsland10ChipNoLimitLite.getNodeIdWithActionMemory());
 		
 //		TODO handle null pointer thrown here
@@ -78,12 +78,12 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameLiteTest {
 //		
 //		
 		royalRhodeIsland10ChipNoLimitLite.startGame();
-		List<Integer>validChanceCombo = new ArrayList<>();
+		int[] validChanceCombo = new int[4];
 //		add Ad,Kd,Qd,JD
-		validChanceCombo.add(51);
-		validChanceCombo.add(50);
-		validChanceCombo.add(49);
-		validChanceCombo.add(48);
+		validChanceCombo[0]=51;
+		validChanceCombo[1]=50;
+		validChanceCombo[2]=49;
+		validChanceCombo[3]=48;
 		
 		royalRhodeIsland10ChipNoLimitLite.setValidChanceCombinations(validChanceCombo);
 		
@@ -113,7 +113,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameLiteTest {
 		assertEquals(48,royalRhodeIsland10ChipNoLimitLite.getHands()[1]);
 		
 		assertTrue(royalRhodeIsland10ChipNoLimitLite instanceof RoyalRhodeIsland10ChipNoLimitLite);
-		assertEquals(116280,royalRhodeIsland10ChipNoLimitLite.getListOfValidChanceCombinations().size());
+		assertEquals(116280,royalRhodeIsland10ChipNoLimitLite.getListOfValidChanceCombinations().length);
 		
 		assertEquals("[S,S,10]D",royalRhodeIsland10ChipNoLimitLite.getNodeIdWithActionMemory());
 		
@@ -148,12 +148,12 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameLiteTest {
 		RoyalRhodeIsland10ChipNoLimitLite royalRhodeIsland10ChipNoLimitLite = new RoyalRhodeIsland10ChipNoLimitLite( 3);
 
 		royalRhodeIsland10ChipNoLimitLite.startGame();
-		List<Integer>validChanceCombo = new ArrayList<>();
+		int[] validChanceCombo = new int[4];
 //		add Ad,Kd,Qd,JD
-		validChanceCombo.add(51);
-		validChanceCombo.add(50);
-		validChanceCombo.add(49);
-		validChanceCombo.add(48);
+		validChanceCombo[0]=51;
+		validChanceCombo[1]=50;
+		validChanceCombo[2]=49;
+		validChanceCombo[3]=48;
 		
 		royalRhodeIsland10ChipNoLimitLite.setValidChanceCombinations(validChanceCombo);
 		
@@ -191,7 +191,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameLiteTest {
 		assertEquals(49,royalRhodeIsland10ChipNoLimitLite.getHands()[0]);
 		assertEquals(48,royalRhodeIsland10ChipNoLimitLite.getHands()[1]);
 		
-		assertEquals(116280,royalRhodeIsland10ChipNoLimitLite.getListOfValidChanceCombinations().size());
+		assertEquals(116280,royalRhodeIsland10ChipNoLimitLite.getListOfValidChanceCombinations().length);
 		
 		assertEquals("[S,S,9]D,5",royalRhodeIsland10ChipNoLimitLite.getNodeIdWithActionMemory());
 		
@@ -231,12 +231,12 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameLiteTest {
 		
 		
 		royalRhodeIsland10ChipNoLimitLite.startGame();
-		List<Integer>validChanceCombo = new ArrayList<>();
+		int[] validChanceCombo = new int[4];
 //		add Ad,Kd,Qd,JD
-		validChanceCombo.add(51);
-		validChanceCombo.add(50);
-		validChanceCombo.add(49);
-		validChanceCombo.add(48);
+		validChanceCombo[0]=51;
+		validChanceCombo[1]=50;
+		validChanceCombo[2]=49;
+		validChanceCombo[3]=48;
 		
 		royalRhodeIsland10ChipNoLimitLite.setValidChanceCombinations(validChanceCombo);
 		
@@ -279,7 +279,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameLiteTest {
 		assertEquals(49,royalRhodeIsland10ChipNoLimitLite.getHands()[0]);
 		assertEquals(48,royalRhodeIsland10ChipNoLimitLite.getHands()[1]);
 		
-		assertEquals(116280,royalRhodeIsland10ChipNoLimitLite.getListOfValidChanceCombinations().size());
+		assertEquals(116280,royalRhodeIsland10ChipNoLimitLite.getListOfValidChanceCombinations().length);
 		
 		assertEquals("[S,S,10]D,5,3",royalRhodeIsland10ChipNoLimitLite.getNodeIdWithActionMemory());
 		
@@ -325,12 +325,12 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameLiteTest {
 		RoyalRhodeIsland10ChipNoLimitLite royalRhodeIsland10ChipNoLimitLite = new RoyalRhodeIsland10ChipNoLimitLite(3);
 		
 		royalRhodeIsland10ChipNoLimitLite.startGame();
-		List<Integer>validChanceCombo = new ArrayList<>();
+		int[] validChanceCombo = new int[4];
 //		add Ad,Kd,Qd,JD
-		validChanceCombo.add(51);
-		validChanceCombo.add(50);
-		validChanceCombo.add(49);
-		validChanceCombo.add(48);
+		validChanceCombo[0]=51;
+		validChanceCombo[1]=50;
+		validChanceCombo[2]=49;
+		validChanceCombo[3]=48;
 		
 		royalRhodeIsland10ChipNoLimitLite.setValidChanceCombinations(validChanceCombo);
 		
@@ -370,7 +370,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameLiteTest {
 		assertEquals(49,royalRhodeIsland10ChipNoLimitLite.getHands()[0]);
 		assertEquals(48,royalRhodeIsland10ChipNoLimitLite.getHands()[1]);
 		
-		assertEquals(116280,royalRhodeIsland10ChipNoLimitLite.getListOfValidChanceCombinations().size());
+		assertEquals(116280,royalRhodeIsland10ChipNoLimitLite.getListOfValidChanceCombinations().length);
 		
 		assertEquals("[S,S,10]D,5,1",royalRhodeIsland10ChipNoLimitLite.getNodeIdWithActionMemory());
 		
@@ -434,7 +434,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameLiteTest {
 		assertEquals(49,royalRhodeIsland10ChipNoLimitLite.getHands()[0]);
 		assertEquals(48,royalRhodeIsland10ChipNoLimitLite.getHands()[1]);
 		
-		assertEquals(116280,royalRhodeIsland10ChipNoLimitLite.getListOfValidChanceCombinations().size());
+		assertEquals(116280,royalRhodeIsland10ChipNoLimitLite.getListOfValidChanceCombinations().length);
 		
 		assertEquals("[S,S,10]D,5,1",royalRhodeIsland10ChipNoLimitLite.getNodeIdWithActionMemory());
 		
@@ -474,12 +474,12 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameLiteTest {
 		RoyalRhodeIsland10ChipNoLimitLite royalRhodeIsland10ChipNoLimitLite = new RoyalRhodeIsland10ChipNoLimitLite(3);
 		
 		royalRhodeIsland10ChipNoLimitLite.startGame();
-		List<Integer>validChanceCombo = new ArrayList<>();
+		int[] validChanceCombo = new int[4];
 //		add Ad,Kd,Qd,JD
-		validChanceCombo.add(51);
-		validChanceCombo.add(50);
-		validChanceCombo.add(49);
-		validChanceCombo.add(48);
+		validChanceCombo[0]=51;
+		validChanceCombo[1]=50;
+		validChanceCombo[2]=49;
+		validChanceCombo[3]=48;
 		
 		royalRhodeIsland10ChipNoLimitLite.setValidChanceCombinations(validChanceCombo);
 		
@@ -523,7 +523,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameLiteTest {
 		assertEquals(49,royalRhodeIsland10ChipNoLimitLite.getHands()[0]);
 		assertEquals(48,royalRhodeIsland10ChipNoLimitLite.getHands()[1]);
 		
-		assertEquals(116280,royalRhodeIsland10ChipNoLimitLite.getListOfValidChanceCombinations().size());
+		assertEquals(116280,royalRhodeIsland10ChipNoLimitLite.getListOfValidChanceCombinations().length);
 		
 		assertEquals("[S,S,9]D,3,2,1",royalRhodeIsland10ChipNoLimitLite.getNodeIdWithActionMemory());
 		
@@ -554,12 +554,12 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameLiteTest {
 		RoyalRhodeIsland10ChipNoLimitLite royalRhodeIsland10ChipNoLimitLite = new RoyalRhodeIsland10ChipNoLimitLite(3);
 		
 		royalRhodeIsland10ChipNoLimitLite.startGame();
-		List<Integer>validChanceCombo = new ArrayList<>();
+		int[] validChanceCombo = new int[4];
 //		add Ad,Kd,Qd,JD
-		validChanceCombo.add(51);
-		validChanceCombo.add(50);
-		validChanceCombo.add(49);
-		validChanceCombo.add(48);
+		validChanceCombo[0]=51;
+		validChanceCombo[1]=50;
+		validChanceCombo[2]=49;
+		validChanceCombo[3]=48;
 		
 		royalRhodeIsland10ChipNoLimitLite.setValidChanceCombinations(validChanceCombo);
 		
@@ -602,7 +602,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameLiteTest {
 		assertEquals(49,royalRhodeIsland10ChipNoLimitLite.getHands()[0]);
 		assertEquals(48,royalRhodeIsland10ChipNoLimitLite.getHands()[1]);
 		
-		assertEquals(116280,royalRhodeIsland10ChipNoLimitLite.getListOfValidChanceCombinations().size());
+		assertEquals(116280,royalRhodeIsland10ChipNoLimitLite.getListOfValidChanceCombinations().length);
 		
 		assertEquals("[S,S,10,12]D,5,1,C,D",royalRhodeIsland10ChipNoLimitLite.getNodeIdWithActionMemory());
 		

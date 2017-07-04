@@ -301,12 +301,12 @@ public class TwoPlayerTwoCardGameTest {
 	public void getListOfGamesWithAllPossibleChanceNodesTest(){
 		
 		TwoPlayerTwoCardGame game = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3);
-		List<List<Integer>> chanceComboList = game.getListOfValidChanceCombinations();
+		int[][] chanceComboList = game.getListOfValidChanceCombinations();
 		
-		assertEquals(132600,chanceComboList.size());
+		assertEquals(132600,chanceComboList.length);
 		
-		Game game0 = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3).setValidChanceCombinations(chanceComboList.get(0));
-		Game game132599 = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3).setValidChanceCombinations(chanceComboList.get(132599));
+		Game game0 = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3).setValidChanceCombinations(chanceComboList[0]);
+		Game game132599 = new TwoPlayerTwoCardGame(BettingLimit.LIMIT, 3).setValidChanceCombinations(chanceComboList[132599]);
 		
 		assertTrue(game0 instanceof TwoPlayerTwoCardGame);
 		assertTrue(game132599 instanceof TwoPlayerTwoCardGame);

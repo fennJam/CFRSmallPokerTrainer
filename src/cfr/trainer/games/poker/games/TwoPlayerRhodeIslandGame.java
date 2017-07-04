@@ -30,9 +30,9 @@ public class TwoPlayerRhodeIslandGame extends BaseTwoPlayerPokerGame {
 	}
 
 	@Override
-	public List<List<Integer>> getListOfValidChanceCombinations() {
-		List<List<Integer>> validCardCombinationLists = new ArrayList<List<Integer>>();
-
+	public int[][] getListOfValidChanceCombinations() {
+		int[][] validCardCombinationLists = new int[6497400][4];
+		int validComboCount = 0;
 		for (int card0 = 0; card0 < 52; card0++) {
 			for (int card1 = 0; card1 < 52; card1++) {
 				if (card0 == card1) {
@@ -46,12 +46,13 @@ public class TwoPlayerRhodeIslandGame extends BaseTwoPlayerPokerGame {
 						if (boardCard2 == card1 || boardCard2 == card0 || boardCard2 == boardCard1) {
 							continue;
 						}
-						List<Integer> validCardComination = new ArrayList<Integer>();
-						validCardComination.add(card0);
-						validCardComination.add(card1);
-						validCardComination.add(boardCard1);
-						validCardComination.add(boardCard2);
-						validCardCombinationLists.add(validCardComination);
+						int[] validCardComination = new int[4];
+						validCardComination[0]=card0;
+						validCardComination[1]=card1;
+						validCardComination[2]=boardCard1;
+						validCardComination[3]=boardCard2;
+						validCardCombinationLists[validComboCount]=(validCardComination);
+						validComboCount++;
 					}
 				}
 			}
@@ -61,12 +62,12 @@ public class TwoPlayerRhodeIslandGame extends BaseTwoPlayerPokerGame {
 	}
 
 	@Override
-	public TwoPlayerRhodeIslandGame setValidChanceCombinations(List<Integer> listOfChanceCombinations) {
+	public TwoPlayerRhodeIslandGame setValidChanceCombinations(int[] listOfChanceCombinations) {
 
-		Integer card0 = listOfChanceCombinations.get(0);
-		Integer card1 = listOfChanceCombinations.get(1);
-		Integer boardCard1 = listOfChanceCombinations.get(2);
-		Integer boardCard2 = listOfChanceCombinations.get(3);
+		int card0 = listOfChanceCombinations[0];
+		int card1 = listOfChanceCombinations[1];
+		int boardCard1 = listOfChanceCombinations[2];
+		int boardCard2 = listOfChanceCombinations[3];
 
 		Hand hand0 = new HandSingleCard(new Card(card0));
 		Hand hand1 = new HandSingleCard(new Card(card1));

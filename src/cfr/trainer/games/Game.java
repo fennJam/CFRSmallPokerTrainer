@@ -21,9 +21,9 @@ public interface Game {
 
 	Game startGame() throws Exception;
 	
-	List<List<Integer>> getListOfValidChanceCombinations();
+	int[][] getListOfValidChanceCombinations();
 	
-	Game setValidChanceCombinations(List<Integer> listOfChanceCombinations);
+	Game setValidChanceCombinations(int[] listOfChanceCombinations);
 	
 	boolean isAtChanceNode();
 	
