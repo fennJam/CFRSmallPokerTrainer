@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
+import org.eclipse.collections.impl.map.mutable.UnifiedMap;
+
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,7 +21,7 @@ import cfr.trainer.games.GameFactory;
 
 public class CFRPlusTrainer {
 
-	public Map<String, double[]> regretMap = new HashMap<String, double[]>();
+	public Map<String, double[]> regretMap = new UnifiedMap<String, double[]>();
 	double util = 0;
 	int utilCount;
 	double averageGameValue = 0;
