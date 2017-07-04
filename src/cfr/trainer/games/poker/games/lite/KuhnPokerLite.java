@@ -2,6 +2,8 @@ package cfr.trainer.games.poker.games.lite;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cfr.trainer.games.poker.BetRound;
 import cfr.trainer.games.poker.BettingLimit;
 import cfr.trainer.games.poker.PokerGameType;
 
@@ -12,6 +14,11 @@ public class KuhnPokerLite extends BaseTwoPlayerPokerLiteGame {
 		this.pokerGameType = PokerGameType.SINGLE_CARD;
 		this.board = new int[0];
 		this.visibleBoardCards = new boolean[0];
+		this.betRound=BetRound.RIVER;
+		int[] startingStacks = {2,2};
+		this.playerStack = startingStacks;
+		this.raisesPerBettingRound = 1;
+		
 	}
 
 	@Override
