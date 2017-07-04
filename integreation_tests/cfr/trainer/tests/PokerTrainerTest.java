@@ -17,14 +17,14 @@ import cfr.trainer.node.NodeImpl;
 
 public class PokerTrainerTest {
 	
-	static final int ITERATIONS = 		1000000;
-	static final int PLUS_ITERATIONS = 	1000000;
+	static final int ITERATIONS = 		200000;
+	static final int PLUS_ITERATIONS = 	50000;
 	
 	
 	@Test
 	public void monteCarloCFRTrainer_test() throws Exception {
 		MonteCarloCFRTrainer monteCarloCFRTrainer = new MonteCarloCFRTrainer();
-		monteCarloCFRTrainer.train(GameDescription.KUHN_POKER,ITERATIONS);
+		monteCarloCFRTrainer.train(GameDescription.KUHN_POKER,ITERATIONS*6);
 
 		// Comments taken from wikipdeia page on Kuhn Poker
 		// https://en.wikipedia.org/wiki/Kuhn_poker
@@ -195,6 +195,7 @@ public class PokerTrainerTest {
 		// pure-strategy equilibrium.
 
 		double avgGameValue = cfrPlusTrainer.getAverageGameValue();
+		System.out.println("Map : "+cfrPlusTrainer.getStrategyMap());
 //		System.out.println("expected GameValue = "+cfrPlusTrainer.getCurrentExpectedValue());
 		assertEquals(-0.05555,avgGameValue,0.003);
 
