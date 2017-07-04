@@ -42,9 +42,9 @@ public abstract class BaseTwoPlayerPokerLiteGame implements PokerGameLite {
 		// pot = new Pot(players.keySet().toArray(new Integer[players.size()]));
 		// this.bettingLimit = bettingLimit;
 		// this.raisesPerBettingRound = raisesPerBettingRound;
-
+		this.bettingLimit = bettingLimit;
 		this.raisesPerBettingRound = raisesPerBettingRound;
-		
+
 		playerHands = new int[2];
 		playerStack = new int[2];
 		pot = new int[2];
@@ -67,7 +67,7 @@ public abstract class BaseTwoPlayerPokerLiteGame implements PokerGameLite {
 	}
 
 	@Override
-	public Game startGame() {
+	public Game startGame() throws Exception {
 		dealCards();
 		actionsTaken.add(DealAction.getInstance());
 		postBlinds();
@@ -75,16 +75,20 @@ public abstract class BaseTwoPlayerPokerLiteGame implements PokerGameLite {
 	}
 
 	@Override
-	public int[] postBlinds() {
+	public int[] postBlinds() throws Exception {
 		bet(0, 1);
 		return bet(1, 2);
 	}
 
 	@Override
-	public int[] bet(int player, int bet) {
-		pot[player] += bet;
-		playerStack[player] -= bet;
-		return pot;
+	public int[] bet(int player, int bet) throws Exception {
+		if (playerStack[player] >= bet) {
+			pot[player] += bet;
+			playerStack[player] -= bet;
+			return pot;
+		} else {
+			throw new Exception("Cannot bet more than the player has in their stack");
+		}
 	}
 
 	@Override
@@ -161,7 +165,10 @@ public abstract class BaseTwoPlayerPokerLiteGame implements PokerGameLite {
 
 	public BaseTwoPlayerPokerLiteGame importGameProperties(PokerGameLite pokerLiteGame) {
 
-		this.actionsTaken = pokerLiteGame.getActionsTaken();
+		for (Action action : pokerLiteGame.getActionsTaken()) {
+			this.actionsTaken.add(action);
+		}
+
 		this.betRound = pokerLiteGame.getBetRound();
 		this.board = pokerLiteGame.getBoard().clone();
 		this.playerHands = pokerLiteGame.getPlayerHands().clone();
@@ -202,7 +209,7 @@ public abstract class BaseTwoPlayerPokerLiteGame implements PokerGameLite {
 	public abstract List<List<Integer>> getListOfValidChanceCombinations();
 
 	@Override
-	public boolean performAction(int player, Action action) {
+	public boolean performAction(int player, Action action) throws Exception {
 		PokerAction pokerAction = (PokerAction) action;
 		PokerActionType currentAction = pokerAction.getActionType();
 		if (currentAction.equals(PokerActionType.CALL)) {
@@ -221,14 +228,14 @@ public abstract class BaseTwoPlayerPokerLiteGame implements PokerGameLite {
 
 	}
 
-	private int[] performCallAction(int player) {
+	private int[] performCallAction(int player) throws Exception {
 		int opponent = 1 - player;
 		int betToCall = pot[opponent] - pot[player];
 
 		return bet(player, betToCall);
 	}
 
-	private int[] performRaiseAction(int player, int raiseSize) {
+	private int[] performRaiseAction(int player, int raiseSize) throws Exception {
 		performCallAction(player);
 		return bet(player, raiseSize);
 	}
@@ -248,7 +255,7 @@ public abstract class BaseTwoPlayerPokerLiteGame implements PokerGameLite {
 	@Override
 	public String getNodeIdWithSummaryState() {
 		String cardHistory = getThreeCardHistory(playerHands[getPlayerToAct()], getTurnedCards());
-		return cardHistory + pot[0] + pot[1] + " raisesAllowed : " + raisesAllowed();
+		return cardHistory + (pot[0] + pot[1]) + " raisesAllowed : " + raisesAllowed();
 	}
 
 	@Override
@@ -296,7 +303,13 @@ public abstract class BaseTwoPlayerPokerLiteGame implements PokerGameLite {
 
 	@Override
 	public boolean performChanceAction() {
-		return performAction(0, DealAction.getInstance());
+		try {
+			return performAction(0, DealAction.getInstance());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override

@@ -17,9 +17,9 @@ public interface Game {
 
 	int getPlayerToAct();
 
-	boolean performAction(int player, Action action);
+	boolean performAction(int player, Action action) throws Exception;
 
-	Game startGame();
+	Game startGame() throws Exception;
 	
 	List<List<Integer>> getListOfValidChanceCombinations();
 	
