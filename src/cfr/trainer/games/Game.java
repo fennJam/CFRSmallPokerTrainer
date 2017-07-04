@@ -13,7 +13,7 @@ public interface Game {
 
 	boolean isAtTerminalNode();
 
-	Map<Integer, Integer> getPayOffs();
+	int[] getPayOffs() throws Exception;
 
 	int getPlayerToAct();
 

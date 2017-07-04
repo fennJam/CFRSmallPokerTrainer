@@ -285,9 +285,10 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameTest {
 		assertTrue(twoPlayerRoyalRhodeIslandGame.isAtTerminalNode());
 		
 //		get payoff
-		Map<Integer,Integer>payoffs = twoPlayerRoyalRhodeIslandGame.getPayOffs();
-		assertEquals(Integer.valueOf(-20),payoffs.get(0));
-		assertEquals(Integer.valueOf(20),payoffs.get(1));
+//		get payoff
+		int[]payoffs = twoPlayerRoyalRhodeIslandGame.getPayOffs();
+		assertEquals(-20,payoffs[0]);
+		assertEquals(20,payoffs[1]);
 	}
 	
 	

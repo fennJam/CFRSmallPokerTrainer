@@ -88,16 +88,16 @@ public abstract class BaseTwoPlayerPokerGame implements PokerGame {
 	}
 
 	@Override
-	public Map<Integer, Integer> getPayOffs() {
+	public int[] getPayOffs() {
 		if (actionsTaken.get(actionsTaken.size() - 1).equals(FoldAction.getInstance())) {
 			Integer player = getPlayerToAct();
 			Integer opponent = 1 - player;
 			Integer winnings = pot.getPlayersContributionToPot(opponent);
 
-			Map<Integer, Integer> payOffs = new HashMap<Integer, Integer>();
+			int[] payOffs = new int[2];
 			// System.out.println("winnings:"+winnings);
-			payOffs.put(player, winnings);
-			payOffs.put(opponent, -winnings);
+			payOffs[player] = winnings;
+			payOffs[opponent]= -winnings;
 
 			return payOffs;
 		}

@@ -229,8 +229,8 @@ public class KuhnPokerLiteTest {
 		//
 
 		assertTrue(kuhnPokerLitegame.lastActionIsTerminalCallForTheBettingRound());
-		assertEquals(new Integer(-1), kuhnPokerLitegame.getPayOffs().get(0));
-		assertEquals(new Integer(1), kuhnPokerLitegame.getPayOffs().get(1));
+		assertEquals(-1, kuhnPokerLitegame.getPayOffs()[0]);
+		assertEquals(1, kuhnPokerLitegame.getPayOffs()[1]);
 
 	}
 
@@ -298,8 +298,8 @@ public class KuhnPokerLiteTest {
 		//
 
 		assertFalse(kuhnPokerLitegame.lastActionIsTerminalCallForTheBettingRound());
-		assertEquals(new Integer(-1), kuhnPokerLitegame.getPayOffs().get(0));
-		assertEquals(new Integer(1), kuhnPokerLitegame.getPayOffs().get(1));
+		assertEquals(-1, kuhnPokerLitegame.getPayOffs()[0]);
+		assertEquals(1, kuhnPokerLitegame.getPayOffs()[1]);
 
 	}
 @Test
@@ -365,8 +365,8 @@ public class KuhnPokerLiteTest {
 		//
 
 		assertFalse(kuhnPokerLitegame.lastActionIsTerminalCallForTheBettingRound());
-		assertEquals(new Integer(-2), kuhnPokerLitegame.getPayOffs().get(0));
-		assertEquals(new Integer(2), kuhnPokerLitegame.getPayOffs().get(1));
+		assertEquals(-2, kuhnPokerLitegame.getPayOffs()[0]);
+		assertEquals(2, kuhnPokerLitegame.getPayOffs()[1]);
 	}
 
 
@@ -438,8 +438,8 @@ public void afterCopyGameRaiseTest() throws Exception {
 	//
 
 	assertFalse(kuhnPokerLiteGameCopy.lastActionIsTerminalCallForTheBettingRound());
-	assertEquals(new Integer(-2), kuhnPokerLiteGameCopy.getPayOffs().get(0));
-	assertEquals(new Integer(2), kuhnPokerLiteGameCopy.getPayOffs().get(1));
+	assertEquals(-2, kuhnPokerLiteGameCopy.getPayOffs()[0]);
+	assertEquals(2, kuhnPokerLiteGameCopy.getPayOffs()[1]);
 }
 
 
@@ -510,8 +510,8 @@ public void afterCopyGameRaiseTest() throws Exception {
 		//
 
 		assertTrue(kuhnPokerLitegame.lastActionIsTerminalCallForTheBettingRound());
-		assertEquals(new Integer(-2), kuhnPokerLitegame.getPayOffs().get(0));
-		assertEquals(new Integer(2), kuhnPokerLitegame.getPayOffs().get(1));
+		assertEquals(-2, kuhnPokerLitegame.getPayOffs()[0]);
+		assertEquals(2, kuhnPokerLitegame.getPayOffs()[1]);
 	}
 
 }

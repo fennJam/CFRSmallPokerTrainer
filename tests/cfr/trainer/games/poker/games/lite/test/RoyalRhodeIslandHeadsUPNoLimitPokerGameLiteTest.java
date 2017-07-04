@@ -314,9 +314,9 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameLiteTest {
 		
 		
 //		get payoff
-		Map<Integer,Integer>payoffs = royalRhodeIsland10ChipNoLimitLite.getPayOffs();
-		assertEquals(Integer.valueOf(10),payoffs.get(0));
-		assertEquals(Integer.valueOf(-10),payoffs.get(1));
+		int[]payoffs = royalRhodeIsland10ChipNoLimitLite.getPayOffs();
+		assertEquals(10,payoffs[0]);
+		assertEquals(-10,payoffs[1]);
 	}
 	
 	

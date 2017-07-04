@@ -42,7 +42,7 @@ public class MonteCarloCFRTrainer {
 	private double cfr(Game game, double p0, double p1) throws Exception {
 
 		if (game.isAtTerminalNode()) {
-			return game.getPayOffs().get(game.getPlayerToAct());
+			return game.getPayOffs()[game.getPlayerToAct()];
 		}
 
 		if (game.isAtChanceNode()) {

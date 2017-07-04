@@ -33,13 +33,13 @@ public class CFRPlusTrainer {
 
 		Game gameStructure = GameFactory.setUpGame(gameDescription, 2);
 		int[][] validChanceCombinations = gameStructure.getListOfValidChanceCombinations();
-		long startTime = System.currentTimeMillis();
+//		long startTime = System.currentTimeMillis();
 		for (int i = 0; i < iterations; i++) {
-			long totalCombos = validChanceCombinations.length;
-			int combo = 0;
+//			long totalCombos = validChanceCombinations.length;
+//			int combo = 0;
 			for (int[] validCombo : validChanceCombinations) {
-				combo++;
-				printProgress(startTime, totalCombos, combo);
+//				combo++;
+//				printProgress(startTime, totalCombos, combo);
 				// System.out.println("Combination :" + combo);
 				Game game = GameFactory.setUpGame(gameDescription, 2);
 				game.startGame();
@@ -62,7 +62,7 @@ public class CFRPlusTrainer {
 	private double cfrPlus(Game game, double p0, double p1,int playerToTrain, int iteration) throws Exception {
 		// System.out.println("training player:" + playerToTrain);
 		if (game.isAtTerminalNode()) {
-			return game.getPayOffs().get(game.getPlayerToAct());
+			return game.getPayOffs()[game.getPlayerToAct()];
 		}
 		if (game.isAtChanceNode()) {
 			game.performChanceAction();
