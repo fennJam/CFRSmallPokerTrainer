@@ -483,9 +483,9 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameLiteTest {
 		
 		royalRhodeIsland10ChipNoLimitLite.setValidChanceCombinations(validChanceCombo);
 		
-		royalRhodeIsland10ChipNoLimitLite.performAction(0, new RaiseAction(5));
-		royalRhodeIsland10ChipNoLimitLite.performAction(1, new RaiseAction(3));
-		royalRhodeIsland10ChipNoLimitLite.performAction(0, new RaiseAction(2));
+		royalRhodeIsland10ChipNoLimitLite.performAction(0, new RaiseAction(3));
+		royalRhodeIsland10ChipNoLimitLite.performAction(1, new RaiseAction(2));
+		royalRhodeIsland10ChipNoLimitLite.performAction(0, new RaiseAction(1));
 		
 		assertEquals(12,royalRhodeIsland10ChipNoLimitLite.getPossibleActions().size());
 	
@@ -495,13 +495,13 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameLiteTest {
 		assertEquals(DealAction.getInstance(),royalRhodeIsland10ChipNoLimitLite.getActionsTaken().get(0));
 		assertTrue(royalRhodeIsland10ChipNoLimitLite.getActionsTaken().get(1) instanceof RaiseAction);
 		RaiseAction raiseActionTaken = (RaiseAction)royalRhodeIsland10ChipNoLimitLite.getActionsTaken().get(1);
-		assertEquals(5,raiseActionTaken.getRaiseAmount());
+		assertEquals(3,raiseActionTaken.getRaiseAmount());
 		assertTrue(royalRhodeIsland10ChipNoLimitLite.getActionsTaken().get(2) instanceof RaiseAction);
 		RaiseAction raiseActionTaken2 = (RaiseAction)royalRhodeIsland10ChipNoLimitLite.getActionsTaken().get(2);
-		assertEquals(3,raiseActionTaken2.getRaiseAmount());
+		assertEquals(2,raiseActionTaken2.getRaiseAmount());
 		assertTrue(royalRhodeIsland10ChipNoLimitLite.getActionsTaken().get(3) instanceof RaiseAction);
 		RaiseAction raiseActionTaken3 = (RaiseAction)royalRhodeIsland10ChipNoLimitLite.getActionsTaken().get(3);
-		assertEquals(2,raiseActionTaken3.getRaiseAmount());
+		assertEquals(1,raiseActionTaken3.getRaiseAmount());
 		
 		
 		assertEquals(BettingLimit.NO_LIMIT,royalRhodeIsland10ChipNoLimitLite.getBettingLimit());
@@ -525,7 +525,7 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameLiteTest {
 		
 		assertEquals(116280,royalRhodeIsland10ChipNoLimitLite.getListOfValidChanceCombinations().size());
 		
-		assertEquals("[S,S,9]D,5,3,2",royalRhodeIsland10ChipNoLimitLite.getNodeIdWithActionMemory());
+		assertEquals("[S,S,9]D,3,2,1",royalRhodeIsland10ChipNoLimitLite.getNodeIdWithActionMemory());
 		
 //		TODO handle null pointer thrown here
 //		assertEquals("",RoyalRhodeIsland10ChipNoLimitLite.getNodeIdWithGameState());
@@ -533,8 +533,8 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameLiteTest {
 ////	TODO handle null pointer thrown here
 //		assertEquals(Integer.valueOf(0),RoyalRhodeIsland10ChipNoLimitLite.getPayOffs().get(0));
 //		assertEquals(Integer.valueOf(0),RoyalRhodeIsland10ChipNoLimitLite.getPayOffs().get(1));
-		assertEquals(12,royalRhodeIsland10ChipNoLimitLite.getPot()[0]);
-		assertEquals(10,royalRhodeIsland10ChipNoLimitLite.getPot()[1]);
+		assertEquals(8,royalRhodeIsland10ChipNoLimitLite.getPot()[0]);
+		assertEquals(7,royalRhodeIsland10ChipNoLimitLite.getPot()[1]);
 		assertEquals(3,royalRhodeIsland10ChipNoLimitLite.getRaiseCount());
 		assertEquals(3,royalRhodeIsland10ChipNoLimitLite.getRaisesAllowedPerBettingRound());
 		assertFalse(royalRhodeIsland10ChipNoLimitLite.lastActionIsTerminalCallForTheBettingRound());
@@ -546,7 +546,6 @@ public class RoyalRhodeIslandHeadsUPNoLimitPokerGameLiteTest {
 		assertEquals(FoldAction.getInstance(),royalRhodeIsland10ChipNoLimitLite.getPossibleActions().get(0));
 		assertEquals(CallAction.getInstance(),royalRhodeIsland10ChipNoLimitLite.getPossibleActions().get(1));
 
-		
 	}
 	
 	
