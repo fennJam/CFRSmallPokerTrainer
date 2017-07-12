@@ -1,17 +1,8 @@
 package cfr.trainer.games.poker.games.lite;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import cfr.trainer.games.poker.BetRound;
 import cfr.trainer.games.poker.BettingLimit;
-import cfr.trainer.games.poker.Card;
-import cfr.trainer.games.poker.Hand;
-import cfr.trainer.games.poker.HandSingleCard;
 import cfr.trainer.games.poker.PokerGameType;
-import cfr.trainer.games.poker.games.KuhnPoker;
 
 public class KuhnPokerLite extends BaseTwoPlayerPokerLiteGame {
 
