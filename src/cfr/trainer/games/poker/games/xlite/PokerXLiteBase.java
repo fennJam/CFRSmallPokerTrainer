@@ -145,6 +145,8 @@ public abstract class PokerXLiteBase implements PokerGameXLite {
 			return true;
 		} else if (this.betRounds == this.dealCount && lastActionIsTerminalCallForTheBettingRound()) {
 			return true;
+		}else if(pot[0]==this.startingStacks&&pot[1]==this.startingStacks){
+			return true;
 		}
 		return false;
 	}

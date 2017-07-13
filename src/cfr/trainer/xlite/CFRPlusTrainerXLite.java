@@ -62,7 +62,7 @@ public class CFRPlusTrainerXLite {
 			return game.getPayoffs()[game.getPlayerToAct()];
 		}
 		if (game.isAtChanceNode()) {
-			actionsTaken+="C";
+			actionsTaken+="D";
 		}
 
 		// Get Node
