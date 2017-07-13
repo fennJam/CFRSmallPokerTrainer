@@ -190,23 +190,63 @@ public class PokerXLiteBaseTest {
 
 	@Test
 	public final void testAfterDealAllInCall() {
-//		pokerXLiteBase.setActionsTaken("D116C", cardsDealt);
-//
-//		// Player
-//		assertEquals(0, pokerXLiteBase.getPlayerToAct());
-//
-//		// Actions
-//		assertTrue(pokerXLiteBase.isAtChanceNode());
-//		assertTrue(pokerXLiteBase.isAtTerminalNode());
-//		
-//		//NodeId
-//		assertEquals("[S,S,1]D116C",pokerXLiteBase.getNodeId());
-//		
-//		// Payoffs
-//		assertEquals(-3, pokerXLiteBase.getPayoffs()[0]);
-//		assertEquals(+3, pokerXLiteBase.getPayoffs()[1]);
+		pokerXLiteBase.setActionsTaken("D116C", cardsDealt);
+
+		// Player
+		assertEquals(0, pokerXLiteBase.getPlayerToAct());
+
+		// Actions
+		assertTrue(pokerXLiteBase.isAtChanceNode());
+		assertTrue(pokerXLiteBase.isAtTerminalNode());
+		
+		//NodeId
+		assertEquals("[S,S,0]D116C",pokerXLiteBase.getNodeId());
+		
+		// Payoffs
+		assertEquals(-10, pokerXLiteBase.getPayoffs()[0]);
+		assertEquals(+10, pokerXLiteBase.getPayoffs()[1]);
+	}
+	
+	@Test
+	public final void testAfterDealCall() {
+		pokerXLiteBase.setActionsTaken("DC", cardsDealt);
+
+		// Player
+		assertEquals(1, pokerXLiteBase.getPlayerToAct());
+
+		// Actions
+		assertFalse(pokerXLiteBase.isAtChanceNode());
+		assertFalse(pokerXLiteBase.isAtTerminalNode());
+		assertEquals(10, pokerXLiteBase.getAvailableActions().length);
+		assertEquals('F', pokerXLiteBase.getAvailableActions()[0]);
+		assertEquals('C', pokerXLiteBase.getAvailableActions()[1]);
+		assertEquals('1', pokerXLiteBase.getAvailableActions()[2]);
+		assertEquals('2', pokerXLiteBase.getAvailableActions()[3]);
+		assertEquals('3', pokerXLiteBase.getAvailableActions()[4]);
+		assertEquals('4', pokerXLiteBase.getAvailableActions()[5]);
+		assertEquals('5', pokerXLiteBase.getAvailableActions()[6]);
+		assertEquals('6', pokerXLiteBase.getAvailableActions()[7]);
+		assertEquals('7', pokerXLiteBase.getAvailableActions()[8]);
+		assertEquals('8', pokerXLiteBase.getAvailableActions()[9]);
+		
+		//NodeId
+		assertEquals("[S,S,1]DC",pokerXLiteBase.getNodeId());
 	}
 
+	@Test
+	public final void testAfterDealCallCheck() {
+		pokerXLiteBase.setActionsTaken("DCC", cardsDealt);
+
+		// Player
+		assertEquals(0, pokerXLiteBase.getPlayerToAct());
+
+		// Actions
+		assertTrue(pokerXLiteBase.isAtChanceNode());
+		assertFalse(pokerXLiteBase.isAtTerminalNode());
+		
+		//NodeId
+		assertEquals("[S,S,0]DCC",pokerXLiteBase.getNodeId());
+	}
 	
 	@Test
 	public final void getTurnedCardsTest() {

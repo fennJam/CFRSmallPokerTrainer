@@ -40,6 +40,8 @@ public class TwoPlayerTwoCardGameTest {
 		assertEquals(0, twoPlayerTwoCardGameTest.getRaiseCount());
 		assertEquals(3, twoPlayerTwoCardGameTest.getRaisesAllowedPerBettingRound());
 		assertTrue(twoPlayerTwoCardGameTest.raisesAllowed());
+		
+		assertEquals(132600,twoPlayerTwoCardGameTest.getListOfValidChanceCombinations().length);
 
 		assertFalse(twoPlayerTwoCardGameTest.isAtTerminalNode());
 
