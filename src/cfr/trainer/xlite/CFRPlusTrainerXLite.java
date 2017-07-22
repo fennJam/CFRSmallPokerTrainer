@@ -34,10 +34,10 @@ public class CFRPlusTrainerXLite {
 	public void train(PokerGameXLite game,int iterations) throws Exception {
 
 		int[][] validChanceCombinations = game.getListOfValidChanceCombinations();
-//		long startTime = System.currentTimeMillis();
-		for (int i = 0; i < iterations; i++) {
-//			long totalCombos = validChanceCombinations.length;
-//			int combo = 0;
+		// long startTime = System.currentTimeMillis();
+		for (int i = 1; i < iterations; i++) {
+			// long totalCombos = validChanceCombinations.length;
+			// int combo = 0;
 			for (int[] validCombo : validChanceCombinations) {
 //				combo++;
 //				printProgress(startTime, totalCombos, combo);
@@ -62,7 +62,8 @@ public class CFRPlusTrainerXLite {
 			return game.getPayoffs()[game.getPlayerToAct()];
 		}
 		if (game.isAtChanceNode()) {
-			actionsTaken+="D";
+			actionsTaken += "D";
+			game.setActionsTaken(actionsTaken, deal);
 		}
 
 		// Get Node

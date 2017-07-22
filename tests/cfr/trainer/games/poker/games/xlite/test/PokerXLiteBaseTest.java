@@ -262,5 +262,53 @@ public class PokerXLiteBaseTest {
 		assertEquals(2,pokerXLiteBase.getTurnedCards()[0]);
 		assertEquals(3,pokerXLiteBase.getTurnedCards()[1]);
 	}
+	
+	@Test
+	public final void testAfterDealCallRaiseCall() {
+		pokerXLiteBase.setActionsTaken("DC2C", cardsDealt);
+
+		// Player
+		assertEquals(1, pokerXLiteBase.getPlayerToAct());
+
+		// Actions
+		assertTrue(pokerXLiteBase.isAtChanceNode());
+		assertFalse(pokerXLiteBase.isAtTerminalNode());
 		
+		//NodeId
+		assertEquals("[S,S,1]DC2C",pokerXLiteBase.getNodeId());
+	}
+	
+	
+	@Test
+	public final void testAfterDealCallRaiseCallDeal() {
+		pokerXLiteBase.setActionsTaken("DC2CD", cardsDealt);
+
+		// Player
+		assertEquals(0, pokerXLiteBase.getPlayerToAct());
+
+		// Actions
+		assertFalse(pokerXLiteBase.isAtChanceNode());
+		assertFalse(pokerXLiteBase.isAtTerminalNode());
+		
+		//NodeId
+		assertEquals("[S,S,0,2]DC2CD",pokerXLiteBase.getNodeId());
+	}
+
+	@Test
+	public final void testAfterDealCallRaise() {
+		pokerXLiteBase.setActionsTaken(	"DC1", cardsDealt);
+
+		// Player
+		assertEquals(0, pokerXLiteBase.getPlayerToAct());
+
+		// Actions
+		assertFalse(pokerXLiteBase.isAtChanceNode());
+		assertFalse(pokerXLiteBase.isAtTerminalNode());
+		
+		assertEquals('F',pokerXLiteBase.getAvailableActions()[0]);
+		assertEquals('C',pokerXLiteBase.getAvailableActions()[1]);
+		
+		//NodeId
+		assertEquals("[S,S,0]DC1",pokerXLiteBase.getNodeId());
+	}
 }

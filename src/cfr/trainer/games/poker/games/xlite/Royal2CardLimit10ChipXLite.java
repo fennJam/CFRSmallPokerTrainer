@@ -1,9 +1,9 @@
 package cfr.trainer.games.poker.games.xlite;
 
-public class Royal2CardNL10ChipXLite extends PokerXLiteBase {
+public class Royal2CardLimit10ChipXLite extends PokerXLiteBase {
 
-	public Royal2CardNL10ChipXLite() {
-		super(1, 3, 2, 10, true);
+	public Royal2CardLimit10ChipXLite() {
+		super(1, 1, 2, 10, false);
 		this.startingStacks=10;
 	}
 

@@ -11,6 +11,8 @@ public abstract class PokerXLiteBase implements PokerGameXLite {
 	int dealCount = 0;// Number of deal actions in the game so far.
 	boolean folded = false;// has there been a fold action in the game
 	char[] possibleActions = { 'F', 'C', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+	char[] terminalActions = { 'F', 'C' };
+	char[] limitActions = { 'F', 'C', '1' };
 	int[] pot = new int[2];
 
 	int[] hands = new int[2];
@@ -85,7 +87,7 @@ public abstract class PokerXLiteBase implements PokerGameXLite {
 
 	@Override
 	public char[] getAvailableActions() {
-		char[] terminalActions = { 'F', 'C' };
+
 		if (!raisesAllowed()) {
 			return terminalActions;
 		} else if (noLimitGame) {
@@ -111,7 +113,7 @@ public abstract class PokerXLiteBase implements PokerGameXLite {
 			}
 
 		} else {
-			char[] limitActions = { 'F', 'C', '1' };
+
 			return limitActions;
 		}
 	}
