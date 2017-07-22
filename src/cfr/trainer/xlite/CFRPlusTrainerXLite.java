@@ -2,6 +2,7 @@ package cfr.trainer.xlite;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +17,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cfr.trainer.games.poker.games.xlite.KuhnPokerXLite;
 import cfr.trainer.games.poker.games.xlite.PokerGameXLite;
+import cfr.trainer.games.poker.games.xlite.Royal2CardNL10ChipXLite;
+import cfr.trainer.games.poker.games.xlite.RoyalRhodeIslandNL10ChipXLite;
 
 public class CFRPlusTrainerXLite {
 
@@ -23,15 +26,20 @@ public class CFRPlusTrainerXLite {
 	double util = 0;
 	int utilCount;
 	double averageGameValue = 0;
-	static PokerGameXLite game =  new KuhnPokerXLite();
+	static PokerGameXLite game = new Royal2CardNL10ChipXLite();
+	boolean invertPayoffs = true;// players always alternate actions so the CFR
+									// payoff for player 1 would be a function
+									// of negative player 0's subsequent action.
+									// Unless Player 0 calls at the end of a
+									// betting round. Then player 0 is the next
+									// to act so it should be positive.
 
 	public static void main(String[] args) throws Exception {
-		int iterations = 1;
-//		PokerGameXLite game =  new RoyalRhodeIslandNL10ChipXLite();
-		new CFRPlusTrainerXLite().train(game,iterations);
+		int iterations = 20;
+		new CFRPlusTrainerXLite().train(game, iterations);
 	}
 
-	public void train(PokerGameXLite game,int iterations) throws Exception {
+	public void train(PokerGameXLite game, int iterations) throws Exception {
 
 		int[][] validChanceCombinations = game.getListOfValidChanceCombinations();
 		// long startTime = System.currentTimeMillis();
@@ -39,73 +47,116 @@ public class CFRPlusTrainerXLite {
 			// long totalCombos = validChanceCombinations.length;
 			// int combo = 0;
 			for (int[] validCombo : validChanceCombinations) {
-//				combo++;
-//				printProgress(startTime, totalCombos, combo);
+				// combo++;
+				// printProgress(startTime, totalCombos, combo);
 				// System.out.println("Combination :" + combo);
 
 				String actionsTaken = "D";
-				int[] board ={};
-				int[]hands ={validCombo[0],validCombo[1]};
-				int[][] deal = {hands,board};
-				util += cfrPlus(actionsTaken,deal, 1, 1,0, i);
-				util += cfrPlus(actionsTaken,deal,  1, 1,1, i);
+				int[] board = { validCombo[2] };
+				int[] hands = { validCombo[0], validCombo[1] };
+				int[][] deal = { hands, board };
+				util += cfrPlus(actionsTaken, deal, 1, 1, 0, i);
+				actionsTaken = "D";
+				util += cfrPlus(actionsTaken, deal, 1, 1, 1, i);
 			}
+			averageGameValue = util / (iterations * validChanceCombinations.length * 2);
+			System.out.println("Average game value: " + averageGameValue + "\n Nodes: " + regretMap.size());
 		}
-		averageGameValue = util / (iterations * validChanceCombinations.length*2);
+		averageGameValue = util / (iterations * validChanceCombinations.length * 2);
 		System.out.println("Average game value: " + averageGameValue + "\n Nodes: " + regretMap.size());
-		writeStrategyMapToJSONFile(regretMap);
+		writeStrategyMapToJSONFile(getStrategyMap(), "SummaryStrategy" + iterations);
 	}
 
-	private double cfrPlus(String actionsTaken,int[][] deal, double p0, double p1,int playerToTrain, int iteration) throws Exception {
-	game.setActionsTaken(actionsTaken, deal);
+	private double cfrPlus(String actionsTaken, int[][] deal, double p0, double p1, int playerToTrain, int iteration)
+			throws Exception {
+
+		game.setActionsTaken(actionsTaken, deal);
+		int player = game.getPlayerToAct();
 		if (game.isAtTerminalNode()) {
 			return game.getPayoffs()[game.getPlayerToAct()];
 		}
 		if (game.isAtChanceNode()) {
-			actionsTaken += "D";
+			int playerExpectedToAct = game.getPlayerToAct();
+			actionsTaken+='D';
 			game.setActionsTaken(actionsTaken, deal);
+			player = game.getPlayerToAct();
+			if (playerExpectedToAct != player) {
+				// player 0 was last to act and will actually be the next to act
+				invertPayoffs = false;
+			}
 		}
 
 		// Get Node
 		String nodeId = game.getNodeId();
 		// String nodeId = game.getNodeIdWithGameState();
 		char[] actionsAvailable = game.getAvailableActions();
-		int noOfActionsAvailable = actionsAvailable.length; 
-		
+		int noOfActionsAvailable = actionsAvailable.length;
+
 		double[] regretSums = regretMap.get(nodeId);
 		if (regretSums == null) {
 			regretSums = new double[noOfActionsAvailable];
 			regretMap.put(nodeId, regretSums);
 		}
 		// recursively call cfr
-		int player = game.getPlayerToAct();
+
 
 		double[] strategy = calculateStrategy(regretSums);
 		double[] util = new double[noOfActionsAvailable];
 		double nodeUtil = 0;
 
-		for (int actionIndex=0;actionIndex<noOfActionsAvailable;actionIndex++) {
-			String newActionsTaken= actionsTaken+actionsAvailable[actionIndex];
+		if (invertPayoffs) {
 
-			util[actionIndex] = player == 0 ? -cfrPlus( newActionsTaken,deal, p0 * strategy[actionIndex], p1, playerToTrain,iteration)
-					: -cfrPlus(newActionsTaken, deal, p0, p1 * strategy[actionIndex],playerToTrain, iteration);
+			for (int actionIndex = 0; actionIndex < noOfActionsAvailable; actionIndex++) {
+				String newActionsTaken = actionsTaken + actionsAvailable[actionIndex];
 
-			nodeUtil += strategy[actionIndex] * util[actionIndex];
+				util[actionIndex] = player == 0
+						? -cfrPlus(newActionsTaken, deal, p0 * strategy[actionIndex], p1, playerToTrain, iteration)
+						: -cfrPlus(newActionsTaken, deal, p0, p1 * strategy[actionIndex], playerToTrain, iteration);
+
+				nodeUtil += strategy[actionIndex] * util[actionIndex];
+			}
+		} else {
+			for (int actionIndex = 0; actionIndex < noOfActionsAvailable; actionIndex++) {
+				String newActionsTaken = actionsTaken + actionsAvailable[actionIndex];
+
+				util[actionIndex] = player == 0
+						? cfrPlus(newActionsTaken, deal, p0 * strategy[actionIndex], p1, playerToTrain, iteration)
+						: cfrPlus(newActionsTaken, deal, p0, p1 * strategy[actionIndex], playerToTrain, iteration);
+
+				nodeUtil += strategy[actionIndex] * util[actionIndex];
+			}
+//			reset to normal behaviour
+			invertPayoffs = true;
 		}
 
 		// compute cfr
-		 if (playerToTrain == player) {
-		for (int a = 0; a < noOfActionsAvailable; a++) {
-			double regret = util[a] - nodeUtil;
-			// double regretSum = regretSums[a] + (player == 0 ? p1 : p0) *
-			// regret;
-			// node.regretSum[a] = Math.max(regretSum, 0);
-			double weightedRegret = regret * iteration;
-			double regretSum = (regretSums[a] + (player == 0 ? p1 : p0) * weightedRegret);
-			regretSums[a] = Math.max(regretSum, 0);
-			 }
+		if (playerToTrain == player) {
+			for (int a = 0; a < noOfActionsAvailable; a++) {
+				double regret = util[a] - nodeUtil;
+				double weightedRegret = regret * iteration;
+				double regretSum = (regretSums[a] + (player == 0 ? p1 : p0) * weightedRegret);
+				regretSums[a] = Math.max(regretSum, 0);
+			}
 		}
 		return nodeUtil;
+	}
+
+
+	public static String summariseActions(String actionsTaken) {
+		int dealIndexPlus1 = actionsTaken.lastIndexOf('D') + 1;
+		String actionsToBeSummarised = actionsTaken.substring(dealIndexPlus1);
+		int actionIndex = 0;
+		int[] actionsSummary = { 0, 0 };
+		for (char action : actionsToBeSummarised.toCharArray()) {
+			int player = actionIndex % 2;
+			if (Character.isDigit(action)) {
+				int actionInt = Character.getNumericValue(action);
+				actionsSummary[player] += actionInt;
+			}
+			actionIndex++;
+		}
+		return actionsTaken.substring(0, dealIndexPlus1) + Arrays.toString(actionsSummary);
+
 	}
 
 	public double getAverageGameValue() {
@@ -116,11 +167,11 @@ public class CFRPlusTrainerXLite {
 		return regretMap;
 	}
 
-	private void writeStrategyMapToJSONFile(Map nodeMap)
+	private void writeStrategyMapToJSONFile(Map<?, ?> nodeMap, String fileName)
 			throws JsonGenerationException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writerWithDefaultPrettyPrinter()
-				.writeValue(new File("C:\\Users\\James\\Desktop\\StrategyMaps\\user.json"), nodeMap);
+				.writeValue(new File("C:\\Users\\James\\Desktop\\StrategyMaps\\" + fileName + ".json"), nodeMap);
 	}
 
 	private double[] calculateStrategy(double[] regretSum) {
