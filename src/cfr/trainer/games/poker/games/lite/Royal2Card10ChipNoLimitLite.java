@@ -1,29 +1,8 @@
 package cfr.trainer.games.poker.games.lite;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import cfr.trainer.action.Action;
-import cfr.trainer.games.Game;
-import cfr.trainer.games.GameType;
 import cfr.trainer.games.poker.BetRound;
 import cfr.trainer.games.poker.BettingLimit;
-import cfr.trainer.games.poker.Board;
-import cfr.trainer.games.poker.Card;
-import cfr.trainer.games.poker.Hand;
-import cfr.trainer.games.poker.HandSingleCard;
-import cfr.trainer.games.poker.PayOffCalculator;
 import cfr.trainer.games.poker.PokerGameType;
-import cfr.trainer.games.poker.PokerPlayer;
-import cfr.trainer.games.poker.actions.CallAction;
-import cfr.trainer.games.poker.actions.DealAction;
-import cfr.trainer.games.poker.actions.FoldAction;
-import cfr.trainer.games.poker.actions.PokerAction;
-import cfr.trainer.games.poker.actions.PokerActionType;
-import cfr.trainer.games.poker.actions.RaiseAction;
-import cfr.trainer.games.poker.decks.Deck;
 
 public class Royal2Card10ChipNoLimitLite extends BaseTwoPlayerPokerLiteGame {
 
@@ -49,7 +28,7 @@ public class Royal2Card10ChipNoLimitLite extends BaseTwoPlayerPokerLiteGame {
 
 	@Override
 	public int[][] getListOfValidChanceCombinations() {
-		int[][] validCardCombinationLists = new int[116280][4];
+		int[][] validCardCombinationLists = new int[6840][3];
 		int[] cardOrder = new int[20];
 
 		int cardOrderPointer =0;
@@ -84,7 +63,7 @@ public class Royal2Card10ChipNoLimitLite extends BaseTwoPlayerPokerLiteGame {
 					if (boardCard1 == card1 || boardCard1 == card0) {
 						continue;
 					}
-						int[] validCardComination = new int[4];
+						int[] validCardComination = new int[3];
 						validCardComination[0] = card0;
 						validCardComination[1] = card1;
 						validCardComination[2] =boardCard1;
@@ -102,9 +81,8 @@ public class Royal2Card10ChipNoLimitLite extends BaseTwoPlayerPokerLiteGame {
 
 		
 		int boardCard1 = listOfChanceCombinations[0];
-		int boardCard2 = listOfChanceCombinations[1];
-		int card0 = listOfChanceCombinations[2];
-		int card1 = listOfChanceCombinations[3];
+		int card0 = listOfChanceCombinations[1];
+		int card1 = listOfChanceCombinations[2];
 
 		playerHands[0] = card0;
 		playerHands[1] = card1;
