@@ -30,7 +30,7 @@ public class CFRPlusTrainer {
 	boolean invertPayoffs = true;
 
 	public static void main(String[] args) throws Exception {
-		int iterations = 2500;
+		int iterations = 2;
 		new CFRPlusTrainer().train(GameDescription.ROYAL_TWO_CARD_10_CHIP_LITE, iterations);
 	}
 
@@ -39,11 +39,10 @@ public class CFRPlusTrainer {
 		Game gameStructure = GameFactory.setUpGame(gameDescription, 3);
 		int[][] validChanceCombinations = gameStructure.getListOfValidChanceCombinations();
 		long startTime = System.currentTimeMillis();
-		int iteration = 0;
 		for (int i = 1; i < iterations + 1; i++) {
 			// long totalCombos = validChanceCombinations.length;
-			iteration++;
-			printProgress(startTime, iterations, iteration);
+
+			printProgress(startTime, iterations, i);
 			for (int[] validCombo : validChanceCombinations) {
 
 				Game game = GameFactory.setUpGame(gameDescription, 3);
@@ -58,16 +57,16 @@ public class CFRPlusTrainer {
 				game2.setValidChanceCombinations(validCombo);
 				util += cfrPlus(game2, 1, 1, 1, i);
 			}
-			averageGameValue = util / (i * validChanceCombinations.length);
+			averageGameValue = util / (i * validChanceCombinations.length*2);
 			System.out.println("Average game value: " + averageGameValue + " Nodes: " + regretMap.size());
-			addValueToCSV("conventional_utility", averageGameValue);
+			addValueToCSV("Summary_utility", averageGameValue);
 			if (i % 500 == 0) {
-				writeStrategyMapToJSONFile(getStrategyMap(), i + "iterationsConventionalStrategy");
+				writeStrategyMapToJSONFile(getStrategyMap(), i + "iterationsSummaryStrategy");
 			}
 		}
 		averageGameValue = util / (iterations * validChanceCombinations.length * 2);
 		System.out.println("Average game value: " + averageGameValue + "\n Nodes: " + regretMap.size());
-		writeStrategyMapToJSONFile(regretMap, iterations + "iterationsConventionalStrategy");
+		writeStrategyMapToJSONFile(getStrategyMap(), iterations + "iterationsActualSummaryStrategy");
 	}
 
 	private double cfrPlus(Game game, double p0, double p1, int playerToTrain, int iteration) throws Exception {
@@ -88,22 +87,24 @@ public class CFRPlusTrainer {
 		}
 
 		// Get Node
-		String nodeId = game.getNodeIdWithActionMemory();
+//		String nodeId = game.getNodeIdWithActionMemory();
+		String nodeId = game.getNodeIdWithSummaryState();
 		// String nodeId = game.getNodeIdWithGameState();
 
+		Action[] actionArray = game.constructActionArray();
+		
 		double[] regretSums = regretMap.get(nodeId);
 		if (regretSums == null) {
-			regretSums = new double[game.constructActionArray().length];
+			regretSums = new double[actionArray.length];
 			regretMap.put(nodeId, regretSums);
 		}
 		// recursively call cfr
 
 		double[] strategy = calculateStrategy(regretSums);
-		int actionsAvailable = regretSums.length;
+		int actionsAvailable = actionArray.length;
 		double[] util = new double[actionsAvailable];
 		double nodeUtil = 0;
 
-		Action[] actionArray = game.constructActionArray();
 		if (invertPayoffs) {
 			for (int action = 0; action < actionsAvailable; action++) {
 				Game copyOfGame = GameFactory.copyGame(game);

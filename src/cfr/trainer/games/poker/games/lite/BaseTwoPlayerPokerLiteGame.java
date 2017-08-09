@@ -1,6 +1,7 @@
 package cfr.trainer.games.poker.games.lite;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -254,8 +255,43 @@ public abstract class BaseTwoPlayerPokerLiteGame implements PokerGameLite {
 
 	@Override
 	public String getNodeIdWithSummaryState() {
+
+		String actionsTaken = getActionsTakenString().replaceAll(",", "");
+		String summaryState = "";
+		int dealCount = actionsTaken.length()-(actionsTaken.replaceAll("D", "").length());
+		boolean dealLastAction = actionsTaken.endsWith("D");
+		if(dealCount<2){
+			summaryState = actionsTaken;
+		}else{
+			String[] actionRounds = actionsTaken.split("D");
+			int roundToSummarise = actionRounds.length-1;
+			if(dealLastAction){
+				roundToSummarise = actionRounds.length;
+				}
+			for(int actionRoundIndex=0;actionRoundIndex<roundToSummarise;actionRoundIndex++){
+				String actionRound = actionRounds[actionRoundIndex];
+				if(actionRound.isEmpty()){
+					continue;
+				}
+				int[] totalPlayerRaises = new int[2];
+				int charIndex=0;
+				for(char action:actionRound.toCharArray()){
+					if(Character.isDigit(action)){
+						int raise = Character.getNumericValue(action);
+						totalPlayerRaises[charIndex%2]=totalPlayerRaises[charIndex%2]+raise;
+					}
+					charIndex++;
+				}
+				summaryState+="D"+Arrays.toString(totalPlayerRaises);
+			}
+			if(dealLastAction){
+				summaryState+="D";
+			}else{
+				summaryState+="D"+actionRounds[actionRounds.length-1];
+			}
+		}
 		String cardHistory = getThreeCardHistory(playerHands[getPlayerToAct()], getTurnedCards());
-		return cardHistory + (pot[0] + pot[1]) + " raisesAllowed : " + raisesAllowed();
+		return cardHistory + summaryState;
 	}
 
 	@Override
